@@ -1,0 +1,50 @@
+<form [formGroup]="userForm" (ngSubmit)="register()">
+  <section>
+    <div class="container">
+      <div class="alert alert-warning text-center my-4"></div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <div class="row">
+            <div class="col text-center">
+              <h1>Đăng Ký</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" formControlName="username" class="form-control" placeholder="Tên đăng nhập">
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="password" formControlName="password" class="form-control" placeholder="Mật khẩu">
+            </div>
+            <div class="col">
+              <input type="password" formControlName="confirmPassword" class="form-control"
+                     placeholder="Xác nhận lại mật khẩu">
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="text" formControlName="phone" class="form-control" placeholder="Nhập số điện thoại">
+            </div>
+            <div class="col">
+              <input type="text" formControlName="pin" class="form-control"
+                     placeholder="Nhập mã pin">
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">
+                  <a>Cho phép gửi thông báo</a>
+                </label>
+              </div>
+              <button class="btn btn-primary mt-4">Đăng ký</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

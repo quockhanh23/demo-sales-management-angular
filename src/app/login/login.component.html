@@ -1,0 +1,32 @@
+<form [formGroup]="userForm" (ngSubmit)="login()">
+  <section>
+    <div class="container">
+      <div class="alert alert-warning text-center my-4"></div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <div class="row">
+            <div class="col text-center">
+              <h1>Đăng Nhập</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" formControlName="username" class="form-control" placeholder="Tên đăng nhập">
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="password" formControlName="password" class="form-control" placeholder="Mật khẩu">
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4">
+            <div class="col">
+              <button class="btn btn-primary mt-4">Đăng nhập</button>
+              <span class="psw"><a>Quên mật khẩu?</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

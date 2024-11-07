@@ -1,0 +1,58 @@
+<form [formGroup]="productForm" (ngSubmit)="createProduct()">
+  <section>
+    <div class="container">
+      <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+            class="material-icons hoverYellowColor">arrow_back</span>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <div class="row">
+            <div class="col text-center">
+              <div *ngIf="checkFile" class="alert alert-danger" role="alert">
+                Bạn cần phải chọn ảnh để upload trước
+              </div>
+              <h1>Tạo mới sản phẩm</h1>
+              <h1 id="test" *ngIf="created">Tạo sản phẩm thành công</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" formControlName="productName" class="form-control"
+                     placeholder="Tên sản phẩm">
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input formControlName="price" class="form-control" placeholder="Giá sản phẩm">
+            </div>
+            <div class="col">
+              <input type="number" formControlName="quantity" class="form-control"
+                     placeholder="Số lượng">
+            </div>
+          </div>
+          <div class="row justify-content-start mt-4" style="margin-bottom: 30px">
+            <div class="col">
+              <button *ngIf="checkUploadImage" class="btn btn-primary mt-4">Thêm mới sản phẩm</button>
+              <button *ngIf="!checkUploadImage" disabled class="btn btn-primary mt-4">Thêm mới sản phẩm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div class="container d-flex justify-content-center">
+  <div class="mt-5 row justify-content-center">
+
+    <div class="col-10 mb-3">
+      <label class="px-3">Select File: </label>
+      <input type="file" (change)="selectFile($event)"/>
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-success btn-sm" (click)="uploadFile()">
+        Upload
+      </button>
+    </div>
+  </div>
+</div>
