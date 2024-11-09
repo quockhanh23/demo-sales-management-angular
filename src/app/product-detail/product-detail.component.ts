@@ -168,7 +168,7 @@ export class ProductDetailComponent implements OnInit {
   getAllStarByProductAndUser() {
     this.starService.getAllStarByProductAndUser(this.idProduct, this.idUser).subscribe(rs => {
       this.star = rs
-      this.rating = this.star.type
+      this.rating = this.star.numberOfStars
       if (this.rating === '1' || this.rating === '2'
         || this.rating === '3' || this.rating === '4' || this.rating === '5') this.check = true
     })
@@ -191,19 +191,19 @@ export class ProductDetailComponent implements OnInit {
       console.log("vào đây: " + this.stars.length)
       for (let i = 0; i < this.stars.length; i++) {
         console.log(this.stars[i])
-        if (this.stars[i].type === '1') {
+        if (this.stars[i].numberOfStars === '1') {
           this.stars1 = this.stars1 + 1;
         }
-        if (this.stars[i].type === '2') {
+        if (this.stars[i].numberOfStars === '2') {
           this.stars2 = this.stars2 + 1;
         }
-        if (this.stars[i].type === '3') {
+        if (this.stars[i].numberOfStars === '3') {
           this.stars3 = this.stars3 + 1;
         }
-        if (this.stars[i].type === '4') {
+        if (this.stars[i].numberOfStars === '4') {
           this.stars4 = this.stars4 + 1;
         }
-        if (this.stars[i].type === '5') {
+        if (this.stars[i].numberOfStars === '5') {
           this.stars5 = this.stars5 + 1;
         }
       }

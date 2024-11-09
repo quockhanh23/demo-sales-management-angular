@@ -1,6 +1,6 @@
 export interface Star {
   id: string;
-  type: string;
+  numberOfStars: string;
   productId: string;
   idUser: string;
 }

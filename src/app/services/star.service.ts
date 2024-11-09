@@ -18,7 +18,7 @@ export class StarService {
   }
 
   create(idProduct: any, idUser: any, type: any): Observable<any> {
-    return this.http.get<any>(API_URL + `/create?idProduct=${idProduct}&idUser=${idUser}&type=${type}`)
+    return this.http.get<any>(API_URL + `/create-star?idProduct=${idProduct}&idUser=${idUser}&type=${type}`)
   }
 
   getAllStarByProductAndUser(idProduct: any,  idUser: any): Observable<Star> {
