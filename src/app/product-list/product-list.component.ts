@@ -13,7 +13,8 @@ export class ProductListComponent implements OnInit {
   products!: ProductDTO[]
   idUser: any
   idProduct: any
-  count: any
+  count = 0
+  checkUser = false;
 
   constructor(private productService: ProductService,
               private orderService: OrderService) {
@@ -21,16 +22,20 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkUser = this.idUser == null || this.idUser == '';
     this.getAllProduct()
-    this.countProduct()
+    this.getAllProductsInCartByUser()
+    console.log("this.idUser :" + this.idUser)
   }
 
   getAllProduct() {
+    console.log("getAllProduct")
     this.productService.getAllProduct().subscribe(rs => {
       this.products = rs;
     }, error => {
       console.log(error)
     })
+    console.log("products: " + JSON.stringify(this.products))
   }
 
   addToCart(id: any) {
@@ -38,11 +43,12 @@ export class ProductListComponent implements OnInit {
     let listId = [this.idProduct];
     // @ts-ignore
     this.orderService.addToCart(0, this.idUser, listId).subscribe()
-    this.countProduct()
+    this.getAllProductsInCartByUser()
   }
 
-  countProduct() {
-    this.orderService.count(this.idUser).subscribe(rs => {
+  getAllProductsInCartByUser() {
+    if (this.idUser == null || this.idUser == '') return;
+    this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.count = rs
     })
   }

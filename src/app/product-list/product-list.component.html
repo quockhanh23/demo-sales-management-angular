@@ -3,13 +3,15 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col-6" align="center">
-      <button [routerLink]="['/createProduct']" type="button" class="btn btn-primary">Thêm mới sản phẩm</button>
+      <button *ngIf="!checkUser" [routerLink]="['/createProduct']" type="button"
+              class="btn btn-primary">Thêm mới sản phẩm
+      </button>
     </div>
     <div class="col-3">
-     <div align="right">
-       <span style="font-size: 40px; cursor: pointer" class="material-icons hoverYellowColor">shopping_cart</span>
-       <sub>{{count}}</sub>
-     </div>
+      <div align="right">
+        <span style="font-size: 40px; cursor: pointer" class="material-icons hoverYellowColor">shopping_cart</span>
+        <sub>{{count}}</sub>
+      </div>
     </div>
   </div>
   <div class="col-3" *ngFor="let pr of products index as i">
@@ -19,9 +21,9 @@
         <h1>{{pr?.name}}</h1>
         <p class="price">Giá tiền: {{pr?.price}}</p>
         <p>Số lượng: {{pr?.quantity}}</p>
-
-        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem
-          jeansum.</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum.
+          Lorem jeamsun denim lorem jeansum.
+        </p>
         <p>
           <button [routerLink]="['/detailProduct', pr?.id]" class="btn btn-primary">Chi tiết sản phẩm</button>
           <button class="btn btn-primary" style="margin-top: 5px" (click)="addToCart(pr?.id)">Thêm vào giỏ hàng</button>
@@ -29,4 +31,7 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="count == 0">
+  <img style="width: 100%" align="center" src="../../assets/image/empty.png">
 </div>

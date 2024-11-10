@@ -13,14 +13,10 @@ export class OrderService {
   }
 
   addToCart(idOrder: any, idUser: any, listIdProduct: []): Observable<any> {
-    return this.http.get<any>(API_URL + `/addToCart?idOrder=${idOrder}&idUser=${idUser}&listIdProduct=${listIdProduct}`)
+    return this.http.get<any>(API_URL + `/add-to-cart?idOrder=${idOrder}&idUser=${idUser}&listIdProduct=${listIdProduct}`)
   }
 
-  count(idUser: any): Observable<any> {
-    return this.http.get<any>(API_URL + `/count?idUser=${idUser}`)
-  }
-
-  getAllOrderByUser(idUser: any): Observable<any> {
-    return this.http.get<any>(API_URL + `/count?idUser=${idUser}`)
+  getAllProductsInCartByUser(idUser: any): Observable<any> {
+    return this.http.get<any>(API_URL + `/count-order?idUser=${idUser}`)
   }
 }

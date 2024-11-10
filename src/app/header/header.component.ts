@@ -10,7 +10,10 @@ export class HeaderComponent implements OnInit {
 
   username: string | undefined
 
-  constructor(private router: Router,) {
+  constructor(private router: Router) {
+    console.log("khởi tạo HeaderComponent")
+    const instanceName = this.constructor.name;
+    console.log('Tên instance của component:', instanceName);
   }
 
   ngOnInit(): void {

@@ -37,12 +37,19 @@ export class ProductCreateComponent implements OnInit {
   }
 
   createProduct() {
+    let filename
+    if (this.fileDetail != null) {
+      let index = this.fileDetail.toString().indexOf("src")
+      filename = this.fileDetail.toString().substring(index)
+      console.log("nameFile: " + filename)
+    }
     let product = {
       productName: this.productForm.value.productName,
       price: this.productForm.value.price,
       quantity: this.productForm.value.quantity,
-      image: this.fileDetail?.filename
+      image: filename
     }
+    console.log("Test: " + JSON.stringify(this.fileDetail))
     let id = localStorage.getItem("id")
     // @ts-ignore
     this.productService.createProduct(product, id).subscribe(() => {
@@ -68,7 +75,7 @@ export class ProductCreateComponent implements OnInit {
     this.uploadfileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
       this.checkUploadImage = true
-      console.log("vào đây" + JSON.stringify(rs))
+      console.log(rs)
     }, error => {
       console.log("lỗi" + JSON.stringify(error))
     })
