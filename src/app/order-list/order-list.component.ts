@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
 import {OrderProductDetailDTO} from "../models/order-product-detail-dto";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-order-list',
@@ -15,6 +16,7 @@ export class OrderListComponent implements OnInit {
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {

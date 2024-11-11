@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {ProductDTO} from "../models/product-dto";
 import {OrderService} from "../services/order.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +19,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService,
               private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {

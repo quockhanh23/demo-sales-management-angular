@@ -21,7 +21,7 @@
         <img style="width: 50%;height: 115px" [src]="'data:image/jpeg;base64,' + pr?.image">
       </div>
       <div class="col">
-        <h2>{{pr?.productName}}</h2>
+        <h2 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h2>
       </div>
       <div class="col">
         <p class="price">Giá tiền: {{pr?.totalPrice}}</p>

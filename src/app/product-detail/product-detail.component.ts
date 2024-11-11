@@ -9,6 +9,7 @@ import {Star} from "../models/star";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {UploadfileService} from "../services/uploadfile.service";
 import {FileDetails} from "../models/file-details";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-product-detail',
@@ -217,5 +218,13 @@ export class ProductDetailComponent implements OnInit {
     setTimeout(() => {
       this.getAllStarByProduct(this.idProduct)
     }, 500)
+  }
+
+  getPreviousUrl() {
+    if (environment.previousUrl == '') {
+      return "/"
+    } else {
+      return environment.previousUrl
+    }
   }
 }
