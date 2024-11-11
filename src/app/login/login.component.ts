@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
     this.userService.login(user).subscribe(() => {
       console.log("Vào hàm login")
       localStorage.setItem("user", user.username)
-      alert("đăng nhập thành công")
-      this.router.navigate(["/"]).then();
       this.findByUsername(user.username)
-      this.reload();
     }, error => {
-      alert("Lỗi đăng nhập" + error)
+      console.log(error)
     })
+    setTimeout(() => {
+      this.router.navigate(["/"]).then();
+    }, 100)
   }
 
   findByUsername(username: string) {

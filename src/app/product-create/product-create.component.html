@@ -1,8 +1,9 @@
+<app-header></app-header>
+<span [routerLink]="['/']" style="font-size: 35px; margin-left: 10px; cursor: pointer;"
+      class="material-icons hoverYellowColor">arrow_back</span>
 <form [formGroup]="productForm" (ngSubmit)="createProduct()">
   <section>
     <div class="container">
-      <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
-            class="material-icons hoverYellowColor">arrow_back</span>
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-8 col-xl-6">
           <div class="row">

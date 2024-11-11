@@ -11,6 +11,7 @@ export class OrderListComponent implements OnInit {
 
   idUser: any
   orderProductDetailDTOS?: OrderProductDetailDTO[]
+  count = 0
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
@@ -18,6 +19,7 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllOrderByUser();
+    this.getAllProductsInCartByUser();
   }
 
   getAllOrderByUser() {
@@ -26,4 +28,11 @@ export class OrderListComponent implements OnInit {
     })
   }
 
+  getAllProductsInCartByUser() {
+    if (this.idUser == null || this.idUser == '') return;
+    this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
+      this.count = rs
+      console.log("this.count: " + this.count)
+    })
+  }
 }

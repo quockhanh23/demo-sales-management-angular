@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.idUser = localStorage.getItem("id")
     this.checkUser = this.idUser == null || this.idUser == '';
     this.getAllProduct()
     this.getAllProductsInCartByUser()

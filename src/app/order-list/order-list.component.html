@@ -1,12 +1,44 @@
-<span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+<app-header></app-header>
+<span [routerLink]="['/']" style="font-size: 35px; margin-left: 10px; cursor: pointer;"
       class="material-icons hoverYellowColor">arrow_back</span>
-<div class="col-3" *ngFor="let pr of orderProductDetailDTOS index as i">
-  <div style="margin-top: 20px">
-    <div class="card">
-      <img style="width: 100%; height: 300px" [src]="'data:image/jpeg;base64,' + pr?.image">
-      <h1>{{pr?.productName}}</h1>
-      <p class="price">Giá tiền: {{pr?.totalPrice}}</p>
-      <p>Số lượng: {{pr?.totalQuantity}}</p>
+<div class="row">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6" align="center"></div>
+    <div class="col-3">
+      <div align="right">
+        <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
+              class="material-icons hoverYellowColor">shopping_cart</span>
+        <sub>{{count}}</sub>
+      </div>
     </div>
   </div>
+</div>
+<div class="container">
+  <div *ngFor="let pr of orderProductDetailDTOS index as i">
+    <div class="row" style="margin-top: 5px; border: 1px solid; border-radius: 5px; height: 120px">
+      <div class="col-3">
+        <img style="width: 50%;height: 115px" [src]="'data:image/jpeg;base64,' + pr?.image">
+      </div>
+      <div class="col">
+        <h2>{{pr?.productName}}</h2>
+      </div>
+      <div class="col">
+        <p class="price">Giá tiền: {{pr?.totalPrice}}</p>
+      </div>
+      <div class="col">
+        <div class="quantity-buttons" style="margin-top: 10px">
+          <button class="button" id="decrease">-</button>
+          <span class="quantity-display" id="quantity">{{pr?.totalQuantity}}</span>
+          <button class="button" id="increase">+</button>
+        </div>
+      </div>
+      <div class="col">
+        <button class="button">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="count == 0">
+  <img style="width: 100%" align="center" src="../../assets/image/empty.png" alt="Lỗi ảnh">
 </div>
