@@ -46,6 +46,7 @@ export class ProductDetailComponent implements OnInit {
     price: new FormControl(''),
     quantity: new FormControl(''),
     image: new FormControl(''),
+    description: new FormControl(''),
   });
 
   commentForm: FormGroup = this.formBuilder.group({
@@ -77,6 +78,7 @@ export class ProductDetailComponent implements OnInit {
       productName: this.productForm.value.productName,
       price: this.productForm.value.price,
       quantity: this.productForm.value.quantity,
+      description: this.productForm.value.description,
       image: this.fileDetail?.filename
     }
     this.productService.updateProduct(product, this.idUser, this.idProduct, "Hoạt động").subscribe(() => {
@@ -102,10 +104,11 @@ export class ProductDetailComponent implements OnInit {
           console.log(this.checkUploadImage)
         }
         this.productForm = new FormGroup({
-          productName: new FormControl(this.product.name),
+          productName: new FormControl(this.product.productName),
           price: new FormControl(this.product.price),
           quantity: new FormControl(this.product.quantity),
           image: new FormControl(this.product.image),
+          description: new FormControl(this.product.description),
         });
       })
       this.getAllStarByProduct(id)

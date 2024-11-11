@@ -6,4 +6,5 @@ export interface Product {
   status?: string;
   isDelete?: boolean;
   image?: string;
+  description?: string;
 }

@@ -21,9 +21,16 @@
                      placeholder="Tên sản phẩm">
             </div>
           </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" formControlName="description" class="form-control"
+                     placeholder="Mô tả sản phẩm">
+            </div>
+          </div>
           <div class="row align-items-center mt-4">
             <div class="col">
-              <input formControlName="price" class="form-control" placeholder="Giá sản phẩm">
+              <input id="price" formControlName="price" (input)="formatPrice()"
+                     class="form-control" placeholder="Giá sản phẩm">
             </div>
             <div class="col">
               <input type="number" formControlName="quantity" class="form-control"

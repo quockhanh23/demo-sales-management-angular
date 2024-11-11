@@ -47,7 +47,7 @@
             <button class="btn btn-primary">Thêm vào giỏ hàng</button>
           </div>
         </div>
-        <h1>{{product?.name}}</h1>
+        <h1>{{product?.productName}}</h1>
         <p class="price">Giá tiền: {{product?.price}} VNĐ</p>
         <p>Số lượng: {{product?.quantity}} sản phẩm</p>
         <h3>Đánh giá</h3>
@@ -94,6 +94,13 @@
                 <label for="productName">Tên sản phẩm: </label><br>
                 <input type="text" id="productName" formControlName="productName" class="form-control"
                        placeholder="Tên sản phẩm">
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                <label for="productName">Mô tả: </label><br>
+                <input type="text" id="description" formControlName="description" class="form-control"
+                       placeholder="Mô tả sản phẩm">
               </div>
             </div>
             <div class="row align-items-center">

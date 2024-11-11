@@ -24,6 +24,7 @@ export class ProductCreateComponent implements OnInit {
     price: new FormControl(''),
     quantity: new FormControl(''),
     image: new FormControl(''),
+    description: new FormControl(''),
   });
 
   constructor(private userService: UserService,
@@ -43,10 +44,12 @@ export class ProductCreateComponent implements OnInit {
       filename = this.fileDetail.toString().substring(index)
       console.log("nameFile: " + filename)
     }
+    let price = this.productForm.value.price.replace(/,/g, '');
     let product = {
       productName: this.productForm.value.productName,
-      price: this.productForm.value.price,
+      price: price,
       quantity: this.productForm.value.quantity,
+      description: this.productForm.value.description,
       image: filename
     }
     console.log("Test: " + JSON.stringify(this.fileDetail))
@@ -79,5 +82,19 @@ export class ProductCreateComponent implements OnInit {
     }, error => {
       console.log("lỗi" + JSON.stringify(error))
     })
+  }
+
+  formatPrice() {
+    const priceInput = document.getElementById('price');
+    // @ts-ignore
+    priceInput.addEventListener('input', (event) => {
+      // @ts-ignore
+      let value = event.target.value.replace(/,/g, ''); // Xóa dấu phẩy
+      if (!isNaN(value) && value !== '') {
+        value = Number(value).toLocaleString('en-US'); // Định dạng giá
+      }
+      // @ts-ignore
+      event.target.value = value;
+    });
   }
 }

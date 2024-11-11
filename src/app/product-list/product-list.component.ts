@@ -42,8 +42,9 @@ export class ProductListComponent implements OnInit {
   addToCart(product: ProductDTO) {
     // console.log("product: " + JSON.stringify(product))
     // @ts-ignore
-    this.orderService.addToCart(0, this.idUser, product).subscribe()
-    this.getAllProductsInCartByUser()
+    this.orderService.addToCart(0, this.idUser, product).subscribe(() => {
+      this.getAllProductsInCartByUser()
+    })
   }
 
   getAllProductsInCartByUser() {
