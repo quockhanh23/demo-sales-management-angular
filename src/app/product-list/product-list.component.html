@@ -9,7 +9,7 @@
     </div>
     <div class="col-3">
       <div align="right">
-        <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer"
+        <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
               class="material-icons hoverYellowColor">shopping_cart</span>
         <sub>{{count}}</sub>
       </div>
@@ -18,7 +18,7 @@
   <div class="col-3" *ngFor="let pr of products index as i">
     <div style="margin-top: 20px">
       <div class="card">
-        <img style="width: 100%; height: 300px" [src]="'data:image/jpeg;base64,' + pr?.image">
+        <img style="width: 100%; height: 300px" [src]="'data:image/jpeg;base64,' + pr?.image" alt="Lỗi ảnh">
         <h1>{{pr?.name}}</h1>
         <p class="price">Giá tiền: {{pr?.price}}</p>
         <p>Số lượng: {{pr?.quantity}}</p>
@@ -27,12 +27,14 @@
         </p>
         <p>
           <button [routerLink]="['/detailProduct', pr?.id]" class="btn btn-primary">Chi tiết sản phẩm</button>
-          <button class="btn btn-primary" style="margin-top: 5px" (click)="addToCart(pr)">Thêm vào giỏ hàng</button>
+          <button class="btn btn-primary" style="margin-top: 5px; background-color: #295d81" (click)="addToCart(pr)">
+            Thêm vào giỏ hàng
+          </button>
         </p>
       </div>
     </div>
   </div>
 </div>
 <div *ngIf="count == 0">
-  <img style="width: 100%" align="center" src="../../assets/image/empty.png">
+  <img style="width: 100%" align="center" src="../../assets/image/empty.png" alt="Lỗi ảnh">
 </div>
