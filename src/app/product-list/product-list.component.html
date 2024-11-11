@@ -9,7 +9,8 @@
     </div>
     <div class="col-3">
       <div align="right">
-        <span style="font-size: 40px; cursor: pointer" class="material-icons hoverYellowColor">shopping_cart</span>
+        <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer"
+              class="material-icons hoverYellowColor">shopping_cart</span>
         <sub>{{count}}</sub>
       </div>
     </div>
@@ -26,7 +27,7 @@
         </p>
         <p>
           <button [routerLink]="['/detailProduct', pr?.id]" class="btn btn-primary">Chi tiết sản phẩm</button>
-          <button class="btn btn-primary" style="margin-top: 5px" (click)="addToCart(pr?.id)">Thêm vào giỏ hàng</button>
+          <button class="btn btn-primary" style="margin-top: 5px" (click)="addToCart(pr)">Thêm vào giỏ hàng</button>
         </p>
       </div>
     </div>

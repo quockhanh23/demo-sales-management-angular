@@ -12,7 +12,6 @@ export class ProductListComponent implements OnInit {
 
   products!: ProductDTO[]
   idUser: any
-  idProduct: any
   count = 0
   checkUser = false;
 
@@ -32,17 +31,16 @@ export class ProductListComponent implements OnInit {
     console.log("getAllProduct")
     this.productService.getAllProduct().subscribe(rs => {
       this.products = rs;
+      // console.log("products: " + JSON.stringify(this.products))
     }, error => {
       console.log(error)
     })
-    console.log("products: " + JSON.stringify(this.products))
   }
 
-  addToCart(id: any) {
-    this.idProduct = id;
-    let listId = [this.idProduct];
+  addToCart(product: ProductDTO) {
+    // console.log("product: " + JSON.stringify(product))
     // @ts-ignore
-    this.orderService.addToCart(0, this.idUser, listId).subscribe()
+    this.orderService.addToCart(0, this.idUser, product).subscribe()
     this.getAllProductsInCartByUser()
   }
 
@@ -50,6 +48,7 @@ export class ProductListComponent implements OnInit {
     if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.count = rs
+      console.log("this.count: " + this.count)
     })
   }
 }

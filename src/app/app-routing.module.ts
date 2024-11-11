@@ -6,6 +6,7 @@ import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ProductCreateComponent} from "./product-create/product-create.component";
+import {OrderListComponent} from "./order-list/order-list.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
   },
   {
     path: 'createProduct', component: ProductCreateComponent,
+  },
+  {
+    path: 'orderList', component: OrderListComponent,
   },
 ];
 

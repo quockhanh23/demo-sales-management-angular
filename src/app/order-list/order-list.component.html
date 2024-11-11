@@ -1,1 +1,10 @@
-
+<div class="col-3" *ngFor="let pr of orderProductDetailDTOS index as i">
+  <div style="margin-top: 20px">
+    <div class="card">
+      <img style="width: 100%; height: 300px" [src]="'data:image/jpeg;base64,' + pr?.image">
+      <h1>{{pr?.productName}}</h1>
+      <p class="price">Giá tiền: {{pr?.totalPrice}}</p>
+      <p>Số lượng: {{pr?.totalQuantity}}</p>
+    </div>
+  </div>
+</div>
