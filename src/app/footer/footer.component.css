@@ -3,6 +3,8 @@
   background: #232a34;
   padding-bottom: 50px;
   padding-top: 80px;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer_menu {

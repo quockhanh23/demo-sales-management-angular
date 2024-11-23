@@ -13,7 +13,8 @@ export class ProductListComponent implements OnInit {
 
   products!: ProductDTO[]
   idUser: any
-  count = 0
+  countAllProduct = 0
+  countProductOfUser = 0
   checkUser = false;
 
   constructor(private productService: ProductService,
@@ -32,9 +33,9 @@ export class ProductListComponent implements OnInit {
 
   getAllProduct() {
     console.log("getAllProduct")
-    if (this.checkUser) return;
     this.productService.getAllProduct().subscribe(rs => {
       this.products = rs;
+      this.countAllProduct = rs.length
       // console.log("products: " + JSON.stringify(this.products))
     }, error => {
       console.log(error)
@@ -52,8 +53,8 @@ export class ProductListComponent implements OnInit {
   getAllProductsInCartByUser() {
     if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
-      this.count = rs
-      console.log("this.count: " + this.count)
+      this.countProductOfUser = rs
+      console.log("this.count: " + this.countProductOfUser)
     })
   }
 }
