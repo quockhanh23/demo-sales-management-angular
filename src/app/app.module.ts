@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserDetailComponent} from './user-detail/user-detail.component';
@@ -12,8 +11,8 @@ import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { ProductCreateComponent } from './product-create/product-create.component';
-import { OrderListComponent } from './order-list/order-list.component';
+import {ProductCreateComponent} from './product-create/product-create.component';
+import {OrderListComponent} from './order-list/order-list.component';
 
 @NgModule({
   declarations: [
