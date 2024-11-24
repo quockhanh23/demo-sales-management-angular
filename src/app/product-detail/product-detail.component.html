@@ -41,15 +41,16 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="row">
+        <div class="row" *ngIf="idUser != null">
           <div class="col">
             <button (click)="openUpdateForm()" type="button" class="btn btn-warning">Chỉnh sửa sản phẩm</button>
             <button class="btn btn-primary">Thêm vào giỏ hàng</button>
           </div>
         </div>
-        <h1>{{product?.productName}}</h1>
-        <p class="price">Giá tiền: {{product?.price}} VNĐ</p>
-        <p>Số lượng: {{product?.quantity}} sản phẩm</p>
+        <h2>{{product?.productName}}</h2>
+        <p style="font-size: 17px" class="price">Giá tiền: {{product?.price}} VNĐ</p>
+        <p style="font-size: 17px">Số lượng: {{product?.quantity}} sản phẩm</p>
+        <p style="font-size: 17px">Mô tả: {{product?.description}}</p>
         <h3>Đánh giá</h3>
         <!--      <span class="fa fa-star"></span>-->
         <p>
@@ -57,25 +58,25 @@
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>  {{stars5}} Đánh giá
+          <span class="fa fa-star checked"></span>&ensp;{{stars5}} Đánh giá
         </p>
         <p>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span> {{stars4}} Đánh giá
+          <span class="fa fa-star checked"></span>&ensp;{{stars4}} Đánh giá
         </p>
         <p>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span> {{stars3}} Đánh giá
+          <span class="fa fa-star checked"></span>&ensp;{{stars3}} Đánh giá
         </p>
         <p>
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span> {{stars2}} Đánh giá
+          <span class="fa fa-star checked"></span>&ensp;{{stars2}} Đánh giá
         </p>
         <p>
-          <span class="fa fa-star checked"></span>  {{stars1}} Đánh giá
+          <span class="fa fa-star checked"></span>&ensp;{{stars1}} Đánh giá
         </p>
       </div>
       <div class="col-3">
@@ -92,21 +93,28 @@
             <div class="row align-items-center">
               <div class="col">
                 <label for="productName">Tên sản phẩm: </label><br>
-                <input type="text" id="productName" formControlName="productName" class="form-control"
+                <input type="text" id="productName"
+                       formControlName="productName"
+                       class="form-control"
                        placeholder="Tên sản phẩm">
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col">
                 <label for="productName">Mô tả: </label><br>
-                <input type="text" id="description" formControlName="description" class="form-control"
+                <input type="text" id="description"
+                       formControlName="description"
+                       class="form-control"
                        placeholder="Mô tả sản phẩm">
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col">
                 <label for="price">Giá: </label><br>
-                <input id="price" type="number" formControlName="price" class="form-control" placeholder="Giá sản phẩm">
+                <input id="price" type="number"
+                       formControlName="price"
+                       class="form-control"
+                       placeholder="Giá sản phẩm">
               </div>
             </div>
             <div class="row">
@@ -147,11 +155,10 @@
                       cols="69"></textarea>
           </div>
           <div class="col">
-            <button (click)="getAllStar()" class="btn btn-primary">Gửi bình luận</button>
+            <button *ngIf="idUser != null" (click)="getAllStar()" class="btn btn-primary">Gửi bình luận</button>
           </div>
         </div>
       </form>
-
       <div class="col-3" *ngFor="let pr of comments index as i">
         <h2>{{pr?.user?.username}} </h2>
         <p> {{pr?.content}}</p>

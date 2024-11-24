@@ -1,7 +1,9 @@
-<div class="container">
-    <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
-          class="material-icons hoverYellowColor">arrow_back</span>
+<app-header></app-header>
+<div>
+  <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+        class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row" style="background-color: whitesmoke">
+    <div class="col-1"></div>
     <div class="col-3">
       <h2>Menu thông tin</h2>
       <ul>
@@ -9,14 +11,13 @@
         <li>Đổi mật khẩu</li>
       </ul>
     </div>
-    <div class="col-9">
-
+    <div class="col-7" style="text-align: center">
       <div class="row">
         <div class="col-6">
           <h2>Hồ Sơ Của Tôi</h2>
           <hr>
-          <p>Họ tên</p>
-          <p>Địa chỉ</p>
+          <p>Họ tên : {{user?.username}}</p>
+          <p>Số điện thoại : {{user?.phone}}</p>
 
         </div>
         <div class="col-6">
@@ -27,5 +28,7 @@
         </div>
       </div>
     </div>
+    <div class="col-1"></div>
   </div>
 </div>
+<div style="height: 200px"></div>
