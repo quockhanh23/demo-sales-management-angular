@@ -31,7 +31,7 @@ export class ProductCreateComponent implements OnInit {
               private productService: ProductService,
               private uploadfileService: UploadfileService,
               private router: Router,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {

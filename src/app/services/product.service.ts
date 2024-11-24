@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProductDTO} from "../models/product-dto";
 import {Product} from "../models/product";
+import {PageImpl} from "../models/page-impl";
 
 const API_URL = 'http://localhost:8080/api/products'
 
@@ -14,8 +15,8 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getAllProduct(): Observable<ProductDTO[]> {
-    return this.http.get<ProductDTO[]>(API_URL)
+  getAllProduct(page: number, size: number): Observable<PageImpl> {
+    return this.http.get<PageImpl>(API_URL + `/getAllProduct?page=${page}&size=${size}`);
   }
 
   detailProduct(idProduct: any): Observable<ProductDTO> {

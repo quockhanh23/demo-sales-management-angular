@@ -3,6 +3,7 @@ import {ProductService} from "../services/product.service";
 import {ProductDTO} from "../models/product-dto";
 import {OrderService} from "../services/order.service";
 import {environment} from "../../environments/environment";
+import {PageImpl} from "../models/page-impl";
 
 @Component({
   selector: 'app-product-list',
@@ -11,11 +12,17 @@ import {environment} from "../../environments/environment";
 })
 export class ProductListComponent implements OnInit {
 
-  products!: ProductDTO[]
+  productDTOPage?: PageImpl
+  products?: ProductDTO[]
   idUser: any
-  countAllProduct = 0
+  countAllProduct: number = 0
   countProductOfUser = 0
   checkUser = false;
+  currentPage?: number = 0;
+  currentPageAddOne?: number = 1;
+  previousPageNumber?: number = 1;
+  currentNumber?: number = 2;
+  nextPageNumber?: number = 3;
 
   constructor(private productService: ProductService,
               private orderService: OrderService) {
@@ -26,16 +33,18 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.idUser = localStorage.getItem("id")
     this.checkUser = this.idUser == null || this.idUser == '';
-    this.getAllProduct()
+    this.getAllProduct(0, 8)
     this.getAllProductsInCartByUser()
     console.log("this.idUser :" + this.idUser)
   }
 
-  getAllProduct() {
+  getAllProduct(page: any, size: any) {
     console.log("getAllProduct")
-    this.productService.getAllProduct().subscribe(rs => {
-      this.products = rs;
-      this.countAllProduct = rs.length
+    this.productService.getAllProduct(page, size).subscribe(rs => {
+      this.productDTOPage = rs
+      this.products = rs.content;
+      // @ts-ignore
+      this.countAllProduct = rs.content.length
       // console.log("products: " + JSON.stringify(this.products))
     }, error => {
       console.log(error)
@@ -56,5 +65,35 @@ export class ProductListComponent implements OnInit {
       this.countProductOfUser = rs
       console.log("this.count: " + this.countProductOfUser)
     })
+  }
+
+  previousPage() {
+    if (this.currentPage != null && this.currentPage > 0) {
+      this.currentPage--;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllProduct(this.currentPage, 8);
+      if (this.currentPage == 0 || this.currentPage == 1) {
+        this.currentNumber = 2
+        this.previousPageNumber = 1
+        this.nextPageNumber = 3
+      } else {
+        this.currentNumber = this.currentPage + 1
+        this.previousPageNumber = this.currentPage
+        this.nextPageNumber = this.currentPage + 2
+      }
+    }
+  }
+
+  nextPage() {
+    if (this.products == null || this.products.length == 0) return
+    // @ts-ignore
+    if (this.currentPage != null && (this.currentPage + 1) * this.productDTOPage?.number < this.productDTOPage?.totalElements) {
+      this.currentPage++;
+      this.currentPageAddOne = this.currentPage + 1
+      this.getAllProduct(this.currentPage, 8);
+      this.currentNumber = this.currentPage + 1
+      this.previousPageNumber = this.currentPage
+      this.nextPageNumber = this.currentPage + 2
+    }
   }
 }
