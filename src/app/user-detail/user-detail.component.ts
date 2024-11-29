@@ -21,6 +21,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   getInformation(idUser: any) {
+    if (idUser == null) return;
     this.userService.getInformation(idUser).subscribe(rs => {
       this.user = rs
     })

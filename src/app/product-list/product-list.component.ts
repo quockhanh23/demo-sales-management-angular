@@ -86,8 +86,9 @@ export class ProductListComponent implements OnInit {
 
   nextPage() {
     if (this.products == null || this.products.length == 0) return
-    // @ts-ignore
-    if (this.currentPage != null && (this.currentPage + 1) * this.productDTOPage?.number < this.productDTOPage?.totalElements) {
+    if (this.currentPage != null && (this.currentPage + 1)
+      // @ts-ignore
+      * this.productDTOPage?.number < this.productDTOPage?.totalElements) {
       this.currentPage++;
       this.currentPageAddOne = this.currentPage + 1
       this.getAllProduct(this.currentPage, 8);

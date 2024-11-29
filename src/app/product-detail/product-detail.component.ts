@@ -59,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
               private commentService: CommentService,
               private starService: StarService,
               private formBuilder: FormBuilder,
-              private uploadfileService: UploadfileService,
+              private uploadFileService: UploadfileService,
               private productService: ProductService) {
     this.idUser = localStorage.getItem("id")
   }
@@ -130,7 +130,7 @@ export class ProductDetailComponent implements OnInit {
       this.checkFile = true;
       return
     }
-    this.uploadfileService.upload(this.file).subscribe(rs => {
+    this.uploadFileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
       this.checkUploadImage = true
       console.log("vào đây" + JSON.stringify(rs))

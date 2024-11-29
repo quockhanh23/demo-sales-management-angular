@@ -29,7 +29,7 @@ export class ProductCreateComponent implements OnInit {
 
   constructor(private userService: UserService,
               private productService: ProductService,
-              private uploadfileService: UploadfileService,
+              private uploadFileService: UploadfileService,
               private router: Router,
               private formBuilder: FormBuilder) {
   }
@@ -75,7 +75,7 @@ export class ProductCreateComponent implements OnInit {
       this.checkFile = true;
       return
     }
-    this.uploadfileService.upload(this.file).subscribe(rs => {
+    this.uploadFileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
       this.checkUploadImage = true
       console.log(rs)

@@ -9,3 +9,7 @@
 .hoverYellowColor:hover {
   color: #ffc107;
 }
+
+.cursorTag {
+  cursor: pointer
+}
