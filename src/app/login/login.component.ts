@@ -59,4 +59,13 @@ export class LoginComponent implements OnInit {
       window.location.reload()
     }, 50)
   }
+
+  getPreviousUrl() {
+    console.log("environment.previousUrl: " + environment.previousUrl)
+    if (environment.previousUrl == '' || environment.previousUrl == "/login") {
+      return "/"
+    } else {
+      return environment.previousUrl
+    }
+  }
 }

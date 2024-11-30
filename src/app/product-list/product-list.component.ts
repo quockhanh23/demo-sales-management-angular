@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit {
               private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
     environment.previousUrl = window.location.pathname;
+    console.log("environment.previousUrl: " + environment.previousUrl)
   }
 
   ngOnInit(): void {
