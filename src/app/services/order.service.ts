@@ -14,8 +14,13 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
-  addToCart(idOrder: any, idUser: any, productDTO: ProductDTO): Observable<ProductDTO> {
-    return this.http.post<ProductDTO>(API_URL + `/add-to-cart?idOrder=${idOrder}&idUser=${idUser}`, productDTO)
+  addToCart(idUser: any, productDTO: ProductDTO): Observable<ProductDTO> {
+    return this.http.post<ProductDTO>(API_URL + `/add-to-cart?idUser=${idUser}`, productDTO)
+  }
+
+  removeFromCart(idUser: any, idProduct: any): Observable<any> {
+    return this.http.delete<ProductDTO>(API_URL +
+      `/remove-from-cart?idUser=${idUser}&idProduct=${idProduct}`)
   }
 
   getAllProductsInCartByUser(idUser: any): Observable<any> {

@@ -24,6 +24,12 @@ export class OrderListComponent implements OnInit {
     this.getAllProductsInCartByUser();
   }
 
+  removeFromCart(idOrderProductDetail: any) {
+    this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
+      this.ngOnInit()
+    })
+  }
+
   getAllOrderByUser() {
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
       this.orderProductDetailDTOS = rs.orderProductDetailDTOList

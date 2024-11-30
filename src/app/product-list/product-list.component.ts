@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.idUser = localStorage.getItem("id")
     this.checkUser = this.idUser == null || this.idUser == '';
-    this.getAllProduct(0, 8)
+    this.getAllProduct(this.currentPage, 8);
     this.getAllProductsInCartByUser()
     console.log("this.idUser :" + this.idUser)
   }
@@ -62,8 +62,9 @@ export class ProductListComponent implements OnInit {
   addToCart(product: ProductDTO) {
     // console.log("product: " + JSON.stringify(product))
     // @ts-ignore
-    this.orderService.addToCart(0, this.idUser, product).subscribe(() => {
+    this.orderService.addToCart(this.idUser, product).subscribe(() => {
       this.getAllProductsInCartByUser()
+      this.ngOnInit()
     })
   }
 

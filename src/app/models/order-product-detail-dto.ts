@@ -1,4 +1,5 @@
 export interface OrderProductDetailDTO {
+  id?:string
   idOrderProduct?: string;
   idProduct?: string;
   quantity?: string;

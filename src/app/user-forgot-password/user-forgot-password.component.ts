@@ -3,6 +3,7 @@ import {User} from "../models/user";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
+import {UserDTO} from "../models/user-dto";
 
 @Component({
   selector: 'app-user-forgot-password',
@@ -11,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class UserForgotPasswordComponent implements OnInit {
 
-  user!: User
+  user!: UserDTO
 
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
@@ -27,7 +28,15 @@ export class UserForgotPasswordComponent implements OnInit {
   }
 
   sendPinCode() {
+    let user = {
+      username: this.userForm.value.username,
+      newPassword: this.userForm.value.newPassword,
+      confirmPassword: this.userForm.value.confirmPassword,
+      pin: this.userForm.value.pin,
+    }
+    this.userService.resetPassword(user).subscribe(() => {
 
+    });
   }
 
 }

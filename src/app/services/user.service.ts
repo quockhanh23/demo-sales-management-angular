@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user";
+import {UserDTO} from "../models/user-dto";
 
 const API_URL = 'http://localhost:8080/api/users'
 
@@ -19,6 +20,10 @@ export class UserService {
 
   register(user: User): Observable<User> {
     return this.http.post<User>(API_URL + '/register', user)
+  }
+
+  resetPassword(user: UserDTO): Observable<UserDTO> {
+    return this.http.post<User>(API_URL + '/reset-password', user)
   }
 
   findByUsername(username: any): Observable<User> {
