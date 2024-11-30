@@ -22,29 +22,46 @@
         <div class="card">
           <img style="width: 100%; height: 280px" [src]="'data:image/jpeg;base64,' + pr?.image" alt="Lỗi ảnh">
           <h3>{{pr?.productName}}</h3>
-          <p style="font-size: 17px; color: #f44336">Giá tiền: {{pr?.price}} VNĐ</p>
+          <p class="priceColor">
+            <span>Giá tiền: </span>
+            <span>{{pr?.price}}</span>
+            <span> VNĐ</span>
+          </p>
           <p style="font-size: 17px">Số lượng: {{pr?.quantity}} sản phẩm</p>
           <p>{{pr?.description}}</p>
           <p>
-            <button [routerLink]="['/detailProduct', pr?.id]" class="btn btn-primary">Chi tiết sản phẩm</button>
-            <button class="btn btn-primary" style="margin-top: 5px; background-color: #295d81" (click)="addToCart(pr)">
+            <button [routerLink]="['/detailProduct', pr?.id]"
+                    class="btn btn-primary">Chi tiết sản phẩm
+            </button>
+            <button class="btn btn-primary"
+                    style="margin-top: 5px; background-color: #295d81" (click)="addToCart(pr)">
               Thêm vào giỏ hàng
             </button>
           </p>
         </div>
       </div>
     </div>
-    <div *ngIf="countAllProduct == 0" style="height: 300px;"></div>
+    <div *ngIf="sizePage <= 4 && sizePage > 0" style="height: 300px"></div>
+    <div *ngIf="countAllProduct == 0" style="text-align: center">
+      <h2>Không có sản phẩm</h2>
+      <img style="width: 100%; height: 500px; margin-left: 10px" align="center"
+           src="../../assets/image/empty.png"
+           alt="Lỗi ảnh">
+    </div>
     <div style="margin-top: 15px; margin-left: 20px">
       <div *ngIf="countProductOfUser == 0 && countAllProduct == 0">
-        <img style="width: 100%; height: 500px" align="center" src="../../assets/image/empty.png" alt="Lỗi ảnh">
+        <img style="width: 100%; height: 500px; margin-left: 10px" align="center"
+             src="../../assets/image/empty.png"
+             alt="Lỗi ảnh">
       </div>
     </div>
   </div>
   <div class="row" style="margin-top: 20px">
     <div class="col-3"></div>
     <div class="col-3"></div>
-    <div class="col-3"></div>
+    <div class="col-3" style="text-align: right">
+      <h4 style="margin-top: 2px">Trang: {{currentPageAddOne}}</h4>
+    </div>
     <div class="col-3">
       <ul class="pagination">
         <div (click)="previousPage()">
@@ -61,7 +78,6 @@
           <span class="sr-only">Next</span>
         </div>
       </ul>
-      <h4>Trang: {{currentPageAddOne}}</h4>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {User} from "../models/user";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-register',
@@ -45,5 +46,13 @@ export class RegisterComponent implements OnInit {
       console.log(errorObject.error)
       alert("Lỗi đăng kí: " + errorObject.error)
     })
+  }
+
+  getPreviousUrl() {
+    if (environment.previousUrl == '') {
+      return "/"
+    } else {
+      return environment.previousUrl
+    }
   }
 }

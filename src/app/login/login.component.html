@@ -23,7 +23,14 @@
           <div class="row justify-content-start mt-4">
             <div class="col">
               <button class="btn btn-primary mt-4">Đăng nhập</button>
-              <span class="psw"><a>Quên mật khẩu?</a></span>
+              <div class="row">
+                <div class="col-6 cursorTag">
+                  <span [routerLink]="['/register']" class="psw"><a>Chưa có tài khoản?</a></span>
+                </div>
+                <div class="col-6 cursorTag" style="text-align: right">
+                  <span [routerLink]="['/forgotPassword']" class="psw"><a>Quên mật khẩu?</a></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

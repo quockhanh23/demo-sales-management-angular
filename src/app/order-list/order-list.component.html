@@ -24,7 +24,8 @@
         <h2 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h2>
       </div>
       <div class="col">
-        <p class="price">Giá tiền: {{pr?.totalPrice}}</p>
+        <p class="priceColor">Tổng tiền: {{pr?.totalPrice}} VND</p>
+        <p>Đơn giá: {{pr?.price}} VND</p>
       </div>
       <div class="col">
         <div class="quantity-buttons" style="margin-top: 10px">

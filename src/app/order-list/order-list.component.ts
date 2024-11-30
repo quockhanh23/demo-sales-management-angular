@@ -27,6 +27,14 @@ export class OrderListComponent implements OnInit {
   getAllOrderByUser() {
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
       this.orderProductDetailDTOS = rs.orderProductDetailDTOList
+      if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
+        for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
+          this.orderProductDetailDTOS[i].totalPrice =
+            Number(this.orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
+          this.orderProductDetailDTOS[i].price =
+            Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
+        }
+      }
     })
   }
 

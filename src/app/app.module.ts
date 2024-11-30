@@ -13,6 +13,7 @@ import {RegisterComponent} from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {OrderListComponent} from './order-list/order-list.component';
+import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {OrderListComponent} from './order-list/order-list.component';
     RegisterComponent,
     ProductCreateComponent,
     OrderListComponent,
+    UserForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

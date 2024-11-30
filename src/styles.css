@@ -13,3 +13,8 @@
 .cursorTag {
   cursor: pointer
 }
+
+.priceColor {
+  font-size: 17px;
+  color: #f44336
+}

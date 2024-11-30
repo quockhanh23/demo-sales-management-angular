@@ -23,6 +23,7 @@ export class ProductListComponent implements OnInit {
   previousPageNumber?: number = 1;
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
+  sizePage = 0;
 
   constructor(private productService: ProductService,
               private orderService: OrderService) {
@@ -43,6 +44,12 @@ export class ProductListComponent implements OnInit {
     this.productService.getAllProduct(page, size).subscribe(rs => {
       this.productDTOPage = rs
       this.products = rs.content;
+      if (this.products != null && this.products.length > 0) {
+        for (let i = 0; i < this.products.length; i++) {
+          this.products[i].price = Number(this.products[i].price).toLocaleString('en-US');
+        }
+      }
+      this.sizePage = this.productDTOPage?.page?.size;
       // @ts-ignore
       this.countAllProduct = rs.content.length
       // console.log("products: " + JSON.stringify(this.products))

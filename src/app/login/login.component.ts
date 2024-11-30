@@ -3,6 +3,7 @@ import {UserService} from "../services/user.service";
 import {User} from "../models/user";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService,
               private router: Router,
               private formBuilder: FormBuilder) {
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {
