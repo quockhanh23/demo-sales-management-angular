@@ -172,7 +172,7 @@ export class ProductDetailComponent implements OnInit {
   getAllStarByProductAndUser() {
     this.starService.getAllStarByProductAndUser(this.idProduct, this.idUser).subscribe(rs => {
       this.star = rs
-      this.rating = this.star.numberOfStars
+      this.rating = this.star?.numberOfStars
       if (this.rating === '1' || this.rating === '2'
         || this.rating === '3' || this.rating === '4' || this.rating === '5') this.check = true
     })

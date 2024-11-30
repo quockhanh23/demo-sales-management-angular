@@ -85,10 +85,16 @@ export class ProductListComponent implements OnInit {
   }
 
   nextPage() {
+    console.log("vào đây ")
     if (this.products == null || this.products.length == 0) return
+    // @ts-ignore
+    console.log("this.currentPage" + this.currentPage)
+    console.log("this.productDTOPage?.number" + this.productDTOPage?.page?.number)
+    console.log("this.productDTOPage?.totalElements" + this.productDTOPage?.page?.totalElements)
     if (this.currentPage != null && (this.currentPage + 1)
       // @ts-ignore
-      * this.productDTOPage?.number < this.productDTOPage?.totalElements) {
+      * this.productDTOPage?.page.number < this.productDTOPage?.page?.totalElements) {
+      console.log("vào đây 2")
       this.currentPage++;
       this.currentPageAddOne = this.currentPage + 1
       this.getAllProduct(this.currentPage, 8);

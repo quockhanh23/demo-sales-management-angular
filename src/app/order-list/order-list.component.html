@@ -1,20 +1,20 @@
 <app-header></app-header>
-<span [routerLink]="['/']" style="font-size: 35px; margin-left: 10px; cursor: pointer;"
+<div class="container">
+<span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
       class="material-icons hoverYellowColor">arrow_back</span>
-<div class="row">
   <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6" align="center"></div>
-    <div class="col-3">
-      <div align="right">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6" align="center"></div>
+      <div class="col-3">
+        <div align="right">
         <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
               class="material-icons hoverYellowColor">shopping_cart</span>
-        <sub>{{count}}</sub>
+          <sub>{{count}}</sub>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container">
   <div *ngFor="let pr of orderProductDetailDTOS index as i">
     <div class="row" style="margin-top: 5px; border: 1px solid; border-radius: 5px; height: 120px">
       <div class="col-3">
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="count == 0">
-  <img style="width: 100%" align="center" src="../../assets/image/empty.png" alt="Lỗi ảnh">
+  <div *ngIf="count == 0">
+    <img style="width: 100%" align="center" src="../../assets/image/empty.png" alt="Lỗi ảnh">
+  </div>
 </div>
