@@ -29,9 +29,9 @@
       </div>
       <div class="col">
         <div class="quantity-buttons" style="margin-top: 10px">
-          <button class="button" id="decrease">-</button>
+          <button (click)="decreaseProduct(pr?.idProduct)" class="button" id="decrease">-</button>
           <span class="quantity-display" id="quantity">{{pr?.totalQuantity}}</span>
-          <button class="button" id="increase">+</button>
+          <button (click)="increaseProduct(pr?.idProduct)" class="button" id="increase">+</button>
         </div>
       </div>
       <div class="col">

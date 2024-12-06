@@ -17,6 +17,7 @@ export class ProductCreateComponent implements OnInit {
   created = false
   checkUploadImage = false
   checkFile = false
+  uploadSuccess = false
   file!: File;
 
   productForm: FormGroup = this.formBuilder.group({
@@ -35,6 +36,8 @@ export class ProductCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkFile = false;
+    this.uploadSuccess = false;
   }
 
   createProduct() {
@@ -78,6 +81,7 @@ export class ProductCreateComponent implements OnInit {
     this.uploadFileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
       this.checkUploadImage = true
+      this.uploadSuccess = true
       console.log(rs)
     }, error => {
       console.log("lỗi" + JSON.stringify(error))

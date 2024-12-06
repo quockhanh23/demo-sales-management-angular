@@ -51,4 +51,16 @@ export class OrderListComponent implements OnInit {
       console.log("this.count: " + this.count)
     })
   }
+
+  increaseProduct(idProduct: any) {
+    this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
+      this.ngOnInit()
+    })
+  }
+
+  decreaseProduct(idProduct: any) {
+    this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
+      this.ngOnInit()
+    })
+  }
 }

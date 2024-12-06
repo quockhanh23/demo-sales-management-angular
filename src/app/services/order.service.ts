@@ -23,6 +23,16 @@ export class OrderService {
       `/remove-from-cart?idUser=${idUser}&idProduct=${idProduct}`)
   }
 
+  increaseProduct(idUser: any, idProduct: any): Observable<any> {
+    return this.http.get<ProductDTO>(API_URL +
+      `/increase-product?idUser=${idUser}&idProduct=${idProduct}`)
+  }
+
+  decreaseProduct(idUser: any, idProduct: any): Observable<any> {
+    return this.http.get<ProductDTO>(API_URL +
+      `/decrease-product?idUser=${idUser}&idProduct=${idProduct}`)
+  }
+
   getAllProductsInCartByUser(idUser: any): Observable<any> {
     return this.http.get<any>(API_URL + `/count-order?idUser=${idUser}`)
   }
