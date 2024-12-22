@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
-import {OrderProductDetailDTO} from "../models/order-product-detail-dto";
+import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
 import {environment} from "../../environments/environment";
 
 @Component({
@@ -11,7 +11,7 @@ import {environment} from "../../environments/environment";
 export class OrderListComponent implements OnInit {
 
   idUser: any
-  orderProductDetailDTOS?: OrderProductDetailDTO[]
+  orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   count = 0
 
   constructor(private orderService: OrderService) {
@@ -32,7 +32,7 @@ export class OrderListComponent implements OnInit {
 
   getAllOrderByUser() {
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
-      this.orderProductDetailDTOS = rs.orderProductDetailDTOList
+      this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
         for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
           this.orderProductDetailDTOS[i].totalPrice =

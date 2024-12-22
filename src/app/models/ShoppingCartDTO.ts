@@ -1,8 +1,8 @@
 import {ShoppingCartDetailDTO} from "./ShoppingCartDetailDTO";
 
-export interface OrderProductDTO {
+export interface ShoppingCartDTO {
   idOrderProduct?: string;
   createAt?: string;
   status?: string;
-  orderProductDetailDTOList?: ShoppingCartDetailDTO[]
+  shoppingCartDetailDTOList?: ShoppingCartDetailDTO[]
 }

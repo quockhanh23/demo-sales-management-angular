@@ -1,0 +1,20 @@
+<table class="table table-sm table-dark">
+  <thead>
+  <tr>
+    <th scope="col">Số thứ tự</th>
+    <th scope="col">Tên người dùng</th>
+    <th scope="col">Ngày đăng kí</th>
+    <th scope="col">Ngày sinh</th>
+    <th scope="col">Trạng thái</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let user of userDTOS index as i">
+  <tr>
+    <td>&nbsp;{{i + 1}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.createdAt}}</td>
+    <td>{{user.dateOfBirth}}</td>
+    <td>{{user.status}}</td>
+  </tr>
+  </tbody>
+</table>

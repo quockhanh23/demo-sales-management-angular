@@ -14,6 +14,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {OrderListComponent} from './order-list/order-list.component';
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
+import { AdminControlComponent } from './admin/admin-control/admin-control.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-pa
     ProductCreateComponent,
     OrderListComponent,
     UserForgotPasswordComponent,
+    AdminControlComponent,
   ],
   imports: [
     BrowserModule,

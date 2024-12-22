@@ -1,4 +1,4 @@
-export interface OrderProductDetailDTO {
+export interface ShoppingCartDetailDTO {
   id?:string
   idOrderProduct?: string;
   idProduct?: string;
