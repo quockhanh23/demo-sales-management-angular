@@ -2,11 +2,12 @@
 <div class="container">
 <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
       class="material-icons hoverYellowColor">arrow_back</span>
-
   <div style="background-color: white">
-
     <div class="row">
-      <div class="col-3"></div>
+      <div class="col-3">
+        <button *ngIf="count != 0" type="button" class="btn btn-primary">Đặt hàng ngay</button>
+        <button *ngIf="count == 0" disabled type="button" class="btn btn-secondary">Đặt hàng ngay</button>
+      </div>
       <div class="col-6" align="center"></div>
       <div class="col-3">
         <div align="right">
@@ -23,7 +24,7 @@
             <img style="width: 50%;height: 115px" [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
           <div class="col-4">
-            <h2 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h2>
+            <h4 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
           </div>
           <div class="col-2">
             <p class="priceColor">Tổng tiền: {{pr?.totalPrice}} VND</p>
@@ -31,13 +32,16 @@
           </div>
           <div class="col-2">
             <div class="quantity-buttons" style="margin-top: 10px">
-              <button (click)="decreaseProduct(pr?.idProduct)" class="button" id="decrease">-</button>
+              <button class="btn btn-danger" (click)="decreaseProduct(pr?.idProduct)" id="decrease">-</button>
               <span class="quantity-display" id="quantity">{{pr?.totalQuantity}}</span>
-              <button (click)="increaseProduct(pr?.idProduct)" class="button" id="increase">+</button>
+              <button class="btn btn-success" (click)="increaseProduct(pr?.idProduct)" id="increase">+</button>
             </div>
           </div>
           <div class="col-1">
-            <button (click)="removeFromCart(pr?.idProduct)" class="button">Xóa</button>
+            <button style="margin-top: 10px; height: 40px; width: 80px" (click)="removeFromCart(pr?.idProduct)"
+                    type="button"
+                    class="btn btn-warning">Xóa
+            </button>
           </div>
         </div>
       </div>
