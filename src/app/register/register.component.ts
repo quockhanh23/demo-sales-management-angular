@@ -12,8 +12,6 @@ import {environment} from "../../environments/environment";
 })
 export class RegisterComponent implements OnInit {
 
-  user: User | undefined
-
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -31,15 +29,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    let user = {
-      username: this.userForm.value.username,
-      password: this.userForm.value.password,
-      confirmPassword: this.userForm.value.confirmPassword,
-      phone: this.userForm.value.phone,
-      pin: this.userForm.value.pin,
-    }
-    // @ts-ignore
-    this.userService.register(user).subscribe(() => {
+    let userRequest = {} as User
+    userRequest.username = this.userForm.value.username
+    userRequest.password = this.userForm.value.password
+    userRequest.confirmPassword = this.userForm.value.confirmPassword
+    userRequest.phone = this.userForm.value.phone
+    userRequest.pin = this.userForm.value.pin
+
+    this.userService.register(userRequest).subscribe(() => {
       alert("đăng kí thành công chuyển đến trang đăng nhâp")
       this.router.navigate(["/login"]).then();
     }, errorObject => {

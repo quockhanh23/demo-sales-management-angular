@@ -21,8 +21,8 @@ export class AdminControlComponent implements OnInit {
   }
 
   getAllUser() {
-    this.adminService.getAllUser(this.idUser).subscribe(rs => {
-      this.userDTOS = rs
+    this.adminService.getAllUser(this.idUser).subscribe(result => {
+      this.userDTOS = result
     })
   }
 }
