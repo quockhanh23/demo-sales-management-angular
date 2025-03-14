@@ -8,6 +8,7 @@ import {RegisterComponent} from "./register/register.component";
 import {ProductCreateComponent} from "./product-create/product-create.component";
 import {OrderListComponent} from "./order-list/order-list.component";
 import {UserForgotPasswordComponent} from "./user-forgot-password/user-forgot-password.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'forgotPassword', component: UserForgotPasswordComponent,
+  },
+  {
+    path: 'checkout/:id', component: CheckoutComponent,
   },
 ];
 

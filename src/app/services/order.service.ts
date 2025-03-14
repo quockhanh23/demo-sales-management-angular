@@ -40,4 +40,9 @@ export class OrderService {
   getDetailOrder(idUser: any): Observable<ShoppingCartDTO> {
     return this.http.get<ShoppingCartDTO>(API_URL + `/all-in-cart?idUser=${idUser}`)
   }
+
+  changeStatus(idOrderProduct: any, idUser: any, status: any): Observable<any> {
+    return this.http.get<any>(API_URL +
+      `/change-status?idOrderProduct=${idOrderProduct}&idUser=${idUser}&status=${status}`)
+  }
 }

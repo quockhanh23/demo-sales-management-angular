@@ -5,7 +5,11 @@
   <div style="background-color: white">
     <div class="row">
       <div class="col-3">
-        <button *ngIf="count != 0" type="button" class="btn btn-primary">Đặt hàng ngay</button>
+        <button *ngIf="count != 0" [routerLink]="['/checkout', idOrderProduct]"
+                type="button"
+                class="btn btn-primary">
+          Đặt hàng ngay
+        </button>
         <button *ngIf="count == 0" disabled type="button" class="btn btn-secondary">Đặt hàng ngay</button>
       </div>
       <div class="col-6" align="center"></div>

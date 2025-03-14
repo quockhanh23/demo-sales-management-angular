@@ -15,6 +15,7 @@ import {ProductCreateComponent} from './product-create/product-create.component'
 import {OrderListComponent} from './order-list/order-list.component';
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
 import {AdminControlComponent} from './admin/admin-control/admin-control.component';
+import {CheckoutComponent} from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {AdminControlComponent} from './admin/admin-control/admin-control.compone
     OrderListComponent,
     UserForgotPasswordComponent,
     AdminControlComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

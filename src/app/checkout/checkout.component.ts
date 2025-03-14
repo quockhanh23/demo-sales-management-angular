@@ -1,20 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
-import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
 import {environment} from "../../environments/environment";
+import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
 
 @Component({
-  selector: 'app-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css']
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
 })
-export class OrderListComponent implements OnInit {
+export class CheckoutComponent implements OnInit {
 
   idUser: any
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   idOrderProduct: any
   count = 0
-  checkout = false;
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
@@ -24,12 +23,6 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
-  }
-
-  removeFromCart(idOrderProductDetail: any) {
-    this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
-      this.ngOnInit()
-    })
   }
 
   getAllOrderByUser() {
@@ -55,15 +48,7 @@ export class OrderListComponent implements OnInit {
     })
   }
 
-  increaseProduct(idProduct: any) {
-    this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
-      this.ngOnInit()
-    })
-  }
-
-  decreaseProduct(idProduct: any) {
-    this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
-      this.ngOnInit()
-    })
+  updateStatus() {
+    this.orderService.changeStatus(this.idOrderProduct, this.idUser, "BOUGHT").subscribe()
   }
 }
