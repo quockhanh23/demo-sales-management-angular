@@ -112,4 +112,14 @@ export class ProductListComponent implements OnInit {
       this.nextPageNumber = this.currentPage + 2
     }
   }
+
+  getSnackbar() {
+    let x = document.getElementById("snackbar");
+    // @ts-ignore
+    x.className = "show";
+    setTimeout(function () {
+      // @ts-ignore
+      x.className = x.className.replace("show", "");
+    }, 3000);
+  }
 }
