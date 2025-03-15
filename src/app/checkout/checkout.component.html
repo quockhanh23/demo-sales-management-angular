@@ -32,11 +32,16 @@
       </div>
     </div>
     <div class="col-5">
+      <h3>Mã đơn hàng: {{shoppingCartDTO?.idOrderProduct}}</h3>
+      <hr>
       <p><b>Tổng số tiền đơn hàng: </b></p>
       <p>{{shoppingCartDTO?.totalPrice}} VND</p>
-      <hr>
+      <p><b>Phí vận chuyển: </b></p>
       <p>Miễn phí giao hàng</p>
-      <p>Hình thức giao hàng: COD Thanh toán khi nhận hàng</p>
+      <p><b>Hình thức giao hàng: </b></p>
+      <p>COD Thanh toán khi nhận hàng</p>
+      <p><b>Địa chỉ giao hàng: </b></p>
+      <p></p>
       <hr>
       <label (click)="updateStatus()" for="control-modal" class="test-modal">Đặt hàng</label>
     </div>
@@ -44,17 +49,22 @@
   <div style="height: 300px"></div>
 </div>
 
-<input type="checkbox" id="control-modal" />
+<input type="checkbox" id="control-modal"/>
 
 <div class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>Đặt hàng thành công</h3>
-      <label for="control-modal" class="modal-close">X</label>
+       <div class="col-10" align="left">
+         <h4>Đặt hàng thành công</h4>
+       </div>
+       <div class="col-2">
+         <span style="color: #0ba10b; font-size: 30px" class="material-icons">task_alt</span>
+       </div>
+      <label [routerLink]="['/']" for="control-modal" class="modal-close">X</label>
     </div>
     <div class="modal-body">
-      <p>Bạn đã dặt hàng thành công</p>
-      <p>Nhấn vào đây để quay về giỏ hàng</p>
+      <p>Bạn đã đặt hàng thành công</p>
+      <p class="cursorTag hoverYellowColor" [routerLink]="['/']">Nhấn vào đây để quay về trang sản phẩm</p>
     </div>
   </div>
 </div>
