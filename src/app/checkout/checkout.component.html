@@ -1,1 +1,60 @@
-<button (click)="updateStatus()">Đặt hàng</button>
+<app-header></app-header>
+<div class="container">
+  <span [routerLink]="['/orderList']" style="font-size: 35px; cursor: pointer;"
+        class="material-icons hoverYellowColor">arrow_back</span>
+  <div class="row" style="margin-top: 5px; margin-bottom: 15px">
+    <div class="col-7">
+      <div *ngFor="let pr of orderProductDetailDTOS index as i">
+        <div class="row" style=" margin-top: 5px; border-radius: 5px; height: 120px; background-color: whitesmoke">
+          <div class="col-3">
+            <img style="width: 50%;height: 115px" [src]="'data:image/jpeg;base64,' + pr?.image">
+          </div>
+          <div class="col-4">
+            <h4 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
+            <p>Số lượng: {{pr?.totalQuantity}}</p>
+          </div>
+          <div class="col-3">
+            <span class="priceColor"><b>Tổng tiền sản phẩm: </b></span>
+            <br>
+            <span class="priceColor">{{pr?.totalPrice}}</span><span> VND</span>
+            <br>
+            <span><b>Đơn giá: </b></span>
+            <br>
+            <span>{{pr?.price}}</span><span> VND</span>
+          </div>
+          <div class="col-1">
+            <button style="margin-top: 10px; height: 40px; width: 80px" (click)="removeFromCart(pr?.idProduct)"
+                    type="button"
+                    class="btn btn-warning">Xóa
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <p><b>Tổng số tiền đơn hàng: </b></p>
+      <p>{{shoppingCartDTO?.totalPrice}} VND</p>
+      <hr>
+      <p>Miễn phí giao hàng</p>
+      <p>Hình thức giao hàng: COD Thanh toán khi nhận hàng</p>
+      <hr>
+      <label (click)="updateStatus()" for="control-modal" class="test-modal">Đặt hàng</label>
+    </div>
+  </div>
+  <div style="height: 300px"></div>
+</div>
+
+<input type="checkbox" id="control-modal" />
+
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Đặt hàng thành công</h3>
+      <label for="control-modal" class="modal-close">X</label>
+    </div>
+    <div class="modal-body">
+      <p>Bạn đã dặt hàng thành công</p>
+      <p>Nhấn vào đây để quay về giỏ hàng</p>
+    </div>
+  </div>
+</div>

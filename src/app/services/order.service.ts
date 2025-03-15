@@ -45,4 +45,8 @@ export class OrderService {
     return this.http.get<any>(API_URL +
       `/change-status?idOrderProduct=${idOrderProduct}&idUser=${idUser}&status=${status}`)
   }
+
+  getAllOrderComplete(idUser: any): Observable<ShoppingCartDTO> {
+    return this.http.get<ShoppingCartDTO>(API_URL + `/get-all-complete?idUser=${idUser}`)
+  }
 }

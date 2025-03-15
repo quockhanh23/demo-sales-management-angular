@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../services/order.service";
 import {environment} from "../../environments/environment";
 import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
+import {ShoppingCartDTO} from "../models/ShoppingCartDTO";
 
 @Component({
   selector: 'app-checkout',
@@ -12,6 +13,7 @@ export class CheckoutComponent implements OnInit {
 
   idUser: any
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
+  shoppingCartDTO?: ShoppingCartDTO
   idOrderProduct: any
   count = 0
 
@@ -27,6 +29,8 @@ export class CheckoutComponent implements OnInit {
 
   getAllOrderByUser() {
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
+      this.shoppingCartDTO = rs
+      this.shoppingCartDTO.totalPrice = Number(this.shoppingCartDTO.totalPrice).toLocaleString('en-US');
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
         this.idOrderProduct = this.orderProductDetailDTOS[0].idOrderProduct
@@ -50,5 +54,11 @@ export class CheckoutComponent implements OnInit {
 
   updateStatus() {
     this.orderService.changeStatus(this.idOrderProduct, this.idUser, "BOUGHT").subscribe()
+  }
+
+  removeFromCart(idOrderProductDetail: any) {
+    this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
+      this.ngOnInit()
+    })
   }
 }

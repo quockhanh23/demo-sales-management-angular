@@ -14,7 +14,6 @@ export class OrderListComponent implements OnInit {
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   idOrderProduct: any
   count = 0
-  checkout = false;
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")

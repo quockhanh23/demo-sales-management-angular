@@ -5,4 +5,5 @@ export interface ShoppingCartDTO {
   createAt?: string;
   status?: string;
   shoppingCartDetailDTOList?: ShoppingCartDetailDTO[]
+  totalPrice?: string
 }
