@@ -58,11 +58,11 @@
             <hr>
           </div>
         </div>
-        <h2>{{product?.productName}}</h2>
-        <p class="priceColor">Giá tiền: {{product?.price}} VNĐ</p>
-        <p style="font-size: 17px">Số lượng: {{product?.quantity}} sản phẩm</p>
-        <p style="font-size: 17px">Mô tả: {{product?.description}}</p>
-        <h3>Đánh giá</h3>
+        <h3>{{product?.productName}}</h3>
+        <p class="priceColor"><b>Giá tiền: </b>{{product?.price}} VND</p>
+        <p style="font-size: 17px"><b>Số lượng: </b>{{product?.quantity}} sản phẩm</p>
+        <p style="font-size: 17px"><b>Mô tả: </b>{{product?.description}}</p>
+        <p><b>Đánh giá: </b></p>
         <!--      <span class="fa fa-star"></span>-->
         <p>
           <span class="fa fa-star checked"></span>
@@ -92,7 +92,15 @@
       </div>
       <div class="col-3">
         <div *ngIf="checkUpdateProduct" style="margin-right: 10px;">
-          <h2>Chỉnh sửa sản phẩm</h2>
+          <div class="row">
+            <div class="col-11">
+              <h4>Chỉnh sửa sản phẩm</h4>
+            </div>
+            <div class="col-1">
+              <sub> <span (click)="closeUpdateForm()" style="float: right; margin-top: 1px"
+                          class="hoverYellowColor cursorTag material-icons">close</span></sub>
+            </div>
+          </div>
           <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
             <div class="row">
               <div class="col text-center">
@@ -103,7 +111,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
-                <label for="productName">Tên sản phẩm: </label><br>
+                <label for="productName"><b>Tên sản phẩm: </b></label><br>
                 <input type="text" id="productName"
                        formControlName="productName"
                        class="form-control"
@@ -112,7 +120,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
-                <label for="productName">Mô tả: </label><br>
+                <label for="productName"><b>Mô tả: </b></label><br>
                 <input type="text" id="description"
                        formControlName="description"
                        class="form-control"
@@ -121,7 +129,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
-                <label for="price">Giá: </label><br>
+                <label for="price"><b>Giá: </b></label><br>
                 <input id="price" type="number"
                        formControlName="price"
                        class="form-control"
@@ -130,7 +138,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <label for="quantity">Số lượng: </label><br>
+                <label for="quantity"><b>Số lượng: </b></label><br>
                 <input id="quantity" type="number" formControlName="quantity" class="form-control"
                        placeholder="Số lượng">
               </div>

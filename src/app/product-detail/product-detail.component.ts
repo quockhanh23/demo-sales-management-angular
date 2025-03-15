@@ -74,6 +74,10 @@ export class ProductDetailComponent implements OnInit {
     this.checkUpdateProduct = true;
   }
 
+  closeUpdateForm() {
+    this.checkUpdateProduct = false;
+  }
+
   updateProduct() {
     let product = {
       productName: this.productForm.value.productName,
