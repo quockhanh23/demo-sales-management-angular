@@ -14,6 +14,10 @@ export class UserDetailComponent implements OnInit {
   user?: User
   address?: Address[]
   idUser: any
+  checkProfile = true;
+  checkOrder = false;
+  changePassword = false;
+  checkAddress = false;
 
   constructor(private userService: UserService,
               private addressService: AddressService) {
@@ -36,5 +40,33 @@ export class UserDetailComponent implements OnInit {
     this.addressService.getAllAddressByUser(idUser).subscribe(rs => {
       this.address = rs
     })
+  }
+
+  changeToProfile() {
+    this.checkProfile = true;
+    this.checkOrder = false;
+    this.changePassword = false;
+    this.checkAddress = false;
+  }
+
+  changeToOrder() {
+    this.checkProfile = false;
+    this.checkOrder = true;
+    this.changePassword = false;
+    this.checkAddress = false;
+  }
+
+  changeToPassword() {
+    this.checkProfile = false;
+    this.checkOrder = false;
+    this.changePassword = true;
+    this.checkAddress = false;
+  }
+
+  changeToAddress() {
+    this.checkProfile = false;
+    this.checkOrder = false;
+    this.changePassword = false;
+    this.checkAddress = true;
   }
 }

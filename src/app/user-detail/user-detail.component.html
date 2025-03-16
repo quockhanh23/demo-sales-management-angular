@@ -2,34 +2,56 @@
 <div class="container">
   <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
-  <div class="row" style="background-color: whitesmoke; margin-bottom: 15px">
-    <div class="col-1"></div>
-    <div class="col-3">
-      <h2>Menu thông tin</h2>
+  <div class="row">
+    <div class="col-2" style="background-color: whitesmoke; margin-left: 15px; border-radius: 5px">
+      <h4 style="margin-top: 10px; margin-left: 5px">Menu thông tin</h4>
+      <hr>
       <ul>
-        <li class="hoverYellowColor cursorTag"><sub><span class="material-icons">event_note</span></sub> Đơn mua</li>
-        <li class="hoverYellowColor cursorTag"><sub><span class="material-icons">person</span></sub> Hồ sơ</li>
-        <li class="hoverYellowColor cursorTag"><sub><span class="material-icons">https</span></sub> Đổi mật khẩu</li>
-        <li class="hoverYellowColor cursorTag"><sub><span class="material-icons">home</span></sub> Địa chỉ</li>
+        <li (click)="changeToOrder()" class="hoverYellowColor cursorTag">
+          <sub><span class="material-icons">event_note</span></sub> Đơn mua
+        </li>
+        <li (click)="changeToProfile()" class="hoverYellowColor cursorTag">
+          <sub><span class="material-icons">person</span></sub> Hồ sơ
+        </li>
+        <li (click)="changeToPassword()" class="hoverYellowColor cursorTag">
+          <sub><span class="material-icons">https</span></sub> Đổi mật khẩu
+        </li>
+        <li (click)="changeToAddress()" class="hoverYellowColor cursorTag">
+          <sub><span class="material-icons">home</span></sub>Địa chỉ
+        </li>
       </ul>
     </div>
-    <div class="col-7" style="text-align: center">
-      <div class="row">
+    <div class="col-9" style="text-align: center; background-color: whitesmoke; margin-left: 15px; border-radius: 5px">
+      <div class="row" *ngIf="checkProfile">
+        <h4 style="margin-top: 10px">Hồ Sơ Của Tôi</h4>
         <div class="col-6">
-          <h2>Hồ Sơ Của Tôi</h2>
-          <hr>
           <p>Họ tên : {{user?.username}}</p>
           <p>Số điện thoại : {{user?.phone}}</p>
         </div>
         <div class="col-6">
-          <h2>Ảnh đại diện</h2>
-          <hr>
           <img src="https://bizweb.dktcdn.net/100/445/527/products/giay-the-thao-nu-6.jpg?v=1697725469420"
                alt="Denim Jeans" style="width:50%">
         </div>
       </div>
+      <div class="row" *ngIf="checkOrder">
+        <h4 style="margin-top: 10px">Đơn mua</h4>
+        <div class="col-4">
+          <p class="hoverYellowColor cursorTag">Tất cả</p>
+        </div>
+        <div class="col-4">
+          <p class="hoverYellowColor cursorTag">Đang giao hàng</p>
+        </div>
+        <div class="col-4">
+          <p class="hoverYellowColor cursorTag">Hoàn thành</p>
+        </div>
+      </div>
+      <div class="row" *ngIf="changePassword">
+        <h4 style="margin-top: 10px">Đổi mật khẩu</h4>
+      </div>
+      <div class="row" *ngIf="checkAddress">
+        <h4 style="margin-top: 10px">Địa chỉ</h4>
+      </div>
     </div>
-    <div class="col-1"></div>
     <div style="height: 350px"></div>
   </div>
 </div>
