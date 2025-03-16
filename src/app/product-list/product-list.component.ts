@@ -24,6 +24,7 @@ export class ProductListComponent implements OnInit {
   currentNumber?: number = 2;
   nextPageNumber?: number = 3;
   sizePage = 0;
+  isLoading: boolean = true;
 
   constructor(private productService: ProductService,
               private orderService: OrderService) {
@@ -41,7 +42,6 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProduct(page: any, size: any) {
-    console.log("getAllProduct")
     this.productService.getAllProduct(page, size).subscribe(rs => {
       this.productDTOPage = rs
       this.products = rs.content;
@@ -54,6 +54,7 @@ export class ProductListComponent implements OnInit {
       // @ts-ignore
       this.countAllProduct = rs.content.length
       // console.log("products: " + JSON.stringify(this.products))
+      this.isLoading = false;
     }, error => {
       console.log(error)
     })

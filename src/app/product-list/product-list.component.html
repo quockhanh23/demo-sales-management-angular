@@ -1,5 +1,6 @@
 <app-header></app-header>
-<div class="container">
+
+<div class="container" *ngIf="!isLoading">
   <div class="row">
     <div align="center"><h2 style="margin-top: 20px">Danh sách sản phẩm</h2></div>
     <div class="row">
@@ -71,7 +72,8 @@
     </div>
   </div>
 </div>
+<div *ngIf="isLoading" style="height: 600px">
+  <div id="loader"></div>
+</div>
 
 <div id="snackbar">Thêm sản phẩm vào giỏ hàng thành công</div>
-
-
