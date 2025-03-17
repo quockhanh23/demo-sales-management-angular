@@ -72,6 +72,7 @@
             </button>
           </div>
           <div *ngIf="newAddress" align="left">
+            <h6 style="margin-top: 10px">Tỉnh/Thành Phố *</h6>
             <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
                     (ngModelChange)="getAllDistrictByIdProvince();">
               <div *ngFor="let p of responseDataProvince?.data as i">
@@ -79,6 +80,7 @@
               </div>
             </select>
             <br>
+            <h6 style="margin-top: 10px">Quận/Huyện *</h6>
             <select style="width: 200px" id="2" [(ngModel)]="selectedDistrict"
                     (ngModelChange)="getAllWardsByIdDistrict()">
               <div *ngFor="let p of responseDataDistrict?.data as i">
@@ -86,6 +88,7 @@
               </div>
             </select>
             <br>
+            <h6 style="margin-top: 10px">Phường/Xã *</h6>
             <select style="width: 200px" id="3">
               <div *ngFor="let p of responseDataWards?.data as i">
                 <option [value]="p?.id">{{p?.name}}</option>
@@ -99,5 +102,3 @@
     <div style="height: 350px"></div>
   </div>
 </div>
-
-
