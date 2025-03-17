@@ -50,8 +50,54 @@
       </div>
       <div class="row" *ngIf="checkAddress">
         <h4 style="margin-top: 10px">Địa chỉ</h4>
+        <div class="col-8">
+          <div align="left">
+            <button class="hoverYellowColor cursorTag btn btn-info">
+              <sub><span style="font-size: 18px" class="material-icons">home</span></sub>
+              Địa chỉ của bạn
+            </button>
+          </div>
+        </div>
+        <div class="col-4">
+          <div align="left">
+            <button *ngIf="!newAddress" (click)="openNewAddress()"
+                    class="hoverYellowColor cursorTag btn btn-info">
+              <sub><span style="font-size: 18px" class="material-icons">add_circle_outline</span></sub>
+              Thêm địa chỉ mới
+            </button>
+            <button *ngIf="newAddress" (click)="closeNewAddress()"
+                    class="hoverYellowColor cursorTag btn btn-info">
+              <sub><span style="font-size: 18px" class="material-icons">highlight_off</span></sub>
+              Đóng
+            </button>
+          </div>
+          <div *ngIf="newAddress" align="left">
+            <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
+                    (ngModelChange)="getAllDistrictByIdProvince();">
+              <div *ngFor="let p of responseDataProvince?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+            <select style="width: 200px" id="2" [(ngModel)]="selectedDistrict"
+                    (ngModelChange)="getAllWardsByIdDistrict()">
+              <div *ngFor="let p of responseDataDistrict?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+            <select style="width: 200px" id="3">
+              <div *ngFor="let p of responseDataWards?.data as i">
+                <option [value]="p?.id">{{p?.name}}</option>
+              </div>
+            </select>
+            <br>
+          </div>
+        </div>
       </div>
     </div>
     <div style="height: 350px"></div>
   </div>
 </div>
+
+

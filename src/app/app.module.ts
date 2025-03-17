@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RegisterComponent} from './register/register.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {OrderListComponent} from './order-list/order-list.component';
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
@@ -35,12 +35,13 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     CheckoutComponent,
     OrderDetailComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import {User} from "../models/user";
 import {UserService} from "../services/user.service";
 import {AddressService} from "../services/address.service";
 import {Address} from "../models/address";
+import {LocationDTO} from "../models/location-dto";
 
 @Component({
   selector: 'app-user-detail',
@@ -18,6 +19,14 @@ export class UserDetailComponent implements OnInit {
   checkOrder = false;
   changePassword = false;
   checkAddress = false;
+  newAddress = false;
+  responseDataProvince?: LocationDTO
+  responseDataDistrict?: LocationDTO
+  responseDataWards?: LocationDTO
+  doneProvince = false;
+  doneDistrict = false;
+  selectedProvince?: string
+  selectedDistrict?: string
 
   constructor(private userService: UserService,
               private addressService: AddressService) {
@@ -26,6 +35,8 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInformation(this.idUser)
+    this.getAllAddressByUser(this.idUser)
+    this.getAllProvince();
   }
 
   getInformation(idUser: any) {
@@ -39,6 +50,28 @@ export class UserDetailComponent implements OnInit {
     if (idUser == null) return;
     this.addressService.getAllAddressByUser(idUser).subscribe(rs => {
       this.address = rs
+    })
+  }
+
+  getAllProvince() {
+    this.addressService.getAllProvince().subscribe(rs => {
+      this.responseDataProvince = rs;
+    })
+  }
+
+  getAllDistrictByIdProvince() {
+    this.responseDataWards = undefined;
+    this.responseDataDistrict = undefined;
+    const id = (document.getElementById("1") as HTMLSelectElement).value;
+    this.addressService.getAllDistrictByIdProvince(id).subscribe(rs => {
+      this.responseDataDistrict = rs;
+    })
+  }
+
+  getAllWardsByIdDistrict() {
+    const id = (document.getElementById("2") as HTMLSelectElement).value;
+    this.addressService.getAllWardsByIdDistrict(id).subscribe(rs => {
+      this.responseDataWards = rs;
     })
   }
 
@@ -68,5 +101,13 @@ export class UserDetailComponent implements OnInit {
     this.checkOrder = false;
     this.changePassword = false;
     this.checkAddress = true;
+  }
+
+  openNewAddress() {
+    this.newAddress = true;
+  }
+
+  closeNewAddress() {
+    this.newAddress = false;
   }
 }

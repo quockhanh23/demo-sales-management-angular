@@ -25,7 +25,8 @@
       <div *ngFor="let pr of orderProductDetailDTOS index as i">
         <div class="row" style="margin-top: 5px; border-radius: 5px; height: 120px; background-color: whitesmoke">
           <div class="col-3">
-            <img style="width: 50%;height: 115px" [src]="'data:image/jpeg;base64,' + pr?.image">
+            <img style="width: 50%;height: 115px; margin-top: 3px;"
+                 [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
           <div class="col-4">
             <h4 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>

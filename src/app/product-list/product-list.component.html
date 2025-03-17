@@ -54,17 +54,17 @@
     <div class="col-5"></div>
     <div class="col-3"></div>
     <div class="col-3" style="text-align: right">
-      <h4 style="margin-top: 2px">Trang: {{currentPageAddOne}}</h4>
+      <h4 style="margin-top: 2px">Trang: {{currentPageAddOne}}/ Tổng số: {{productDTOPage?.page?.totalElements}}</h4>
     </div>
     <div class="col-1" align="right">
       <ul class="pagination">
-        <div (click)="previousPage()">
+        <div (click)="previousPage()" class="cursorTag">
           <a class="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
           </a>
         </div>
-        <div (click)="nextPage()" class="page-link" aria-label="Next">
+        <div (click)="nextPage()" class="page-link cursorTag" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
           <span class="sr-only">Next</span>
         </div>
