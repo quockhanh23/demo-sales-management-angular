@@ -23,8 +23,6 @@ export class UserDetailComponent implements OnInit {
   responseDataProvince?: LocationDTO
   responseDataDistrict?: LocationDTO
   responseDataWards?: LocationDTO
-  doneProvince = false;
-  doneDistrict = false;
   selectedProvince?: string
   selectedDistrict?: string
 
@@ -72,6 +70,52 @@ export class UserDetailComponent implements OnInit {
     const id = (document.getElementById("2") as HTMLSelectElement).value;
     this.addressService.getAllWardsByIdDistrict(id).subscribe(rs => {
       this.responseDataWards = rs;
+    })
+  }
+
+  createAddress() {
+    const provinceId = (document.getElementById("1") as HTMLSelectElement).value;
+    const districtId = (document.getElementById("2") as HTMLSelectElement).value;
+    const wardsId = (document.getElementById("3") as HTMLSelectElement).value;
+    let address = (document.getElementById("4") as HTMLSelectElement).value;
+    let province;
+    let district;
+    let wards;
+
+    if (this.responseDataProvince != null) {
+      for (let i = 0; i < this.responseDataProvince?.data.length; i++) {
+        if (this.responseDataProvince?.data[i].id == provinceId) {
+          province = this.responseDataProvince?.data[i].name
+          break
+        }
+      }
+    }
+    if (this.responseDataDistrict != null) {
+      for (let i = 0; i < this.responseDataDistrict?.data.length; i++) {
+        if (this.responseDataDistrict?.data[i].id == districtId) {
+          district = this.responseDataDistrict?.data[i].name
+          break
+        }
+      }
+    }
+    if (this.responseDataWards != null) {
+      for (let i = 0; i < this.responseDataWards?.data.length; i++) {
+        if (this.responseDataWards?.data[i].id == wardsId) {
+          wards = this.responseDataWards?.data[i].name
+          break
+        }
+      }
+    }
+
+    let addressRequest: Address = {
+      address: address,
+      province: province,
+      district: district,
+      ward: wards,
+      idUser: this.idUser
+    };
+    console.log("addressRequest: " + JSON.stringify(addressRequest))
+    this.addressService.createAddress(this.idUser, addressRequest).subscribe(() => {
     })
   }
 

@@ -57,6 +57,12 @@
               Địa chỉ của bạn
             </button>
           </div>
+          <div *ngFor="let a of address as i">
+            <p>{{a?.province}}</p>
+            <p>{{a?.district}}</p>
+            <p>{{a?.ward}}</p>
+            <p>{{a?.address}}</p>
+          </div>
         </div>
         <div class="col-4">
           <div align="left">
@@ -95,7 +101,16 @@
               </div>
             </select>
             <br>
+            <h6 style="margin-top: 10px">Địa chỉ cụ thể *</h6>
+            <input id="4" style="width: 200px">
+            <br>
+            <button (click)="createAddress()"
+                    style="margin-top: 15px; margin-bottom: 15px"
+                    type="button"
+                    class="btn btn-primary">Thêm
+            </button>
           </div>
+
         </div>
       </div>
     </div>
