@@ -166,12 +166,12 @@
   <div style="height: 5px"></div>
   <div style="background-color: whitesmoke; border-radius: 5px">
     <div style="margin-left: 15px">
-      <h3>Tất cả bình luận: </h3>
+      <h4>Tất cả bình luận: </h4>
       <form [formGroup]="commentForm" (ngSubmit)="createComment()">
         <div class="row">
           <div class="col-5">
             <textarea formControlName="content" class="test1" id="w3review" name="w3review" rows="4"
-                      cols="69"></textarea>
+                      placeholder="Viết bình luận của bạn..." cols="69"></textarea>
           </div>
           <div class="col">
             <button *ngIf="idUser != null" (click)="getAllStar()" class="btn btn-primary">Gửi bình luận</button>
@@ -179,7 +179,7 @@
         </div>
       </form>
       <div class="col-3" *ngFor="let pr of comments index as i">
-        <h2>{{pr?.user?.username}} </h2>
+        <h6>{{pr?.user?.username}}:</h6>
         <p> {{pr?.content}}</p>
         <p>{{ pr?.createDate | date:"dd/MM/yyyy HH:mm:ss" }} </p>
       </div>

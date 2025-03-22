@@ -1,23 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #295d81 !important;">
-  <a [routerLink]="['/']" class="navbar-brand" style="color: white; margin-left: 20px">Sản phẩm</a>
-  <div *ngIf="username == null" style="width: 80%"></div>
-  <div *ngIf="username != null" style="width: 70%"></div>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a *ngIf="username == null" [routerLink]="['/login']" style="color: white; cursor: pointer"
-           class="nav-link hoverYellowColor">Đăng
-          nhập</a>
-        <a class="hoverYellowColor" style="color: white" [routerLink]="['/detailUser']" *ngIf="username != null">
-          Xin chào: {{username}}</a>
-      </li>
-      <li class="nav-item">
-        <a *ngIf="username == null" [routerLink]="['/register']" style="color: white; cursor: pointer"
-           class="nav-link hoverYellowColor">Đăng ký</a>
-        <a class="hoverYellowColor" style="color: white; margin-left: 30px; cursor: pointer" *ngIf="username != null"
-           (click)="logOut()">Đăng
-          xuất</a>
-      </li>
-    </ul>
+<div style="background-color: #295d81">
+  <div class="row" style="height: 120px">
+    <div class="col-2">
+      <img [routerLink]="['/']" class="cursorTag" style="width: 100%; height: 120px; border-radius: 5px"
+           src="../../assets/image/Screenshot 2025-03-22 150139.png">
+    </div>
+    <div class="col-3"></div>
+    <div class="col-7">
+      <div class="row">
+        <div class="col-6" style="justify-content: right; align-items: center; display: flex; height: 120px">
+          <span *ngIf="username == null" [routerLink]="['/login']" style="color: white; font-size: 19px"
+             class="nav-link hoverYellowColor cursorTag">
+            Đăng nhập
+          </span>
+          <span *ngIf="username != null" class="hoverYellowColor cursorTag"
+             style="color: white; font-size: 19px" [routerLink]="['/detailUser']">
+            Xin chào: {{username}}
+          </span>
+        </div>
+        <div class="col-6" style="justify-content: center; align-items: center; display: flex; height: 120px">
+          <span *ngIf="username == null" [routerLink]="['/register']"
+             style="color: white; font-size: 19px"
+             class="nav-link hoverYellowColor cursorTag">
+            Đăng ký
+          </span>
+          <span *ngIf="username != null" (click)="logOut()"
+                style="color: white" class="material-icons cursorTag">power_settings_new</span>&nbsp;
+          <span *ngIf="username != null" (click)="logOut()" class="hoverYellowColor cursorTag"
+             style="color: white; font-size: 19px">
+            Đăng xuất
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
+</div>
