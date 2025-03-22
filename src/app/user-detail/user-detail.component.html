@@ -47,6 +47,36 @@
       </div>
       <div class="row" *ngIf="changePassword">
         <h4 style="margin-top: 10px">Đổi mật khẩu</h4>
+        <form [formGroup]="userForm" (ngSubmit)="toChangePassword()" style="height: 500px">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+              <div class="row align-items-center">
+                <div class="col mt-4">
+                  <input type="text" formControlName="oldPassword" class="form-control"
+                         placeholder="Mật khẩu cũ">
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col mt-4">
+                  <input type="pin" formControlName="newPassword" class="form-control"
+                         placeholder="Mật khẩu mới">
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col mt-4">
+                  <input type="pin" formControlName="newPasswordConfirm" class="form-control"
+                         placeholder="Xác nhận lại mật khẩu mới">
+                </div>
+              </div>
+              <div class="row justify-content-start mt-4">
+                <div class="col">
+                  <button class="btn btn-primary mt-4">Gửi yêu cầu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
       </div>
       <div class="row" *ngIf="checkAddress">
         <h4 style="margin-top: 10px">Địa chỉ</h4>
@@ -61,9 +91,9 @@
             <div *ngFor="let a of address as i">
               <div class="row">
                 <div class="col-4">
-                 <div  *ngIf="a.inUse == false || a.inUse == null">
-                   <p (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></p>
-                 </div>
+                  <div *ngIf="a.inUse == false || a.inUse == null">
+                    <p (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></p>
+                  </div>
                   <div *ngIf="a.inUse == true" style="color: #0ba10b; border-radius: 5px; border: #0ba10b 1px solid">
                     <sub><span style="font-size: 16px" class="material-icons">task_alt</span></sub>
                     <span class="cursorTag hoverYellowColor">Mặc định</span>
@@ -77,14 +107,14 @@
                   <p>{{a?.address}}</p>
                 </div>
                 <div class="col-1">
-                  <button style="border: none; background-color: whitesmoke; margin-top: 3px">
+                  <button style="border: none; background-color: whitesmoke; margin-top: 3px"
+                          (click)="deleteAddress(a?.id)">
                     <sub><span class="material-icons">delete</span></sub>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
         <div class="col-4">
           <div align="left">

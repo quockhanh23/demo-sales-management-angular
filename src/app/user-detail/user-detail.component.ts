@@ -4,6 +4,7 @@ import {UserService} from "../services/user.service";
 import {AddressService} from "../services/address.service";
 import {Address} from "../models/address";
 import {LocationDTO} from "../models/location-dto";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-user-detail',
@@ -22,12 +23,20 @@ export class UserDetailComponent implements OnInit {
   newAddress = false;
   responseDataProvince?: LocationDTO
   responseDataDistrict?: LocationDTO
+
   responseDataWards?: LocationDTO
   selectedProvince?: string
   selectedDistrict?: string
 
+  userForm: FormGroup = this.formBuilder.group({
+    oldPassword: new FormControl(''),
+    newPassword: new FormControl(''),
+    newPasswordConfirm: new FormControl(''),
+  });
+
   constructor(private userService: UserService,
-              private addressService: AddressService,) {
+              private addressService: AddressService,
+              private formBuilder: FormBuilder) {
     this.idUser = localStorage.getItem("id")
   }
 
@@ -37,9 +46,23 @@ export class UserDetailComponent implements OnInit {
     this.getAllProvince();
   }
 
+  getAllOrderPayment() {
+
+  }
+
+  toChangePassword() {
+  }
+
   selectAddress(idAddress: any) {
     console.log("selectAddress")
     this.addressService.selectAddress(this.idUser, idAddress).subscribe(() => {
+      this.getAllAddressByUser(this.idUser)
+    })
+  }
+
+  deleteAddress(idAddress: any) {
+    console.log("deleteAddress")
+    this.addressService.deleteAddress(this.idUser, idAddress).subscribe(() => {
       this.getAllAddressByUser(this.idUser)
     })
   }

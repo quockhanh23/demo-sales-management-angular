@@ -10,7 +10,7 @@
             <img style="width: 80%;height: 115px; margin-top: 3px;" [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
           <div class="col-4">
-            <h4 [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
+            <h4 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
             <p>Số lượng: {{pr?.totalQuantity}}</p>
           </div>
           <div class="col-3">

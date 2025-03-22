@@ -14,6 +14,7 @@ export class OrderListComponent implements OnInit {
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   idOrderProduct: any
   count = 0
+  isLoading: boolean = true;
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
@@ -43,6 +44,7 @@ export class OrderListComponent implements OnInit {
             Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
         }
       }
+      this.isLoading = false;
     })
   }
 

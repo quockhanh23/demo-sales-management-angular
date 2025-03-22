@@ -31,6 +31,10 @@ export class AddressService {
     return this.httpClient.put<Address>(API_URL + `/select-address?idUser=${idUser}&idAddress=${idAddress}`, {})
   }
 
+  deleteAddress(idUser: any, idAddress: any): Observable<Address> {
+    return this.httpClient.delete<Address>(API_URL + `/delete-address?idUser=${idUser}&idAddress=${idAddress}`)
+  }
+
   getAllProvince(): Observable<LocationDTO> {
     return this.httpClient.get<LocationDTO>(EXTERNAL_API_URL + `/provinces?page=0&size=1000&query=`);
   }
