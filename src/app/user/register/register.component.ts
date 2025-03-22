@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
-import {User} from "../models/user";
-import {environment} from "../../environments/environment";
+import {User} from "../../models/user";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-register',

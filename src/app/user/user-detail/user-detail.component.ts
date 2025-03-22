@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../models/user";
-import {UserService} from "../services/user.service";
-import {AddressService} from "../services/address.service";
-import {Address} from "../models/address";
-import {LocationDTO} from "../models/location-dto";
+import {User} from "../../models/user";
+import {UserService} from "../../services/user.service";
+import {AddressService} from "../../services/address.service";
+import {Address} from "../../models/address";
+import {LocationDTO} from "../../models/location-dto";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {OrderPayment} from "../models/order-payment";
+import {OrderPayment} from "../../models/order-payment";
 
 @Component({
   selector: 'app-user-detail',

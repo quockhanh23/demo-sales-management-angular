@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
-import {ProductService} from "../services/product.service";
-import {UploadfileService} from "../services/uploadfile.service";
-import {FileDetails} from "../models/file-details";
+import {ProductService} from "../../services/product.service";
+import {UploadfileService} from "../../services/uploadfile.service";
+import {FileDetails} from "../../models/file-details";
 
 @Component({
   selector: 'app-product-create',

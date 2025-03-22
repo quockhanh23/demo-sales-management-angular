@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
-import {UserDTO} from "../models/user-dto";
+import {UserDTO} from "../../models/user-dto";
 
 @Component({
   selector: 'app-user-forgot-password',

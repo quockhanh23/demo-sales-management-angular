@@ -1,27 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {OrderService} from "../services/order.service";
-import {environment} from "../../environments/environment";
-import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
-import {ShoppingCartDTO} from "../models/ShoppingCartDTO";
-import {Address} from "../models/address";
-import {AddressService} from "../services/address.service";
+import {OrderService} from "../../services/order.service";
+import {ShoppingCartDetailDTO} from "../../models/ShoppingCartDetailDTO";
+import {environment} from "../../../environments/environment";
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.css']
 })
-export class CheckoutComponent implements OnInit {
+export class OrderListComponent implements OnInit {
 
   idUser: any
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
-  shoppingCartDTO?: ShoppingCartDTO
   idOrderProduct: any
   count = 0
-  addressInUse?: Address
+  isLoading: boolean = true;
 
-  constructor(private orderService: OrderService,
-              private addressService: AddressService,) {
+  constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
     environment.previousUrl = window.location.pathname;
   }
@@ -29,20 +24,16 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
-    this.getAddressInUse();
   }
 
-  getAddressInUse() {
-    if (this.idUser == null || this.idUser == '') return;
-    this.addressService.getAddressInUse(this.idUser).subscribe(rs => {
-      this.addressInUse = rs
+  removeFromCart(idOrderProductDetail: any) {
+    this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
+      this.ngOnInit()
     })
   }
 
   getAllOrderByUser() {
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
-      this.shoppingCartDTO = rs
-      this.shoppingCartDTO.totalPrice = Number(this.shoppingCartDTO.totalPrice).toLocaleString('en-US');
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
         this.idOrderProduct = this.orderProductDetailDTOS[0].idOrderProduct
@@ -53,6 +44,7 @@ export class CheckoutComponent implements OnInit {
             Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
         }
       }
+      this.isLoading = false;
     })
   }
 
@@ -64,12 +56,14 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  updateStatus() {
-    this.orderService.changeStatus(this.idOrderProduct, this.idUser, "BOUGHT").subscribe()
+  increaseProduct(idProduct: any) {
+    this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
+      this.ngOnInit()
+    })
   }
 
-  removeFromCart(idOrderProductDetail: any) {
-    this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
+  decreaseProduct(idProduct: any) {
+    this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
     })
   }

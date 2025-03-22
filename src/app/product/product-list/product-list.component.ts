@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../services/product.service";
-import {ProductDTO} from "../models/product-dto";
-import {OrderService} from "../services/order.service";
-import {environment} from "../../environments/environment";
-import {PageImpl} from "../models/page-impl";
+import {ProductService} from "../../services/product.service";
+import {ProductDTO} from "../../models/product-dto";
+import {OrderService} from "../../services/order.service";
+import {environment} from "../../../environments/environment";
+import {PageImpl} from "../../models/page-impl";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({

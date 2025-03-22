@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProductService} from "../services/product.service";
-import {ProductDTO} from "../models/product-dto";
-import {CommentService} from "../services/comment.service";
-import {Comment} from "../models/comment";
-import {StarService} from "../services/star.service";
-import {Star} from "../models/star";
+import {ProductService} from "../../services/product.service";
+import {ProductDTO} from "../../models/product-dto";
+import {CommentService} from "../../services/comment.service";
+import {Comment} from "../../models/comment";
+import {StarService} from "../../services/star.service";
+import {Star} from "../../models/star";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UploadfileService} from "../services/uploadfile.service";
-import {FileDetails} from "../models/file-details";
-import {environment} from "../../environments/environment";
+import {UploadfileService} from "../../services/uploadfile.service";
+import {FileDetails} from "../../models/file-details";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-product-detail',
