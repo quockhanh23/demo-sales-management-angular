@@ -58,10 +58,16 @@
             </button>
           </div>
           <div *ngFor="let a of address as i">
-            <p>{{a?.province}}</p>
-            <p>{{a?.district}}</p>
-            <p>{{a?.ward}}</p>
-            <p>{{a?.address}}</p>
+           <div class="row">
+             <div class="col">
+               <span>{{a?.province}}</span>
+               <span>{{a?.district}}</span>
+               <span>{{a?.ward}}</span>
+             </div>
+             <div class="col">
+               <p>{{a?.address}}</p>
+             </div>
+           </div>
           </div>
         </div>
         <div class="col-4">

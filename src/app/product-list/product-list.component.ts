@@ -4,6 +4,7 @@ import {ProductDTO} from "../models/product-dto";
 import {OrderService} from "../services/order.service";
 import {environment} from "../../environments/environment";
 import {PageImpl} from "../models/page-impl";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-product-list',
@@ -26,8 +27,13 @@ export class ProductListComponent implements OnInit {
   sizePage = 0;
   isLoading: boolean = true;
 
+  searchForm: FormGroup = this.formBuilder.group({
+    productName: new FormControl(''),
+  });
+
   constructor(private productService: ProductService,
-              private orderService: OrderService) {
+              private orderService: OrderService,
+              private formBuilder: FormBuilder) {
     this.idUser = localStorage.getItem("id")
     environment.previousUrl = window.location.pathname;
     console.log("environment.previousUrl: " + environment.previousUrl)
@@ -42,7 +48,10 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProduct(page: any, size: any) {
-    this.productService.getAllProduct(page, size).subscribe(rs => {
+    let product = {
+      productName: this.searchForm.value.productName,
+    }
+    this.productService.getAllProduct(product.productName, page, size).subscribe(rs => {
       this.productDTOPage = rs
       this.products = rs.content;
       if (this.products != null && this.products.length > 0) {

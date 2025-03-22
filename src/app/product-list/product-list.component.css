@@ -155,3 +155,11 @@
     opacity: 1
   }
 }
+
+.elastic-button {
+  transition: transform 0.2s ease; /* Hiệu ứng chuyển động */
+}
+
+.elastic-button:active {
+  transform: scale(0.95); /* Thu nhỏ nút khi nhấn */
+}

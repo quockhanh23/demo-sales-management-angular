@@ -1,16 +1,30 @@
 <app-header></app-header>
+<div align="center"><h2 style="margin-top: 20px">Danh sách sản phẩm</h2></div>
 
 <div class="container" *ngIf="!isLoading">
   <div class="row">
-    <div align="center"><h2 style="margin-top: 20px">Danh sách sản phẩm</h2></div>
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6" align="center">
+      <div class="col-3">
+        <div>
+          <form [formGroup]="searchForm" (ngSubmit)="getAllProduct(currentPage,8 )">
+            <input formControlName="productName" class="form-control" type="search"
+                   placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
+            <div class="cursorTag, hoverYellowColor elastic-button"
+                 style="; width: 30px; border-radius: 5px; margin-top: 5px"
+                 align="center">
+              <button style="border-radius: 5px; background-color: #295d81 ">
+                <sub><span class="cursorTag material-icons" type="submit">search</span></sub>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-8" align="right">
         <button *ngIf="!checkUser" [routerLink]="['/createProduct']" type="button"
                 class="btn btn-primary">Thêm mới sản phẩm
         </button>
       </div>
-      <div class="col-3">
+      <div class="col-1">
         <div align="right">
         <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
               class="material-icons hoverYellowColor">shopping_cart</span>
