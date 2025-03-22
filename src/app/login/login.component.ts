@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.userService.findByUsername(username).subscribe(rs => {
       console.log(JSON.stringify(rs))
       localStorage.setItem("id", rs.id)
+      localStorage.setItem("role", rs.role)
     }, error => {
       console.log(error)
     })
@@ -61,7 +62,6 @@ export class LoginComponent implements OnInit {
   }
 
   getPreviousUrl() {
-    console.log("environment.previousUrl: " + environment.previousUrl)
     if (environment.previousUrl == '' || environment.previousUrl == "/login") {
       return "/"
     } else {

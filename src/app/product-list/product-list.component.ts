@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   productDTOPage?: PageImpl
   products?: ProductDTO[]
   idUser: any
+  role: any
   countAllProduct: number = 0
   countProductOfUser = 0
   checkUser = false;
@@ -35,6 +36,7 @@ export class ProductListComponent implements OnInit {
               private orderService: OrderService,
               private formBuilder: FormBuilder) {
     this.idUser = localStorage.getItem("id")
+    this.role = localStorage.getItem("role")
     environment.previousUrl = window.location.pathname;
     console.log("environment.previousUrl: " + environment.previousUrl)
   }
@@ -45,6 +47,11 @@ export class ProductListComponent implements OnInit {
     this.getAllProduct(this.currentPage, 8);
     this.getAllProductsInCartByUser()
     console.log("this.idUser :" + this.idUser)
+  }
+
+  checkRoleAdmin() {
+    if (this.role == null) return false;
+    return this.role == "ROLE_ADMIN";
   }
 
   getAllProduct(page: any, size: any) {

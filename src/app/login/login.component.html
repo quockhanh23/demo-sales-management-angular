@@ -1,15 +1,13 @@
 <app-header></app-header>
-<div class="container">
+<div style="background-color: #cccccc" align="center">
+  <h3 style=" margin: 0px">Đăng nhập</h3>
+</div>
+<div class="container" style="margin-top: 10px">
 <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
       class="material-icons hoverYellowColor">arrow_back</span>
   <form [formGroup]="userForm" (ngSubmit)="login()">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-        <div class="row">
-          <div class="col text-center">
-            <h1>Đăng Nhập</h1>
-          </div>
-        </div>
         <div class="row align-items-center">
           <div class="col mt-4">
             <input type="text" formControlName="username" class="form-control" placeholder="Tên đăng nhập">
