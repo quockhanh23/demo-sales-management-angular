@@ -5,6 +5,7 @@ import {AddressService} from "../services/address.service";
 import {Address} from "../models/address";
 import {LocationDTO} from "../models/location-dto";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {OrderPayment} from "../models/order-payment";
 
 @Component({
   selector: 'app-user-detail',
@@ -15,6 +16,7 @@ export class UserDetailComponent implements OnInit {
 
   user?: User
   address?: Address[]
+  orderPayments?: OrderPayment[]
   idUser: any
   checkProfile = true;
   checkOrder = false;
