@@ -14,6 +14,10 @@ export class UserDetailComponent implements OnInit {
 
   user?: User
   address?: Address[]
+  provinceIdCreate: any
+  districtIdCreate: any
+  wardsIdCreate: any
+  addressCreate: any
   idUser: any
   checkProfile = true;
   checkOrder = false;
@@ -27,7 +31,7 @@ export class UserDetailComponent implements OnInit {
   selectedDistrict?: string
 
   constructor(private userService: UserService,
-              private addressService: AddressService) {
+              private addressService: AddressService,) {
     this.idUser = localStorage.getItem("id")
   }
 
@@ -81,7 +85,10 @@ export class UserDetailComponent implements OnInit {
     let province;
     let district;
     let wards;
-
+    this.provinceIdCreate = provinceId
+    this.districtIdCreate = districtId
+    this.wardsIdCreate = wardsId
+    this.addressCreate = address
     if (this.responseDataProvince != null) {
       for (let i = 0; i < this.responseDataProvince?.data.length; i++) {
         if (this.responseDataProvince?.data[i].id == provinceId) {
@@ -114,8 +121,10 @@ export class UserDetailComponent implements OnInit {
       ward: wards,
       idUser: this.idUser
     };
+
     console.log("addressRequest: " + JSON.stringify(addressRequest))
     this.addressService.createAddress(this.idUser, addressRequest).subscribe(() => {
+      this.ngOnInit()
     })
   }
 

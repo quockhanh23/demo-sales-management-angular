@@ -57,18 +57,23 @@
               Địa chỉ của bạn
             </button>
           </div>
-          <div *ngFor="let a of address as i">
-           <div class="row">
-             <div class="col">
-               <span>{{a?.province}}</span>
-               <span>{{a?.district}}</span>
-               <span>{{a?.ward}}</span>
-             </div>
-             <div class="col">
-               <p>{{a?.address}}</p>
-             </div>
-           </div>
+          <div style="margin-top: 10px">
+            <div *ngFor="let a of address as i">
+              <div class="row">
+                <div class="col-6">
+                  <span>{{a?.province}}, </span>
+                  <span>{{a?.district}}, </span>
+                  <span>{{a?.ward}}, </span>
+                  <span>{{a?.address}}</span>
+                </div>
+                <div class="col-6">
+                  <button style="margin-right: 5px">Đặt làm địa chỉ mặc định</button>
+                  <button>Xóa</button>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
         <div class="col-4">
           <div align="left">
@@ -116,7 +121,6 @@
                     class="btn btn-primary">Thêm
             </button>
           </div>
-
         </div>
       </div>
     </div>
