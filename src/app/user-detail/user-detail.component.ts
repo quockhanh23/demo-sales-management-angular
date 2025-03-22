@@ -14,10 +14,6 @@ export class UserDetailComponent implements OnInit {
 
   user?: User
   address?: Address[]
-  provinceIdCreate: any
-  districtIdCreate: any
-  wardsIdCreate: any
-  addressCreate: any
   idUser: any
   checkProfile = true;
   checkOrder = false;
@@ -39,6 +35,13 @@ export class UserDetailComponent implements OnInit {
     this.getInformation(this.idUser)
     this.getAllAddressByUser(this.idUser)
     this.getAllProvince();
+  }
+
+  selectAddress(idAddress: any) {
+    console.log("selectAddress")
+    this.addressService.selectAddress(this.idUser, idAddress).subscribe(() => {
+      this.getAllAddressByUser(this.idUser)
+    })
   }
 
   getInformation(idUser: any) {
@@ -85,10 +88,6 @@ export class UserDetailComponent implements OnInit {
     let province;
     let district;
     let wards;
-    this.provinceIdCreate = provinceId
-    this.districtIdCreate = districtId
-    this.wardsIdCreate = wardsId
-    this.addressCreate = address
     if (this.responseDataProvince != null) {
       for (let i = 0; i < this.responseDataProvince?.data.length; i++) {
         if (this.responseDataProvince?.data[i].id == provinceId) {
@@ -115,6 +114,7 @@ export class UserDetailComponent implements OnInit {
     }
 
     let addressRequest: Address = {
+      id: '',
       address: address,
       province: province,
       district: district,

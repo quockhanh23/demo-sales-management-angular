@@ -3,7 +3,8 @@ import {OrderService} from "../services/order.service";
 import {environment} from "../../environments/environment";
 import {ShoppingCartDetailDTO} from "../models/ShoppingCartDetailDTO";
 import {ShoppingCartDTO} from "../models/ShoppingCartDTO";
-import {Router} from "@angular/router";
+import {Address} from "../models/address";
+import {AddressService} from "../services/address.service";
 
 @Component({
   selector: 'app-checkout',
@@ -17,8 +18,10 @@ export class CheckoutComponent implements OnInit {
   shoppingCartDTO?: ShoppingCartDTO
   idOrderProduct: any
   count = 0
+  addressInUse?: Address
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService,
+              private addressService: AddressService,) {
     this.idUser = localStorage.getItem("id")
     environment.previousUrl = window.location.pathname;
   }
@@ -26,6 +29,14 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
+    this.getAddressInUse();
+  }
+
+  getAddressInUse() {
+    if (this.idUser == null || this.idUser == '') return;
+    this.addressService.getAddressInUse(this.idUser).subscribe(rs => {
+      this.addressInUse = rs
+    })
   }
 
   getAllOrderByUser() {

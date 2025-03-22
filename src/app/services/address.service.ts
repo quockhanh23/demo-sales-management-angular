@@ -19,8 +19,16 @@ export class AddressService {
     return this.httpClient.get<Address[]>(API_URL + '/get-all-address-by-user?idUser=' + `${idUser}`)
   }
 
+  getAddressInUse(idUser: any): Observable<Address> {
+    return this.httpClient.get<Address>(API_URL + '/get-address-in-use?idUser=' + `${idUser}`)
+  }
+
   createAddress(idUser: any, address: Address): Observable<Address> {
     return this.httpClient.post<Address>(API_URL + `/create-address?idUser=${idUser}`, address)
+  }
+
+  selectAddress(idUser: any, idAddress: any): Observable<Address> {
+    return this.httpClient.put<Address>(API_URL + `/select-address?idUser=${idUser}&idAddress=${idAddress}`, {})
   }
 
   getAllProvince(): Observable<LocationDTO> {

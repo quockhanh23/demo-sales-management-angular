@@ -41,7 +41,10 @@
       <p><b>Hình thức giao hàng: </b></p>
       <p>COD Thanh toán khi nhận hàng</p>
       <p><b>Địa chỉ giao hàng: </b></p>
-      <p></p>
+      <span>{{addressInUse?.province}}, </span>
+      <span>{{addressInUse?.district}}, </span>
+      <span>{{addressInUse?.ward}}, </span>
+      <p>{{addressInUse?.address}}</p>
       <hr>
       <label *ngIf="count != 0" (click)="updateStatus()"
              for="control-modal" class="test-modal">Đặt hàng</label>

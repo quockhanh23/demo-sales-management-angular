@@ -1,4 +1,5 @@
 export interface Address {
+  id: string;
   createdAt?: string;
   updatedAt?: string;
   address?: string;
@@ -6,4 +7,5 @@ export interface Address {
   district?: string;
   ward?: string;
   idUser?: string;
+  inUse?: boolean
 }
