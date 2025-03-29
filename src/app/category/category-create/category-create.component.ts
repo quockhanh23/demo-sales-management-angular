@@ -9,7 +9,7 @@ import {Category} from "../../models/category";
 })
 export class CategoryCreateComponent implements OnInit {
 
-  category?: Category[]
+  categories?: Category[]
   categoryForm: FormGroup = this.formBuilder.group({
     content: new FormControl(''),
   });
