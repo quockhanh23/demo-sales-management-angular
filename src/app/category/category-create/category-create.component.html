@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div style="background-color: #cccccc" align="center">
+  <h3 style=" margin: 0px">Tạo mới loại sản phẩm</h3>
+</div>
+<div class="container" style="margin-top: 10px">
+  <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
+        class="material-icons hoverYellowColor">arrow_back</span>
+
+  <div>
+
+  </div>
+
+  <form [formGroup]="categoryForm" (ngSubmit)="createCategory()">
+    <section>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+            <div class="row align-items-center">
+              <div class="col mt-4">
+                <input type="text" formControlName="content" class="form-control"
+                       placeholder="Tên loại sản phẩm">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary btn">Thêm</button>
+    </section>
+  </form>
+</div>
