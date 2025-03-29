@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Category} from "../../models/category";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-category-create',
@@ -14,14 +15,16 @@ export class CategoryCreateComponent implements OnInit {
     content: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
+    this.getAllCategory();
   }
 
   createCategory() {
-
+    this.getAllCategory();
   };
 
   getAllCategory() {

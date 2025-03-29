@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
 import {UploadfileService} from "../../services/uploadfile.service";
 import {FileDetails} from "../../models/file-details";
+import {CategoryService} from "../../services/category.service";
+import {Category} from "../../models/category";
 
 @Component({
   selector: 'app-product-create',
@@ -13,12 +15,14 @@ import {FileDetails} from "../../models/file-details";
 })
 export class ProductCreateComponent implements OnInit {
 
+  categories?: Category[]
   fileDetail?: FileDetails
   created = false
   checkUploadImage = false
   checkFile = false
   uploadSuccess = false
   file!: File;
+  fileUrl?: any
 
   productForm: FormGroup = this.formBuilder.group({
     productName: new FormControl(''),
@@ -26,11 +30,13 @@ export class ProductCreateComponent implements OnInit {
     quantity: new FormControl(''),
     image: new FormControl(''),
     description: new FormControl(''),
+    idCategory: new FormControl(null)
   });
 
   constructor(private userService: UserService,
               private productService: ProductService,
               private uploadFileService: UploadfileService,
+              private categoryService: CategoryService,
               private router: Router,
               private formBuilder: FormBuilder) {
   }
@@ -38,9 +44,25 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit(): void {
     this.checkFile = false;
     this.uploadSuccess = false;
+    this.getAllCategory();
+  }
+
+  getAllCategory() {
+    let categories = localStorage.getItem("categories")
+    if (categories) {
+      this.categories = JSON.parse(categories);
+    } else {
+      this.categoryService.getAllCategory().subscribe(rs => {
+        this.categories = rs;
+        if (this.categories != null && this.categories?.length > 0) {
+          localStorage.setItem("categories", JSON.stringify(this.categories));
+        }
+      })
+    }
   }
 
   createProduct() {
+    this.uploadFile();
     let filename
     if (this.fileDetail != null) {
       let index = this.fileDetail.toString().indexOf("src")
@@ -53,23 +75,33 @@ export class ProductCreateComponent implements OnInit {
       price: price,
       quantity: this.productForm.value.quantity,
       description: this.productForm.value.description,
-      image: filename
+      image: filename,
+      idCategory: this.productForm.value.idCategory,
     }
     console.log("Test: " + JSON.stringify(this.fileDetail))
-    let id = localStorage.getItem("id")
+    let idUser = localStorage.getItem("id")
     // @ts-ignore
-    this.productService.createProduct(product, id).subscribe(() => {
+    this.productService.createProduct(product, idUser).subscribe(() => {
       this.created = true
       setTimeout(() => {
         this.router.navigate(["/"]).then()
       }, 200)
+    }, error => {
+      console.log("lỗi createProduct:" + JSON.stringify(error))
     })
   }
 
   selectFile(event: any) {
     this.file = event.target.files.item(0);
     if (this.file != null) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        this.fileUrl = e.target?.result;
+      };
+      reader.readAsDataURL(this.file);
       this.checkFile = false;
+      this.checkUploadImage = true
+      this.uploadSuccess = true
     }
   }
 
@@ -80,11 +112,9 @@ export class ProductCreateComponent implements OnInit {
     }
     this.uploadFileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
-      this.checkUploadImage = true
-      this.uploadSuccess = true
       console.log(rs)
     }, error => {
-      console.log("lỗi" + JSON.stringify(error))
+      console.log("lỗi uploadFile:" + JSON.stringify(error))
     })
   }
 

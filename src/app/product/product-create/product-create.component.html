@@ -43,6 +43,28 @@
                        placeholder="Số lượng">
               </div>
             </div>
+            <div class="row align-items-center mt-4">
+              <div class="col-6">
+                <label for="1">Thể loại:&nbsp;</label>
+                <select formControlName="idCategory"
+                        style="width: 200px" id="1">
+                  <div *ngFor="let ca of categories as i">
+                    <option [value]="ca?.id">{{ca?.content}}</option>
+                  </div>
+                </select>
+              </div>
+              <div class="col-6">
+                <input type="file" (change)="selectFile($event)" id="actual-btn" hidden/>
+                <label class="hoverYellowColor cursorTag" for="actual-btn">
+                  <sub>
+                    <span style="font-size: 30px" class="material-icons">file_upload</span>
+                  </sub>
+                </label>
+                <sup><span style="font-size: 17px" *ngIf="file == null">&nbsp;Không có ảnh nào được chọn</span></sup>
+                <sup><span style="font-size: 17px" *ngIf="file != null">{{file.name}}</span></sup>
+                <img style="width: 50px; height: 60px" *ngIf="file != null" src="{{fileUrl}}">
+              </div>
+            </div>
             <div class="row justify-content-start mt-4" style="margin-bottom: 30px">
               <div class="col">
                 <button *ngIf="checkUploadImage" class="btn btn-primary mt-4">Thêm mới sản phẩm</button>
@@ -54,17 +76,4 @@
       </div>
     </section>
   </form>
-  <div class="container d-flex justify-content-center">
-    <div class="mt-5 row justify-content-center">
-      <div class="col-10 mb-3">
-        <label class="px-3">Select File: </label>
-        <input type="file" (change)="selectFile($event)"/>
-      </div>
-      <div class="col-2">
-        <button class="btn btn-success btn-sm" (click)="uploadFile()">
-          Upload
-        </button>
-      </div>
-    </div>
-  </div>
 </div>
