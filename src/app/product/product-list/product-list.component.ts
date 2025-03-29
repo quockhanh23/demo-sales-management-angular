@@ -96,6 +96,7 @@ export class ProductListComponent implements OnInit {
 
   previousPage() {
     if (this.currentPage != null && this.currentPage > 0) {
+      this.isLoading = true;
       this.currentPage--;
       this.currentPageAddOne = this.currentPage + 1
       this.getAllProduct(this.currentPage, 8);
@@ -112,7 +113,6 @@ export class ProductListComponent implements OnInit {
   }
 
   nextPage() {
-    console.log("vào đây ")
     if (this.products == null || this.products.length == 0) return
     // @ts-ignore
     console.log("this.currentPage" + this.currentPage)
@@ -121,7 +121,7 @@ export class ProductListComponent implements OnInit {
     if (this.currentPage != null && (this.currentPage + 1)
       // @ts-ignore
       * this.productDTOPage?.page.number < this.productDTOPage?.page?.totalElements) {
-      console.log("vào đây 2")
+      this.isLoading = true;
       this.currentPage++;
       this.currentPageAddOne = this.currentPage + 1
       this.getAllProduct(this.currentPage, 8);

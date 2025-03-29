@@ -32,7 +32,7 @@ export class ProductDetailComponent implements OnInit {
   rating: any
   check = false
   created = false
-
+  isLoading: boolean = true;
   fileDetail?: FileDetails
   checkUploadImage = false
   checkFile = false
@@ -119,6 +119,7 @@ export class ProductDetailComponent implements OnInit {
       this.getAllStarByProduct(id)
       this.getAllStarByProductAndUser()
       this.getAllCommentByProduct()
+      this.isLoading = false;
     })
   }
 
