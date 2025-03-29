@@ -3,8 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Comment} from "../models/comment";
 import {CommentDTO} from "../models/comment-dto";
+import {environment} from "../../environments/environment";
 
-const API_URL = 'http://localhost:8080/api/comments'
+const API_URL = environment.apiUrlHttps + "/api/comments"
 
 @Injectable({
   providedIn: 'root'

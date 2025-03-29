@@ -4,8 +4,9 @@ import {Observable} from "rxjs";
 import {ProductDTO} from "../models/product-dto";
 import {Product} from "../models/product";
 import {PageImpl} from "../models/page-impl";
+import {environment} from "../../environments/environment";
 
-const API_URL = 'http://localhost:8080/api/products'
+const API_URL = environment.apiUrlHttps + "/api/products"
 
 @Injectable({
   providedIn: 'root'

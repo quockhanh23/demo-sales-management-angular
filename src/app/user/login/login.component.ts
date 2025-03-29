@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     })
     setTimeout(() => {
       this.router.navigate(["/"]).then();
-    }, 100)
+    }, 300)
   }
 
   findByUsername(username: string) {

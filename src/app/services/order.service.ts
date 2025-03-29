@@ -3,8 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProductDTO} from "../models/product-dto";
 import {ShoppingCartDTO} from "../models/ShoppingCartDTO";
+import {environment} from "../../environments/environment";
 
-const API_URL = 'http://localhost:8080/api/orders'
+const API_URL = environment.apiUrlHttps + "/api/orders"
 
 @Injectable({
   providedIn: 'root'

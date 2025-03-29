@@ -3,8 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Address} from "../models/address";
 import {LocationDTO} from "../models/location-dto";
+import {environment} from "../../environments/environment";
 
-const API_URL = 'http://localhost:8080/api/address'
+const API_URL = environment.apiUrlHttps + "/api/address"
 const EXTERNAL_API_URL = "https://open.oapi.vn/location";
 
 @Injectable({

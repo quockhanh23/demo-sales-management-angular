@@ -72,6 +72,7 @@ export class ProductListComponent implements OnInit {
       // console.log("products: " + JSON.stringify(this.products))
       this.isLoading = false;
     }, error => {
+      console.log("Có lỗi xảy ra getAllProduct")
       console.log(error)
     })
   }

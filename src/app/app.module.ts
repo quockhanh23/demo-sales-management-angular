@@ -16,7 +16,7 @@ import {OrderListComponent} from './order/order-list/order-list.component';
 import {UserForgotPasswordComponent} from './user/user-forgot-password/user-forgot-password.component';
 import {AdminControlComponent} from './admin/admin-control/admin-control.component';
 import {CheckoutComponent} from './order/checkout/checkout.component';
-import { OrderDetailComponent } from './order/order-detail/order-detail.component';
+import {OrderDetailComponent} from './order/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +35,13 @@ import { OrderDetailComponent } from './order/order-detail/order-detail.componen
     CheckoutComponent,
     OrderDetailComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
