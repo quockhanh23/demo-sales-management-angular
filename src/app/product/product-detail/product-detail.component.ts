@@ -7,7 +7,7 @@ import {Comment} from "../../models/comment";
 import {StarService} from "../../services/star.service";
 import {Star} from "../../models/star";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {UploadfileService} from "../../services/uploadfile.service";
+import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {environment} from "../../../environments/environment";
 
@@ -59,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
               private commentService: CommentService,
               private starService: StarService,
               private formBuilder: FormBuilder,
-              private uploadFileService: UploadfileService,
+              private uploadFileService: UploadFileService,
               private productService: ProductService) {
     this.idUser = localStorage.getItem("id")
   }
@@ -86,7 +86,7 @@ export class ProductDetailComponent implements OnInit {
       description: this.productForm.value.description,
       image: this.fileDetail?.filename
     }
-    this.productService.updateProduct(product, this.idUser, this.idProduct, "Hoạt động").subscribe(() => {
+    this.productService.updateProduct(product, this.idUser, this.idProduct, "ACTIVE").subscribe(() => {
       this.detailProduct()
       this.checkUpdateProduct = false;
     })
@@ -140,7 +140,7 @@ export class ProductDetailComponent implements OnInit {
       this.checkUploadImage = true
       console.log("vào đây" + JSON.stringify(rs))
     }, error => {
-      console.log("lỗi" + JSON.stringify(error))
+      console.log("Lỗi uploadFile: " + JSON.stringify(error))
     })
   }
 
@@ -151,7 +151,7 @@ export class ProductDetailComponent implements OnInit {
       idProduct: this.idProduct
     }
     // @ts-ignore
-    this.commentService.create(commentDTO).subscribe(() => {
+    this.commentService.createComment(commentDTO).subscribe(() => {
       this.getAllCommentByProduct()
       this.getAllStarByProductAndUser()
       if (this.selected != -1) {
@@ -163,7 +163,7 @@ export class ProductDetailComponent implements OnInit {
         this.checkStar(this.rating);
       }
     }, error => {
-      console.log(error)
+      console.log("Lỗi createComment: " + error)
     })
     console.log("id product: " + this.idProduct)
   }

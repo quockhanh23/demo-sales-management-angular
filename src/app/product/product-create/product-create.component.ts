@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
-import {UploadfileService} from "../../services/uploadfile.service";
+import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
@@ -35,7 +35,7 @@ export class ProductCreateComponent implements OnInit {
 
   constructor(private userService: UserService,
               private productService: ProductService,
-              private uploadFileService: UploadfileService,
+              private uploadFileService: UploadFileService,
               private categoryService: CategoryService,
               private router: Router,
               private formBuilder: FormBuilder) {

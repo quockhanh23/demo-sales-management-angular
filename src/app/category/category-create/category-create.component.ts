@@ -24,11 +24,17 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   createCategory() {
-    this.getAllCategory();
+    let category = {
+      content: this.categoryForm.value.content,
+    }
+    this.categoryService.createCategory(category).subscribe(() => {
+      this.getAllCategory();
+    })
   };
 
   getAllCategory() {
-
+    this.categoryService.getAllCategory().subscribe(rs => {
+      this.categories = rs
+    })
   }
-
 }

@@ -6,6 +6,7 @@ import {Address} from "../../models/address";
 import {LocationDTO} from "../../models/location-dto";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {OrderPayment} from "../../models/order-payment";
+import {OrderPaymentService} from "../../services/order-payment.service";
 
 @Component({
   selector: 'app-user-detail',
@@ -25,7 +26,6 @@ export class UserDetailComponent implements OnInit {
   newAddress = false;
   responseDataProvince?: LocationDTO
   responseDataDistrict?: LocationDTO
-
   responseDataWards?: LocationDTO
   selectedProvince?: string
   selectedDistrict?: string
@@ -38,6 +38,7 @@ export class UserDetailComponent implements OnInit {
 
   constructor(private userService: UserService,
               private addressService: AddressService,
+              private orderPaymentService: OrderPaymentService,
               private formBuilder: FormBuilder) {
     this.idUser = localStorage.getItem("id")
   }
@@ -48,8 +49,11 @@ export class UserDetailComponent implements OnInit {
     this.getAllProvince();
   }
 
-  getAllOrderPayment() {
-
+  getAllOrderPayment(orderPaymentStatus: OrderPaymentStatus) {
+    this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
+    (this.idUser, orderPaymentStatus).subscribe(rs => {
+      this.orderPayments = rs;
+    })
   }
 
   toChangePassword() {
@@ -189,3 +193,12 @@ export class UserDetailComponent implements OnInit {
     this.newAddress = false;
   }
 }
+
+export enum OrderPaymentStatus {
+  ORDER_SUCCESSFUL = 'ORDER_SUCCESSFUL',
+  ORDER_CONFIRM = 'ORDER_CONFIRM',
+  ORDER_CANCELLED = 'ORDER_CANCELLED',
+  ORDER_RETURN = 'ORDER_RETURN',
+  DELIVERY_SUCCESSFUL = 'DELIVERY_SUCCESSFUL',
+}
+

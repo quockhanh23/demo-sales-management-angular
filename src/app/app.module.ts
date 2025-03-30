@@ -17,7 +17,10 @@ import {UserForgotPasswordComponent} from './user/user-forgot-password/user-forg
 import {AdminControlComponent} from './admin/admin-control/admin-control.component';
 import {CheckoutComponent} from './order/checkout/checkout.component';
 import {OrderDetailComponent} from './order/order-detail/order-detail.component';
-import { CategoryCreateComponent } from './category/category-create/category-create.component';
+import {CategoryCreateComponent} from './category/category-create/category-create.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import { OrderPaymentDetailComponent } from './payment/order-payment-detail/order-payment-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { CategoryCreateComponent } from './category/category-create/category-cre
     CheckoutComponent,
     OrderDetailComponent,
     CategoryCreateComponent,
+    OrderPaymentDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,8 @@ import { CategoryCreateComponent } from './category/category-create/category-cre
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

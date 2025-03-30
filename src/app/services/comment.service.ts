@@ -19,11 +19,11 @@ export class CommentService {
     return this.http.get<Comment[]>(API_URL + '/get-comment-by-product?idProduct=' + `${idProduct}`)
   }
 
-  create(commentDTO: CommentDTO): Observable<CommentDTO> {
+  createComment(commentDTO: CommentDTO): Observable<CommentDTO> {
     return this.http.post<CommentDTO>(API_URL + '/create', commentDTO)
   }
 
-  delete(idComment: any): Observable<any> {
+  deleteComment(idComment: any): Observable<any> {
     return this.http.delete<any>(API_URL + '/delete?idComment=' + `${idComment}`)
   }
 }

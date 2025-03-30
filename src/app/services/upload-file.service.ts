@@ -9,7 +9,7 @@ const API_URL = environment.apiUrlHttps + "/api/uploads"
 @Injectable({
   providedIn: 'root'
 })
-export class UploadfileService {
+export class UploadFileService {
 
   constructor(private http: HttpClient) {
   }
