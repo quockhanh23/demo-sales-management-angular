@@ -5,6 +5,7 @@ import {ShoppingCartDetailDTO} from "../../models/ShoppingCartDetailDTO";
 import {ShoppingCartDTO} from "../../models/ShoppingCartDTO";
 import {Address} from "../../models/address";
 import {AddressService} from "../../services/address.service";
+import {OrderPaymentService} from "../../services/order-payment.service";
 
 @Component({
   selector: 'app-checkout',
@@ -21,7 +22,8 @@ export class CheckoutComponent implements OnInit {
   addressInUse?: Address
 
   constructor(private orderService: OrderService,
-              private addressService: AddressService,) {
+              private addressService: AddressService,
+              private orderPaymentService: OrderPaymentService) {
     this.idUser = localStorage.getItem("id")
     environment.previousUrl = window.location.pathname;
   }
@@ -66,6 +68,22 @@ export class CheckoutComponent implements OnInit {
 
   updateStatus() {
     this.orderService.changeStatus(this.idOrderProduct, this.idUser, "BOUGHT").subscribe()
+    const currentDate = new Date();
+    const newDate = new Date(currentDate);
+    newDate.setDate(currentDate.getDate() + 3);
+    let payment = {
+      idUser: this.idUser,
+      idShoppingCart: this.idOrderProduct,
+      idAddress: this.addressInUse?.id,
+      note: "",
+      totalOrderAmount: this.shoppingCartDTO?.totalPrice,
+      deliveryMethod: '',
+      estimatedDelivery: newDate,
+    }
+    this.orderPaymentService.createPayment(payment).subscribe(() => {
+    }, error => {
+      console.log("Lỗi createPayment: " + error)
+    })
   }
 
   removeFromCart(idOrderProductDetail: any) {

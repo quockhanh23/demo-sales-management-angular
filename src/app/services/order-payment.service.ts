@@ -15,8 +15,8 @@ export class OrderPaymentService {
   constructor(private http: HttpClient) {
   }
 
-  createPayment(orderPayment: OrderPayment): Observable<OrderPayment> {
-    return this.http.post<OrderPayment>(API_URL + '/create-payment', orderPayment)
+  createPayment(orderPayment: any): Observable<any> {
+    return this.http.post<any>(API_URL + '/create-payment', orderPayment)
   }
 
   updateStatusPayment(idOrderPayment: any, status: string): Observable<any> {

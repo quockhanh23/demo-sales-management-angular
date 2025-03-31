@@ -9,4 +9,5 @@ export interface OrderPayment {
   estimatedDelivery?: string;
   createdAt?: string;
   updatedAt?: string;
+  orderPaymentStatus?: string
 }

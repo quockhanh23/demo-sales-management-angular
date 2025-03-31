@@ -37,6 +37,24 @@
         <h4 style="margin-top: 10px">Đơn mua</h4>
         <div class="col-4">
           <p class="hoverYellowColor cursorTag">Tất cả</p>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Số đơn hàng</th>
+              <th scope="col">Tổng tiền</th>
+              <th scope="col">Thời gian giao hàng dự kiến</th>
+              <th scope="col">Trạng thái</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let pay of orderPayments as i">
+            <tr class="cursorTag" [routerLink]="['/orderPaymentDetail', pay?.id]">
+              <td >{{pay?.idShoppingCart}}</td>
+              <td>{{pay?.totalOrderAmount}}</td>
+              <td>{{pay?.estimatedDelivery}}</td>
+              <td>{{pay?.orderPaymentStatus}}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <div class="col-4">
           <p class="hoverYellowColor cursorTag">Đang giao hàng</p>

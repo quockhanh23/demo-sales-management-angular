@@ -29,6 +29,11 @@ export class UserDetailComponent implements OnInit {
   responseDataWards?: LocationDTO
   selectedProvince?: string
   selectedDistrict?: string
+  ORDER_SUCCESSFUL = 'ORDER_SUCCESSFUL'
+  ORDER_CONFIRM = 'ORDER_CONFIRM'
+  ORDER_CANCELLED = 'ORDER_CANCELLED'
+  ORDER_RETURN = 'ORDER_RETURN'
+  DELIVERY_SUCCESSFUL = 'DELIVERY_SUCCESSFUL'
 
   userForm: FormGroup = this.formBuilder.group({
     oldPassword: new FormControl(''),
@@ -47,11 +52,12 @@ export class UserDetailComponent implements OnInit {
     this.getInformation(this.idUser)
     this.getAllAddressByUser(this.idUser)
     this.getAllProvince();
+    this.getAllOrderPayment('');
   }
 
-  getAllOrderPayment(orderPaymentStatus: OrderPaymentStatus) {
+  getAllOrderPayment(status: string) {
     this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
-    (this.idUser, orderPaymentStatus).subscribe(rs => {
+    (this.idUser,status).subscribe(rs => {
       this.orderPayments = rs;
     })
   }
@@ -194,11 +200,4 @@ export class UserDetailComponent implements OnInit {
   }
 }
 
-export enum OrderPaymentStatus {
-  ORDER_SUCCESSFUL = 'ORDER_SUCCESSFUL',
-  ORDER_CONFIRM = 'ORDER_CONFIRM',
-  ORDER_CANCELLED = 'ORDER_CANCELLED',
-  ORDER_RETURN = 'ORDER_RETURN',
-  DELIVERY_SUCCESSFUL = 'DELIVERY_SUCCESSFUL',
-}
 
