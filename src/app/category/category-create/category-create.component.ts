@@ -19,6 +19,7 @@ import {CategoryService} from "../../services/category.service";
 export class CategoryCreateComponent implements OnInit {
 
   categories?: Category[]
+  categoriesLocal?: Category[]
   sizeOfList = false;
   categoryForm: FormGroup = this.formBuilder.group({
     content: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -45,6 +46,7 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe(rs => {
       this.sizeOfList = rs.length < 5;
       this.categories = rs
+      localStorage.setItem("categories", JSON.stringify(this.categories));
     })
   }
 }
