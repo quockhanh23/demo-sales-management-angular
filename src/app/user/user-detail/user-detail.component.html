@@ -65,7 +65,7 @@
       </div>
       <div class="row" *ngIf="changePassword">
         <h4 style="margin-top: 10px">Đổi mật khẩu</h4>
-        <form [formGroup]="userForm" (ngSubmit)="toChangePassword()" style="height: 500px">
+        <form [formGroup]="userForm" (ngSubmit)="toChangePassword()">
           <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8 col-xl-6">
               <div class="row align-items-center">
@@ -94,7 +94,6 @@
             </div>
           </div>
         </form>
-
       </div>
       <div class="row" *ngIf="checkAddress">
         <h4 style="margin-top: 10px">Địa chỉ</h4>
