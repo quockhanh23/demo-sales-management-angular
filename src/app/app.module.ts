@@ -20,7 +20,7 @@ import {OrderDetailComponent} from './order/order-detail/order-detail.component'
 import {CategoryCreateComponent} from './category/category-create/category-create.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import { OrderPaymentDetailComponent } from './payment/order-payment-detail/order-payment-detail.component';
+import {OrderPaymentDetailComponent} from './payment/order-payment-detail/order-payment-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { OrderPaymentDetailComponent } from './payment/order-payment-detail/orde
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

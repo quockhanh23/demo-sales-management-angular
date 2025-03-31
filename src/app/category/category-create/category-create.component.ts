@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {Category} from "../../models/category";
 import {CategoryService} from "../../services/category.service";
 
@@ -11,8 +19,9 @@ import {CategoryService} from "../../services/category.service";
 export class CategoryCreateComponent implements OnInit {
 
   categories?: Category[]
+  sizeOfList = false;
   categoryForm: FormGroup = this.formBuilder.group({
-    content: new FormControl(''),
+    content: new FormControl('', [Validators.required, this.whitespaceValidator()]),
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -34,7 +43,17 @@ export class CategoryCreateComponent implements OnInit {
 
   getAllCategory() {
     this.categoryService.getAllCategory().subscribe(rs => {
+      this.sizeOfList = rs.length < 5;
       this.categories = rs
     })
   }
+
+  whitespaceValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isWhitespace = control.value.trim().length === 0;
+      return isWhitespace ? {'whitespace': true} : null;
+    };
+  }
 }
+
+
