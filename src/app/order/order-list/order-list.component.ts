@@ -24,15 +24,25 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
+    this.checkLogin();
+  }
+
+  checkLogin(): any {
+    const modalControl = document.getElementById('control-modal') as HTMLInputElement;
+    if (modalControl) {
+      modalControl.checked = this.idUser == null || this.idUser == '';
+    }
   }
 
   removeFromCart(idOrderProductDetail: any) {
+    if (this.idUser == null || this.idUser == '') return;
     this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
       this.ngOnInit()
     })
   }
 
   getAllOrderByUser() {
+    if (this.idUser == null || this.idUser == '') return;
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
@@ -57,12 +67,14 @@ export class OrderListComponent implements OnInit {
   }
 
   increaseProduct(idProduct: any) {
+    if (this.idUser == null || this.idUser == '') return;
     this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
     })
   }
 
   decreaseProduct(idProduct: any) {
+    if (this.idUser == null || this.idUser == '') return;
     this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
     })

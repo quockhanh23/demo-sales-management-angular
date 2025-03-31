@@ -70,3 +70,21 @@
 <div *ngIf="isLoading" style="height: 600px">
   <div id="loader"></div>
 </div>
+
+<input type="checkbox" id="control-modal" checked style="display: none;" />
+<label for="control-modal" class="test-modal"></label>
+<div class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="col-10" align="left">
+        <h4>Bạn chưa đăng nhập !!</h4>
+      </div>
+      <div class="col-2"></div>
+      <label [routerLink]="['/login']" for="control-modal" class="modal-close">X</label>
+    </div>
+    <div class="modal-body">
+      <p class="cursorTag hoverYellowColor" [routerLink]="['/login']">Nhấn vào đây để quay về trang đăng nhập</p>
+    </div>
+  </div>
+</div>
+
