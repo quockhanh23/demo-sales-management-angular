@@ -21,7 +21,7 @@ export class CategoryCreateComponent implements OnInit {
   categories?: Category[]
   sizeOfList = false;
   categoryForm: FormGroup = this.formBuilder.group({
-    content: new FormControl('', [Validators.required, this.whitespaceValidator()]),
+    content: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private formBuilder: FormBuilder,
@@ -47,13 +47,12 @@ export class CategoryCreateComponent implements OnInit {
       this.categories = rs
     })
   }
-
-  whitespaceValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const isWhitespace = control.value.trim().length === 0;
-      return isWhitespace ? {'whitespace': true} : null;
-    };
-  }
 }
 
+export function whitespaceValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const isWhitespace = control.value.trim().length === 0;
+    return isWhitespace ? {'whitespace': true} : null;
+  };
+}
 

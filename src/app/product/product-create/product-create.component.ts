@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
@@ -7,6 +7,7 @@ import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {CategoryService} from "../../services/category.service";
 import {Category} from "../../models/category";
+import {whitespaceValidator} from "../../category/category-create/category-create.component";
 
 @Component({
   selector: 'app-product-create',
@@ -25,12 +26,11 @@ export class ProductCreateComponent implements OnInit {
   fileUrl?: any
 
   productForm: FormGroup = this.formBuilder.group({
-    productName: new FormControl(''),
-    price: new FormControl(''),
-    quantity: new FormControl(''),
-    image: new FormControl(''),
-    description: new FormControl(''),
-    idCategory: new FormControl(null)
+    productName: new FormControl('', [Validators.required, whitespaceValidator()]),
+    price: new FormControl('', [Validators.required, whitespaceValidator()]),
+    quantity: new FormControl('', [Validators.required,whitespaceValidator()]),
+    description: new FormControl('', [Validators.required,whitespaceValidator()]),
+    idCategory: new FormControl(null, [Validators.required,])
   });
 
   constructor(private userService: UserService,

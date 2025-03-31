@@ -24,28 +24,28 @@
             <div class="row align-items-center">
               <div class="col mt-4">
                 <input type="text" formControlName="productName" class="form-control"
-                       placeholder="Tên sản phẩm">
+                       placeholder="Tên sản phẩm *">
               </div>
             </div>
             <div class="row align-items-center">
               <div class="col mt-4">
                 <input type="text" formControlName="description" class="form-control"
-                       placeholder="Mô tả sản phẩm">
+                       placeholder="Mô tả sản phẩm *">
               </div>
             </div>
             <div class="row align-items-center mt-4">
               <div class="col">
                 <input id="price" formControlName="price" (input)="formatPrice()"
-                       class="form-control" placeholder="Giá sản phẩm">
+                       class="form-control" placeholder="Giá sản phẩm *">
               </div>
               <div class="col">
                 <input type="number" formControlName="quantity" class="form-control"
-                       placeholder="Số lượng">
+                       placeholder="Số lượng *">
               </div>
             </div>
             <div class="row align-items-center mt-4">
               <div class="col-6">
-                <label for="1">Thể loại:&nbsp;</label>
+                <label for="1">Thể loại: *&nbsp;</label>
                 <select formControlName="idCategory"
                         style="width: 200px" id="1">
                   <div *ngFor="let ca of categories as i">
@@ -67,8 +67,10 @@
             </div>
             <div class="row justify-content-start mt-4" style="margin-bottom: 30px">
               <div class="col">
-                <button *ngIf="checkUploadImage" class="btn btn-primary mt-4">Thêm mới sản phẩm</button>
-                <button *ngIf="!checkUploadImage" disabled class="btn btn-primary mt-4">Thêm mới sản phẩm</button>
+                <button [disabled]="!productForm.valid || !uploadSuccess"
+                        class="btn btn-primary mt-4">
+                  Thêm mới sản phẩm
+                </button>
               </div>
             </div>
           </div>
