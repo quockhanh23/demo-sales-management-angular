@@ -2,11 +2,12 @@
 <div style="background-color: #cccccc" align="center">
   <h3 style=" margin: 0px">Đăng Ký</h3>
 </div>
-<div class="container" style="margin-top: 10px">
+<div class="container">
   <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
   <form [formGroup]="userForm" (ngSubmit)="register()">
     <div class="row justify-content-center">
+      <div style="height: 20px"></div>
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
         <div class="alert alert-danger" role="alert" *ngIf="messageErrorRegister != null">
           {{messageErrorRegister}}
@@ -49,3 +50,4 @@
     </div>
   </form>
 </div>
+<div style="height: 50px"></div>
