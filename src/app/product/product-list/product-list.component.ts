@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit {
   productDTOPage?: PageImpl
   products?: ProductDTO[]
   idUser: any
-  role: any
+  role?: any
   countAllProduct: number = 0
   countProductOfUser = 0
   checkUser = false;
@@ -46,7 +46,6 @@ export class ProductListComponent implements OnInit {
     this.checkUser = this.idUser == null || this.idUser == '';
     this.getAllProduct(this.currentPage, 8);
     this.getAllProductsInCartByUser()
-    console.log("this.idUser :" + this.idUser)
   }
 
   checkRoleAdmin() {
@@ -72,8 +71,7 @@ export class ProductListComponent implements OnInit {
       // console.log("products: " + JSON.stringify(this.products))
       this.isLoading = false;
     }, error => {
-      console.log("Có lỗi xảy ra getAllProduct")
-      console.log(error)
+      console.log("Lỗi getAllProduct: ", JSON.stringify(error))
     })
   }
 
@@ -90,7 +88,6 @@ export class ProductListComponent implements OnInit {
     if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.countProductOfUser = rs
-      console.log("this.count: " + this.countProductOfUser)
     })
   }
 

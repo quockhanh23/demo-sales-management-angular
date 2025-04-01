@@ -68,30 +68,32 @@
       </div>
       <div class="row" *ngIf="changePassword">
         <h4 style="margin-top: 10px">Đổi mật khẩu</h4>
-        <form [formGroup]="userForm" (ngSubmit)="toChangePassword()">
+        <form [formGroup]="changePasswordForm" (ngSubmit)="toChangePassword()">
           <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8 col-xl-6">
               <div class="row align-items-center">
                 <div class="col mt-4">
                   <input type="text" formControlName="oldPassword" class="form-control"
-                         placeholder="Mật khẩu cũ">
+                         placeholder="Mật khẩu cũ *">
                 </div>
               </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
                   <input type="pin" formControlName="newPassword" class="form-control"
-                         placeholder="Mật khẩu mới">
+                         placeholder="Mật khẩu mới *">
                 </div>
               </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
                   <input type="pin" formControlName="newPasswordConfirm" class="form-control"
-                         placeholder="Xác nhận lại mật khẩu mới">
+                         placeholder="Xác nhận lại mật khẩu mới *">
                 </div>
               </div>
               <div class="row justify-content-start mt-4">
                 <div class="col">
-                  <button class="btn btn-primary mt-4">Gửi yêu cầu</button>
+                  <button [disabled]="!changePasswordForm.valid"
+                          class="btn btn-primary mt-4" type="submit">Gửi yêu cầu
+                  </button>
                 </div>
               </div>
             </div>
@@ -188,3 +190,5 @@
     <div style="height: 350px"></div>
   </div>
 </div>
+
+<div id="snackbar">Đổi mật khẩu thành công !</div>

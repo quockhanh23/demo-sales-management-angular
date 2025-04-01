@@ -4,9 +4,10 @@ import {UserService} from "../../services/user.service";
 import {AddressService} from "../../services/address.service";
 import {Address} from "../../models/address";
 import {LocationDTO} from "../../models/location-dto";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {OrderPayment} from "../../models/order-payment";
 import {OrderPaymentService} from "../../services/order-payment.service";
+import {whitespaceValidator} from "../../category/category-create/category-create.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -35,10 +36,10 @@ export class UserDetailComponent implements OnInit {
   ORDER_RETURN = 'ORDER_RETURN'
   DELIVERY_SUCCESSFUL = 'DELIVERY_SUCCESSFUL'
 
-  userForm: FormGroup = this.formBuilder.group({
-    oldPassword: new FormControl(''),
-    newPassword: new FormControl(''),
-    newPasswordConfirm: new FormControl(''),
+  changePasswordForm: FormGroup = this.formBuilder.group({
+    oldPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
+    newPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
+    newPasswordConfirm: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private userService: UserService,
@@ -57,23 +58,43 @@ export class UserDetailComponent implements OnInit {
 
   getAllOrderPayment(status: string) {
     this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
-    (this.idUser,status).subscribe(rs => {
+    (this.idUser, status).subscribe(rs => {
       this.orderPayments = rs;
     })
   }
 
   toChangePassword() {
+    if (this.idUser == null || this.idUser == "") return
+    let changePasswordObject = {
+      oldPassword: this.changePasswordForm.value.oldPassword,
+      newPassword: this.changePasswordForm.value.newPassword,
+      confirmPassword: this.changePasswordForm.value.newPasswordConfirm,
+    }
+    this.userService.changePassword(changePasswordObject, this.idUser).subscribe(() => {
+      this.getSnackbar();
+      this.changeToProfile();
+    }, error => {
+      console.log("Lỗi toChangePassword: ", JSON.stringify(error))
+    })
+  }
+
+  getSnackbar() {
+    let x = document.getElementById("snackbar");
+    // @ts-ignore
+    x.className = "show";
+    setTimeout(function () {
+      // @ts-ignore
+      x.className = x.className.replace("show", "");
+    }, 3000);
   }
 
   selectAddress(idAddress: any) {
-    console.log("selectAddress")
     this.addressService.selectAddress(this.idUser, idAddress).subscribe(() => {
       this.getAllAddressByUser(this.idUser)
     })
   }
 
   deleteAddress(idAddress: any) {
-    console.log("deleteAddress")
     this.addressService.deleteAddress(this.idUser, idAddress).subscribe(() => {
       this.getAllAddressByUser(this.idUser)
     })

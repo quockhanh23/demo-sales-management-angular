@@ -24,7 +24,11 @@ export class UserService {
   }
 
   resetPassword(user: UserDTO): Observable<UserDTO> {
-    return this.http.post<User>(API_URL + '/reset-password', user)
+    return this.http.put<User>(API_URL + '/reset-password', user)
+  }
+
+  changePassword(user: any, idUser: any): Observable<any> {
+    return this.http.put<any>(API_URL + `/change-password?idUser=${idUser}`, user)
   }
 
   findByUsername(username: any): Observable<User> {
