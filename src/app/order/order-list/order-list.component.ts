@@ -15,6 +15,7 @@ export class OrderListComponent implements OnInit {
   idOrderProduct: any
   count = 0
   isLoading: boolean = true;
+  openModal = false;
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
@@ -31,6 +32,7 @@ export class OrderListComponent implements OnInit {
     const modalControl = document.getElementById('control-modal') as HTMLInputElement;
     if (modalControl) {
       modalControl.checked = this.idUser == null || this.idUser == '';
+      this.openModal = true;
     }
   }
 

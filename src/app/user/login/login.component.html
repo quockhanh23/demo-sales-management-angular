@@ -8,6 +8,9 @@
   <form [formGroup]="userForm" (ngSubmit)="login()">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+        <div class="alert alert-danger" role="alert" *ngIf="checkErrorLogin">
+          Sai tên đăng nhập hoặc mật khẩu !
+        </div>
         <div class="row align-items-center">
           <div class="col mt-4">
             <input type="text" formControlName="username" class="form-control" placeholder="Tên đăng nhập *">
@@ -18,16 +21,14 @@
             <input type="password" formControlName="password" class="form-control" placeholder="Mật khẩu *">
           </div>
         </div>
-        <div class="row justify-content-start mt-4">
-          <div class="col">
-            <button class="btn btn-primary mt-4">Đăng nhập</button>
-            <div class="row">
-              <div class="col-6 cursorTag">
-                <span [routerLink]="['/register']" class="psw"><a>Chưa có tài khoản?</a></span>
-              </div>
-              <div class="col-6 cursorTag" style="text-align: right">
-                <span [routerLink]="['/forgotPassword']" class="psw"><a>Quên mật khẩu?</a></span>
-              </div>
+        <div class="col">
+          <button class="btn btn-primary mt-4">Đăng nhập</button>
+          <div class="row">
+            <div class="col-6 cursorTag">
+              <span [routerLink]="['/register']" class="psw"><a>Chưa có tài khoản?</a></span>
+            </div>
+            <div class="col-6 cursorTag" style="text-align: right">
+              <span [routerLink]="['/forgotPassword']" class="psw"><a>Quên mật khẩu?</a></span>
             </div>
           </div>
         </div>

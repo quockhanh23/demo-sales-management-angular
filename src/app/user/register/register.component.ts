@@ -37,11 +37,10 @@ export class RegisterComponent implements OnInit {
     userRequest.pin = this.userForm.value.pin
 
     this.userService.register(userRequest).subscribe(() => {
-      alert("đăng kí thành công chuyển đến trang đăng nhâp")
+      alert("Đăng ký thành công chuyển đến trang đăng nhâp")
       this.router.navigate(["/login"]).then();
     }, errorObject => {
-      console.log(errorObject.error)
-      alert("Lỗi đăng kí: " + errorObject.error)
+      alert("Lỗi đăng ký: " + errorObject.error.message)
     })
   }
 
