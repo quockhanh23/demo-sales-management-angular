@@ -6,6 +6,11 @@
   <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
         class="material-icons hoverYellowColor">arrow_back</span>
   <div style="background-color: whitesmoke; border-radius: 5px">
+    <div align="right">
+        <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
+              class="material-icons hoverYellowColor">shopping_cart</span>
+      <sub>{{countProductOfUser}}</sub>
+    </div>
     <div class="row">
       <div class="col-5">
         <div class="card">
@@ -47,15 +52,20 @@
         <div class="row" *ngIf="idUser != null">
           <div class="col">
             <div class="row">
-              <div class="col">
+              <div class="col" *ngIf="isAdmin">
                 <sub><span (click)="openUpdateForm()" style="font-size: 40px; color: #f44336; margin-top: 5px"
                            class="material-icons cursorTag">edit</span>
                 </sub>
               </div>
               <div class="col">
-                <sub><span style="font-size: 40px; color: #295d81; margin-top: 5px"
-                           class="material-icons cursorTag">add_shopping_cart</span>
-                </sub>
+               <div (click)="addToCart(); getSnackbar()">
+                 <sub>
+                  <span
+                        style="font-size: 40px; color: #295d81; margin-top: 5px"
+                        class="material-icons cursorTag">add_shopping_cart</span>
+                 </sub>
+                 <span class="cursorTag hoverYellowColor">Thêm vào giỏ hàng</span>
+               </div>
               </div>
             </div>
             <hr>
@@ -97,11 +107,13 @@
         <div *ngIf="checkUpdateProduct" style="margin-right: 10px;">
           <div class="row">
             <div class="col-11">
-              <h4>Chỉnh sửa sản phẩm</h4>
+              <h5>Chỉnh sửa sản phẩm</h5>
             </div>
             <div class="col-1">
-              <sub> <span (click)="closeUpdateForm()" style="float: right; margin-top: 1px"
-                          class="hoverYellowColor cursorTag material-icons">close</span></sub>
+              <sub>
+                <span (click)="closeUpdateForm()" style="float: right; margin-top: 1px"
+                      class="hoverYellowColor cursorTag material-icons">close</span>
+              </sub>
             </div>
           </div>
           <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
@@ -184,7 +196,7 @@
       <div class="col-3" *ngFor="let pr of comments index as i">
         <h6>{{pr?.user?.username}}:</h6>
         <p> {{pr?.content}}</p>
-        <p>{{ pr?.createDate | date:"dd/MM/yyyy HH:mm:ss" }} </p>
+        <p>{{ pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </p>
       </div>
     </div>
   </div>
@@ -193,3 +205,5 @@
 <div *ngIf="isLoading" style="height: 600px">
   <div id="loader"></div>
 </div>
+
+<div id="snackbar">Thêm sản phẩm vào giỏ hàng thành công</div>

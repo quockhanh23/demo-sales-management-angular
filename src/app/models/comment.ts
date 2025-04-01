@@ -4,7 +4,7 @@ import {Product} from "./product";
 export interface Comment {
   id: string;
   content: string;
-  createDate: string;
+  createdAt: string;
   user: User;
   product: Product;
 }

@@ -10,6 +10,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {environment} from "../../../environments/environment";
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -18,10 +19,10 @@ import {environment} from "../../../environments/environment";
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: ProductDTO | undefined
-  comments: Comment[] | undefined
-  stars: Star[] | undefined
-  star: Star | undefined
+  product?: ProductDTO
+  comments?: Comment[]
+  stars?: Star[]
+  star?: Star
 
   stars1: number = 0
   stars2: number = 0
@@ -39,8 +40,10 @@ export class ProductDetailComponent implements OnInit {
   file!: File;
   idProduct?: string | null
   idUser?: string | null
-
+  role?: string | null
+  isAdmin?: boolean
   checkUpdateProduct = false
+  countProductOfUser = 0
 
   productForm: FormGroup = this.formBuilder.group({
     productName: new FormControl(''),
@@ -60,14 +63,54 @@ export class ProductDetailComponent implements OnInit {
               private starService: StarService,
               private formBuilder: FormBuilder,
               private uploadFileService: UploadFileService,
+              private orderService: OrderService,
               private productService: ProductService) {
     this.idUser = localStorage.getItem("id")
+    this.role = localStorage.getItem("role")
   }
 
   ngOnInit(): void {
     this.detailProduct();
+    this.checkRoleAdmin();
+    this.getAllProductsInCartByUser();
     this.selected = -1;
     console.log("id user : " + this.idUser)
+  }
+
+  getSnackbar() {
+    let x = document.getElementById("snackbar");
+    // @ts-ignore
+    x.className = "show";
+    setTimeout(function () {
+      // @ts-ignore
+      x.className = x.className.replace("show", "");
+    }, 3000);
+  }
+
+  addToCart() {
+    let productDto = {
+      id: this.product?.id,
+      productName: this.product?.productName,
+      price: this.product?.price,
+      quantity: this.product?.quantity,
+      image: this.product?.image,
+      description: this.product?.description,
+    }
+    this.orderService.addToCart(this.idUser, productDto).subscribe(() => {
+      this.getAllProductsInCartByUser()
+      this.detailProduct();
+    })
+  }
+
+  getAllProductsInCartByUser() {
+    if (this.idUser == null || this.idUser == '') return;
+    this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
+      this.countProductOfUser = rs
+    })
+  }
+
+  checkRoleAdmin() {
+    this.isAdmin = !(this.role == null || this.role == "" || this.role != "ROLE_ADMIN");
   }
 
   openUpdateForm() {
@@ -104,7 +147,6 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(id).subscribe(rs => {
         this.product = rs;
         if (this.product?.image != null) {
-          console.log("Ảnh: " + this.product?.image)
           this.checkUploadImage = true
           console.log(this.checkUploadImage)
         }
@@ -138,7 +180,6 @@ export class ProductDetailComponent implements OnInit {
     this.uploadFileService.upload(this.file).subscribe(rs => {
       this.fileDetail = rs
       this.checkUploadImage = true
-      console.log("vào đây" + JSON.stringify(rs))
     }, error => {
       console.log("Lỗi uploadFile: " + JSON.stringify(error))
     })

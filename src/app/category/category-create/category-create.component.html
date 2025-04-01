@@ -16,7 +16,7 @@
             <p>{{category?.content}}</p>
           </div>
           <div class="col-4">
-            <p>{{category?.createdAt}}</p>
+            <p>{{ category?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </p>
           </div>
         </div>
       </div>
