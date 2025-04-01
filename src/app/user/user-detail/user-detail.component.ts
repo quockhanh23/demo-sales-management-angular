@@ -30,6 +30,7 @@ export class UserDetailComponent implements OnInit {
   responseDataWards?: LocationDTO
   selectedProvince?: string
   selectedDistrict?: string
+  messageErrorChangePassword?: string
   ORDER_SUCCESSFUL = 'ORDER_SUCCESSFUL'
   ORDER_CONFIRM = 'ORDER_CONFIRM'
   ORDER_CANCELLED = 'ORDER_CANCELLED'
@@ -74,6 +75,7 @@ export class UserDetailComponent implements OnInit {
       this.getSnackbar();
       this.changeToProfile();
     }, error => {
+      this.messageErrorChangePassword = error.error.message
       console.log("Lỗi toChangePassword: ", JSON.stringify(error))
     })
   }

@@ -23,8 +23,8 @@ export class UserService {
     return this.http.post<User>(API_URL + '/register', user)
   }
 
-  resetPassword(user: UserDTO): Observable<UserDTO> {
-    return this.http.put<User>(API_URL + '/reset-password', user)
+  resetPassword(user: any): Observable<any> {
+    return this.http.put<any>(API_URL + '/reset-password', user)
   }
 
   changePassword(user: any, idUser: any): Observable<any> {

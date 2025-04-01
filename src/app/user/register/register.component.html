@@ -8,6 +8,9 @@
   <form [formGroup]="userForm" (ngSubmit)="register()">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+        <div class="alert alert-danger" role="alert" *ngIf="messageErrorRegister != null">
+          {{messageErrorRegister}}
+        </div>
         <div class="row align-items-center">
           <div class="col mt-4">
             <input type="text" formControlName="username" class="form-control" placeholder="Tên đăng nhập *">
@@ -39,7 +42,7 @@
                 <a>Cho phép gửi thông báo</a>
               </label>
             </div>
-            <button class="btn btn-primary mt-4">Đăng ký</button>
+            <button [disabled]="!userForm.valid" class="btn btn-primary mt-4" type="submit">Đăng ký</button>
           </div>
         </div>
       </div>

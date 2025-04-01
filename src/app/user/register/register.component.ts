@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {User} from "../../models/user";
 import {environment} from "../../../environments/environment";
+import {whitespaceValidator} from "../../category/category-create/category-create.component";
 
 @Component({
   selector: 'app-register',
@@ -12,12 +13,13 @@ import {environment} from "../../../environments/environment";
 })
 export class RegisterComponent implements OnInit {
 
+  messageErrorRegister?: string
   userForm: FormGroup = this.formBuilder.group({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    phone: new FormControl(''),
-    pin: new FormControl(''),
+    username: new FormControl('', [Validators.required, whitespaceValidator()]),
+    password: new FormControl('', [Validators.required, whitespaceValidator()]),
+    confirmPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
+    phone: new FormControl('', [Validators.required, whitespaceValidator()]),
+    pin: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private userService: UserService,
@@ -40,7 +42,7 @@ export class RegisterComponent implements OnInit {
       alert("Đăng ký thành công chuyển đến trang đăng nhâp")
       this.router.navigate(["/login"]).then();
     }, errorObject => {
-      alert("Lỗi đăng ký: " + errorObject.error.message)
+      this.messageErrorRegister = errorObject.error.message
     })
   }
 

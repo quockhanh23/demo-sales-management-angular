@@ -8,8 +8,8 @@
   <form [formGroup]="userForm" (ngSubmit)="login()">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-        <div class="alert alert-danger" role="alert" *ngIf="checkErrorLogin">
-          Sai tên đăng nhập hoặc mật khẩu !
+        <div class="alert alert-danger" role="alert" *ngIf="messageErrorLogin != null">
+          {{messageErrorLogin}}
         </div>
         <div class="row align-items-center">
           <div class="col mt-4">
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="col">
-          <button class="btn btn-primary mt-4">Đăng nhập</button>
+          <button [disabled]="!userForm.valid" class="btn btn-primary mt-4" type="submit">Đăng nhập</button>
           <div class="row">
             <div class="col-6 cursorTag">
               <span [routerLink]="['/register']" class="psw"><a>Chưa có tài khoản?</a></span>

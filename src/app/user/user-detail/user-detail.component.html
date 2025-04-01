@@ -71,6 +71,9 @@
         <form [formGroup]="changePasswordForm" (ngSubmit)="toChangePassword()">
           <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+              <div class="alert alert-danger" role="alert" *ngIf="messageErrorChangePassword != null">
+                {{messageErrorChangePassword}}
+              </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
                   <input type="text" formControlName="oldPassword" class="form-control"

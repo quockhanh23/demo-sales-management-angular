@@ -13,7 +13,7 @@ import {environment} from "../../../environments/environment";
 export class LoginComponent implements OnInit {
 
   user!: User
-  checkErrorLogin = false;
+  messageErrorLogin?: string;
 
   userForm: FormGroup = this.formBuilder.group({
     username: new FormControl(''),
@@ -42,8 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/"]).then();
       }, 300)
     }, error => {
-      this.checkErrorLogin = true;
-      console.log("Lỗi login: " + error.error.message)
+      this.messageErrorLogin = error.error.message;
     })
   }
 

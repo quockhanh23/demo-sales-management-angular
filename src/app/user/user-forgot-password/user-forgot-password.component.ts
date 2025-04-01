@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
-import {UserDTO} from "../../models/user-dto";
+import {whitespaceValidator} from "../../category/category-create/category-create.component";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-user-forgot-password',
@@ -11,11 +12,11 @@ import {UserDTO} from "../../models/user-dto";
 })
 export class UserForgotPasswordComponent implements OnInit {
 
-  user!: UserDTO
-
+  user?: User
+  messageError?: string
   userForm: FormGroup = this.formBuilder.group({
-    username: new FormControl(''),
-    pin: new FormControl(''),
+    username: new FormControl('', [Validators.required, whitespaceValidator()]),
+    pin: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private userService: UserService,
@@ -29,12 +30,12 @@ export class UserForgotPasswordComponent implements OnInit {
   sendPinCode() {
     let user = {
       username: this.userForm.value.username,
-      newPassword: this.userForm.value.newPassword,
-      confirmPassword: this.userForm.value.confirmPassword,
       pin: this.userForm.value.pin,
     }
-    this.userService.resetPassword(user).subscribe(() => {
-
+    this.userService.resetPassword(user).subscribe(rs => {
+      this.user = rs
+    }, error => {
+      this.messageError = error.error.message
     });
   }
 
