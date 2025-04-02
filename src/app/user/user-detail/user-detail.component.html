@@ -23,10 +23,12 @@
     </div>
     <div class="col-9" style="text-align: center; background-color: whitesmoke; margin-left: 40px; border-radius: 5px">
       <div class="row" *ngIf="checkProfile">
-        <h4 style="margin-top: 10px">Hồ Sơ Của Tôi</h4>
+        <div align="left"><h5 style="margin-top: 10px">Hồ Sơ Của Tôi</h5></div>
         <div class="col-6">
-          <p>Họ tên : {{user?.username}}</p>
-          <p>Số điện thoại : {{user?.phone}}</p>
+          <div align="left">
+            <p>Họ tên : {{user?.username}}</p>
+            <p>Số điện thoại : {{user?.phone}}</p>
+          </div>
         </div>
         <div class="col-6">
           <img src="https://bizweb.dktcdn.net/100/445/527/products/giay-the-thao-nu-6.jpg?v=1697725469420"
@@ -34,10 +36,20 @@
         </div>
       </div>
       <div class="row" *ngIf="checkOrder">
-        <h4 style="margin-top: 10px">Đơn mua</h4>
-        <div class="col-4">
-          <p class="hoverYellowColor cursorTag">Tất cả</p>
-          <table class="table">
+        <div align="left"><h5 style="margin-top: 10px">Đơn mua</h5></div>
+        <div class="row" style="margin-top: 10px">
+          <div class="col-4">
+            <a (click)="getAllOrderPayment('')" class="hoverYellowColor cursorTag">Tất cả</a>
+          </div>
+          <div class="col-4">
+            <a (click)="getAllOrderPayment('ORDER_CONFIRM')" class="hoverYellowColor cursorTag">Đang giao hàng</a>
+          </div>
+          <div class="col-4">
+            <a (click)="getAllOrderPayment('DELIVERY_SUCCESSFUL')" class="hoverYellowColor cursorTag">Hoàn thành</a>
+          </div>
+        </div>
+        <div class="row">
+          <table class="table" style="border: burlywood 1px solid; margin-top: 10px">
             <thead>
             <tr>
               <th scope="col">Số đơn hàng</th>
@@ -45,7 +57,6 @@
               <th scope="col">Tổng tiền</th>
               <th scope="col">Thời gian giao hàng dự kiến</th>
               <th scope="col">Trạng thái</th>
-
             </tr>
             </thead>
             <tbody *ngFor="let pay of orderPayments as i">
@@ -54,20 +65,17 @@
               <td>{{pay?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </td>
               <td>{{pay?.totalOrderAmount}}</td>
               <td>{{pay?.estimatedDelivery | date:"dd/MM/yyyy" }} </td>
-              <td>{{pay?.orderPaymentStatus}}</td>
+              <td *ngIf="pay?.orderPaymentStatus == 'ORDER_SUCCESSFUL'">Đặt hàng thành công</td>
+              <td *ngIf="pay?.orderPaymentStatus == 'ORDER_CONFIRM'">Đang giao hàng</td>
+              <td *ngIf="pay?.orderPaymentStatus == 'DELIVERY_SUCCESSFUL'">Đã giao hàng</td>
             </tr>
             </tbody>
           </table>
         </div>
-        <div class="col-4">
-          <p class="hoverYellowColor cursorTag">Đang giao hàng</p>
-        </div>
-        <div class="col-4">
-          <p class="hoverYellowColor cursorTag">Hoàn thành</p>
-        </div>
+        <div class="row" style="height: 100px"></div>
       </div>
       <div class="row" *ngIf="changePassword">
-        <h4 style="margin-top: 10px">Đổi mật khẩu</h4>
+        <div align="left"><h5 style="margin-top: 10px">Đổi mật khẩu</h5></div>
         <form [formGroup]="changePasswordForm" (ngSubmit)="toChangePassword()">
           <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8 col-xl-6">
@@ -76,19 +84,20 @@
               </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
-                  <input type="text" formControlName="oldPassword" class="form-control"
+                  <input id="oldPassword" type="text" formControlName="oldPassword" class="form-control"
                          placeholder="Mật khẩu cũ *">
                 </div>
               </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
-                  <input type="pin" formControlName="newPassword" class="form-control"
+                  <input id="newPassword" type="password" formControlName="newPassword" class="form-control"
                          placeholder="Mật khẩu mới *">
                 </div>
               </div>
               <div class="row align-items-center">
                 <div class="col mt-4">
-                  <input type="pin" formControlName="newPasswordConfirm" class="form-control"
+                  <input id="newPasswordConfirm" type="password" formControlName="newPasswordConfirm"
+                         class="form-control"
                          placeholder="Xác nhận lại mật khẩu mới *">
                 </div>
               </div>
@@ -104,7 +113,7 @@
         </form>
       </div>
       <div class="row" *ngIf="checkAddress">
-        <h4 style="margin-top: 10px">Địa chỉ</h4>
+        <div align="left"><h5 style="margin-top: 10px">Địa chỉ</h5></div>
         <div class="col-8">
           <div align="left">
             <p class="hoverYellowColor cursorTag btn btn-info">
@@ -116,7 +125,7 @@
             <div *ngFor="let a of address as i">
               <div class="row">
                 <div class="col-4">
-                  <div *ngIf="a.inUse == false || a.inUse == null">
+                  <div *ngIf="a.inUse == false">
                     <p (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></p>
                   </div>
                   <div *ngIf="a.inUse == true" style="color: #0ba10b; border-radius: 5px; border: #0ba10b 1px solid">
@@ -190,7 +199,6 @@
         </div>
       </div>
     </div>
-    <div style="height: 350px"></div>
   </div>
 </div>
 

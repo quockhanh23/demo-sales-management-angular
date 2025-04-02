@@ -11,6 +11,7 @@ import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {environment} from "../../../environments/environment";
 import {OrderService} from "../../services/order.service";
+import {CommentDTO} from "../../models/comment-dto";
 
 @Component({
   selector: 'app-product-detail',
@@ -190,8 +191,7 @@ export class ProductDetailComponent implements OnInit {
       content: this.commentForm.value.content,
       idUser: this.idUser,
       idProduct: this.idProduct
-    }
-    // @ts-ignore
+    } as CommentDTO
     this.commentService.createComment(commentDTO).subscribe(() => {
       this.getAllCommentByProduct()
       this.getAllStarByProductAndUser()
@@ -206,7 +206,12 @@ export class ProductDetailComponent implements OnInit {
     }, error => {
       console.log("Lỗi createComment: " + error)
     })
-    console.log("id product: " + this.idProduct)
+  }
+
+  deleteComment(idComment: any) {
+    this.commentService.deleteComment(idComment).subscribe(rs=> {
+      this.getAllCommentByProduct()
+    })
   }
 
   createStar() {

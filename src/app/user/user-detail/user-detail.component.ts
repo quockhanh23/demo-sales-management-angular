@@ -31,11 +31,6 @@ export class UserDetailComponent implements OnInit {
   selectedProvince?: string
   selectedDistrict?: string
   messageErrorChangePassword?: string
-  ORDER_SUCCESSFUL = 'ORDER_SUCCESSFUL'
-  ORDER_CONFIRM = 'ORDER_CONFIRM'
-  ORDER_CANCELLED = 'ORDER_CANCELLED'
-  ORDER_RETURN = 'ORDER_RETURN'
-  DELIVERY_SUCCESSFUL = 'DELIVERY_SUCCESSFUL'
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     oldPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -51,6 +46,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.idUser == null || this.idUser == "") return
     this.getInformation(this.idUser)
     this.getAllAddressByUser(this.idUser)
     this.getAllProvince();

@@ -58,14 +58,14 @@
                 </sub>
               </div>
               <div class="col">
-               <div (click)="addToCart(); getSnackbar()">
-                 <sub>
+                <div (click)="addToCart(); getSnackbar()">
+                  <sub>
                   <span
-                        style="font-size: 40px; color: #295d81; margin-top: 5px"
-                        class="material-icons cursorTag">add_shopping_cart</span>
-                 </sub>
-                 <span class="cursorTag hoverYellowColor">Thêm vào giỏ hàng</span>
-               </div>
+                    style="font-size: 40px; color: #295d81; margin-top: 5px"
+                    class="material-icons cursorTag">add_shopping_cart</span>
+                  </sub>
+                  <span class="cursorTag hoverYellowColor">Thêm vào giỏ hàng</span>
+                </div>
               </div>
             </div>
             <hr>
@@ -197,6 +197,7 @@
         <h6>{{pr?.user?.username}}:</h6>
         <p> {{pr?.content}}</p>
         <p>{{ pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </p>
+        <span *ngIf="idUser === pr?.user?.id" (click)="deleteComment(pr?.id)" class="material-icons">delete</span>
       </div>
     </div>
   </div>
