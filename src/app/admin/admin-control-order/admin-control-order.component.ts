@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {OrderPayment} from "../../models/order-payment";
+import {OrderPaymentService} from "../../services/order-payment.service";
 
 @Component({
   selector: 'app-admin-control-order',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminControlOrderComponent implements OnInit {
 
-  constructor() { }
+  orderPayments?: OrderPayment[]
+  idUser: any
+
+  constructor(private orderPaymentService: OrderPaymentService,) {
+    this.idUser = localStorage.getItem("id")
+  }
 
   ngOnInit(): void {
+    this.getAllOrderPayment('');
+  }
+
+  getAllOrderPayment(status: string) {
+    this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
+    (this.idUser, status).subscribe(rs => {
+      this.orderPayments = rs;
+    })
   }
 
 }

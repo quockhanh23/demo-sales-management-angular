@@ -1,5 +1,6 @@
 export interface UserDTO {
   username?: string;
+  fullName?: string
   pin?: string;
   newPassword?: string;
   confirmPassword?: string;
