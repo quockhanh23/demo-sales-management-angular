@@ -189,7 +189,9 @@
                       placeholder="Viết bình luận của bạn..." cols="69"></textarea>
           </div>
           <div class="col">
-            <button *ngIf="idUser != null" (click)="getAllStar()" class="btn btn-primary">Gửi bình luận</button>
+            <button [disabled]="!commentForm.valid"
+                    *ngIf="idUser != null" (click)="getAllStar()" class="btn btn-primary">Gửi bình luận
+            </button>
           </div>
         </div>
       </form>
