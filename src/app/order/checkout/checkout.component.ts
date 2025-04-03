@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   idOrderProduct: any
   count = 0
   addressInUse?: Address
+  messageError?: string
 
   constructor(private orderService: OrderService,
               private addressService: AddressService,
@@ -82,7 +83,8 @@ export class CheckoutComponent implements OnInit {
     }
     this.orderPaymentService.createPayment(payment).subscribe(() => {
     }, error => {
-      console.log("Lỗi createPayment: " + error)
+      this.messageError = error.error.message
+      console.log("Lỗi createPayment: " + JSON.stringify(error))
     })
   }
 

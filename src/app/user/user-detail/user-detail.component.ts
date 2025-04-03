@@ -176,7 +176,6 @@ export class UserDetailComponent implements OnInit {
       idUser: this.idUser
     };
 
-    console.log("addressRequest: " + JSON.stringify(addressRequest))
     this.addressService.createAddress(this.idUser, addressRequest).subscribe(() => {
       this.ngOnInit()
     })

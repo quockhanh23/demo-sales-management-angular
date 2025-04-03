@@ -17,6 +17,7 @@ export class AdminControlOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.idUser == null || this.idUser == "") return
     this.getAllOrderPayment('');
   }
 

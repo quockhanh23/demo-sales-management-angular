@@ -49,6 +49,7 @@
       <span>{{addressInUse?.ward}}, </span>
       <p>{{addressInUse?.address}}</p>
       <hr>
+      <div *ngIf="messageError != null" class="alert alert-danger" role="alert">{{messageError}}</div>
       <label *ngIf="count != 0" (click)="updateStatus()"
              for="control-modal" class="test-modal">Đặt hàng</label>
       <label *ngIf="count == 0" (click)="updateStatus()" disabled
