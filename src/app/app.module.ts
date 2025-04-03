@@ -21,6 +21,7 @@ import {CategoryCreateComponent} from './category/category-create/category-creat
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {OrderPaymentDetailComponent} from './payment/order-payment-detail/order-payment-detail.component';
+import { AdminControlOrderComponent } from './admin/admin-control-order/admin-control-order.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {OrderPaymentDetailComponent} from './payment/order-payment-detail/order-
     OrderDetailComponent,
     CategoryCreateComponent,
     OrderPaymentDetailComponent,
+    AdminControlOrderComponent,
   ],
   imports: [
     BrowserModule,

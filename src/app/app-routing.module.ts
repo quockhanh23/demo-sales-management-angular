@@ -12,6 +12,8 @@ import {CheckoutComponent} from "./order/checkout/checkout.component";
 import {OrderDetailComponent} from "./order/order-detail/order-detail.component";
 import {CategoryCreateComponent} from "./category/category-create/category-create.component";
 import {OrderPaymentDetailComponent} from "./payment/order-payment-detail/order-payment-detail.component";
+import {AdminControlComponent} from "./admin/admin-control/admin-control.component";
+import {AdminControlOrderComponent} from "./admin/admin-control-order/admin-control-order.component";
 
 const routes: Routes = [
   {
@@ -49,6 +51,12 @@ const routes: Routes = [
   },
   {
     path: 'orderPaymentDetail/:id', component: OrderPaymentDetailComponent,
+  },
+  {
+    path: 'managementUser', component: AdminControlComponent,
+  },
+  {
+    path: 'managementOrder', component: AdminControlOrderComponent,
   },
 ];
 

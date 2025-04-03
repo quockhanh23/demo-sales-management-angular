@@ -22,11 +22,15 @@
       </div>
       <div class="col-8" align="right">
         <div class="dropdown" *ngIf="checkRoleAdmin()" align="left">
-          <button class="btn btn-primary">Quản Lý sản phẩm</button>
+          <button class="btn btn-info">Quản Lý</button>
           <div class="dropdown-content">
             <a [routerLink]="['/createProduct']">Thêm sản phẩm
             </a>
             <a [routerLink]="['/createCategory']">Thêm loại sản phẩm
+            </a>
+            <a [routerLink]="['/managementUser']">Quản lý người dùng
+            </a>
+            <a [routerLink]="['/managementOrder']">Quản lý đơn hàng
             </a>
           </div>
         </div>
