@@ -5,7 +5,7 @@ import {ProductDTO} from "../../models/product-dto";
 import {CommentService} from "../../services/comment.service";
 import {Comment} from "../../models/comment";
 import {StarService} from "../../services/star.service";
-import {Star} from "../../models/star";
+import {ProductRating} from "../../models/ProductRating";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
@@ -23,8 +23,8 @@ export class ProductDetailComponent implements OnInit {
 
   product?: ProductDTO
   comments?: Comment[]
-  stars?: Star[]
-  star?: Star
+  stars?: ProductRating[]
+  star?: ProductRating
 
   stars1: number = 0
   stars2: number = 0
@@ -216,7 +216,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   createStar() {
-    this.starService.create(this.idProduct, this.idUser, this.selected).subscribe(() => {
+    this.starService.createProductRating(this.idProduct, this.idUser, this.selected).subscribe(() => {
       this.created = true;
     })
   }
@@ -224,7 +224,7 @@ export class ProductDetailComponent implements OnInit {
   getAllStarByProductAndUser() {
     this.starService.getAllStarByProductAndUser(this.idProduct, this.idUser).subscribe(rs => {
       this.star = rs
-      this.rating = this.star?.numberOfStars
+      this.rating = this.star?.numberOfRate
       if (this.rating === '1' || this.rating === '2'
         || this.rating === '3' || this.rating === '4' || this.rating === '5') this.check = true
     })
@@ -247,19 +247,19 @@ export class ProductDetailComponent implements OnInit {
       console.log("vào đây: " + this.stars.length)
       for (let i = 0; i < this.stars.length; i++) {
         console.log(this.stars[i])
-        if (this.stars[i].numberOfStars === '1') {
+        if (this.stars[i].numberOfRate === '1') {
           this.stars1 = this.stars1 + 1;
         }
-        if (this.stars[i].numberOfStars === '2') {
+        if (this.stars[i].numberOfRate === '2') {
           this.stars2 = this.stars2 + 1;
         }
-        if (this.stars[i].numberOfStars === '3') {
+        if (this.stars[i].numberOfRate === '3') {
           this.stars3 = this.stars3 + 1;
         }
-        if (this.stars[i].numberOfStars === '4') {
+        if (this.stars[i].numberOfRate === '4') {
           this.stars4 = this.stars4 + 1;
         }
-        if (this.stars[i].numberOfStars === '5') {
+        if (this.stars[i].numberOfRate === '5') {
           this.stars5 = this.stars5 + 1;
         }
       }

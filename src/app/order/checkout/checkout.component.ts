@@ -63,7 +63,8 @@ export class CheckoutComponent implements OnInit {
     if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.count = rs
-      console.log("this.count: " + this.count)
+    }, error => {
+      console.log("Lỗi getAllProductsInCartByUser: " + JSON.stringify(error))
     })
   }
 
