@@ -6,12 +6,13 @@ import {CommentService} from "../../services/comment.service";
 import {Comment} from "../../models/comment";
 import {StarService} from "../../services/star.service";
 import {Star} from "../../models/star";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UploadFileService} from "../../services/upload-file.service";
 import {FileDetails} from "../../models/file-details";
 import {environment} from "../../../environments/environment";
 import {OrderService} from "../../services/order.service";
 import {CommentDTO} from "../../models/comment-dto";
+import {whitespaceValidator} from "../../category/category-create/category-create.component";
 
 @Component({
   selector: 'app-product-detail',
@@ -55,7 +56,7 @@ export class ProductDetailComponent implements OnInit {
   });
 
   commentForm: FormGroup = this.formBuilder.group({
-    content: new FormControl(''),
+    content: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private router: Router,
