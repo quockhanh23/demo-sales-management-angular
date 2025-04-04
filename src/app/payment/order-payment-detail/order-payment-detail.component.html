@@ -1,23 +1,36 @@
 <app-header></app-header>
-<div class="container">
+<div class="container" style="margin-bottom: 15px">
+    <span [routerLink]="['/managementOrder']" style="font-size: 35px; cursor: pointer;"
+          class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
-    <div class="col-6">
-      <div>
-        <p>{{orderPayment?.idShoppingCart}}</p>
-        <p>{{orderPayment?.note}}</p>
-        <p>{{orderPayment?.totalOrderAmount}}</p>
-        <p>{{orderPayment?.deliveryMethod}}</p>
-        <p>{{orderPayment?.estimatedDelivery}}</p>
-        <p>{{orderPayment?.orderPaymentStatus}}</p>
-        <span>{{addressInUse?.province}}</span>
-        <span>{{addressInUse?.district}}</span>
-        <span>{{addressInUse?.ward}}</span>
-        <span>{{addressInUse?.address}}</span>
-        <p>{{user?.username}}</p>
-        <p>{{orderPayment?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
-      </div>
+    <div class="col-3">
+      <p>Mã đơn hàng:</p>
+      <p>Người đặt:</p>
+      <p>Tổng tiền đơn hàng:</p>
+      <p>Địa chỉ giao hàng:</p>
+      <p>Ngày đặt hàng: </p>
+      <p>Trạng thái đơn hàng: </p>
+      <p>Phương thức giao hàng: </p>
+      <p>Dự kiến ngày giao hàng: </p>
+      <p>Ghi chú:</p>
     </div>
     <div class="col-6">
+      <p>{{orderPayment?.idShoppingCart}}</p>
+      <p>{{orderPayment?.totalOrderAmount}}</p>
+      <p>{{user?.username}}</p>
+      <p>
+        <span>{{addressInUse?.province}}, </span>
+        <span>{{addressInUse?.district}}, </span>
+        <span>{{addressInUse?.ward}}, </span>
+        <span>{{addressInUse?.address}}</span>
+      </p>
+      <p>{{orderPayment?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
+      <p>{{orderPayment?.orderPaymentStatus}}</p>
+      <p>{{orderPayment?.deliveryMethod}}</p>
+      <p>{{orderPayment?.estimatedDelivery}}</p>
+      <p>{{orderPayment?.note}}</p>
+    </div>
+    <div class="col-3">
       <div *ngFor="let paymentHistory of orderPaymentHistories index as i">
         <p>{{paymentHistory?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
         <p>{{paymentHistory?.status}}</p>
@@ -31,10 +44,11 @@
                  [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
           <div class="col-4">
-            <h4 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
+            <h5 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h5>
+            <p>Số lượng: {{pr?.totalQuantity}}</p>
           </div>
           <div class="col-2">
-            <span class="priceColor"><b>Tổng tiền: </b></span>
+            <span class="priceColor"><b>Tổng số tiền sản phẩm: </b></span>
             <br>
             <span class="priceColor">{{pr?.totalPrice}}</span><span> VND</span>
             <br>
@@ -46,4 +60,5 @@
       </div>
     </div>
   </div>
+  <button class="btn btn-light">Xác nhận đơn hàng</button>
 </div>

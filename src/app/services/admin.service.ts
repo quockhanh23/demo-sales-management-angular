@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserDTO} from "../models/user-dto";
 import {environment} from "../../environments/environment";
+import {OrderPayment} from "../models/order-payment";
 
 const API_URL = environment.apiUrlHttps + "/api/admin"
 
@@ -21,4 +22,9 @@ export class AdminService {
   userAction(idAdmin: any, idUser: any, type: string): Observable<any> {
     return this.http.put<any>(API_URL + `/user-action?idAdmin=${idAdmin}&idUser=${idUser}}&type=${type}`, {})
   }
+
+  getAllOrderWaiting(idAdmin: any): Observable<OrderPayment[]> {
+    return this.http.get<OrderPayment[]>(API_URL + '/order-waiting?idAdmin=' + `${idAdmin}`)
+  }
+
 }

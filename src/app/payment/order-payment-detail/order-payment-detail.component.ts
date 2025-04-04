@@ -39,7 +39,6 @@ export class OrderPaymentDetailComponent implements OnInit {
       this.getDetailOrderPayment(id);
       this.getAllHistoryOfOrderPayment(id);
     })
-    this.getAllOrderByUser();
     this.getAddressInUse();
     this.getInformation(this.idUser);
   }
@@ -47,6 +46,7 @@ export class OrderPaymentDetailComponent implements OnInit {
   getDetailOrderPayment(idOrderPayment: any) {
     this.orderPaymentService.getDetailOrderPayment(this.idUser, idOrderPayment).subscribe(rs => {
       this.orderPayment = rs;
+      this.getDetailShoppingCartById(this.orderPayment?.idShoppingCart);
     })
   }
 
@@ -68,8 +68,8 @@ export class OrderPaymentDetailComponent implements OnInit {
     })
   }
 
-  getAllOrderByUser() {
-    this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
+  getDetailShoppingCartById(idShoppingCart: any) {
+    this.orderService.getDetailShoppingCartById(idShoppingCart).subscribe(rs => {
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
         for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
