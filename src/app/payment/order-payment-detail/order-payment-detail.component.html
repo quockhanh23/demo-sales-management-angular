@@ -1,5 +1,49 @@
 <app-header></app-header>
-<div>
-  <p>{{orderPayment?.idShoppingCart}}</p>
-  <p>{{ orderPayment?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </p>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div>
+        <p>{{orderPayment?.idShoppingCart}}</p>
+        <p>{{orderPayment?.note}}</p>
+        <p>{{orderPayment?.totalOrderAmount}}</p>
+        <p>{{orderPayment?.deliveryMethod}}</p>
+        <p>{{orderPayment?.estimatedDelivery}}</p>
+        <p>{{orderPayment?.orderPaymentStatus}}</p>
+        <span>{{addressInUse?.province}}</span>
+        <span>{{addressInUse?.district}}</span>
+        <span>{{addressInUse?.ward}}</span>
+        <span>{{addressInUse?.address}}</span>
+        <p>{{user?.username}}</p>
+        <p>{{orderPayment?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div *ngFor="let paymentHistory of orderPaymentHistories index as i">
+        <p>{{paymentHistory?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
+        <p>{{paymentHistory?.status}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let pr of orderProductDetailDTOS index as i">
+        <div class="row" style="margin-top: 5px; border-radius: 5px; height: 120px; background-color: whitesmoke">
+          <div class="col-3">
+            <img style="width: 50%;height: 115px; margin-top: 3px;"
+                 [src]="'data:image/jpeg;base64,' + pr?.image">
+          </div>
+          <div class="col-4">
+            <h4 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
+          </div>
+          <div class="col-2">
+            <span class="priceColor"><b>Tổng tiền: </b></span>
+            <br>
+            <span class="priceColor">{{pr?.totalPrice}}</span><span> VND</span>
+            <br>
+            <span><b>Đơn giá: </b></span>
+            <br>
+            <span>{{pr?.price}}</span><span> VND</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

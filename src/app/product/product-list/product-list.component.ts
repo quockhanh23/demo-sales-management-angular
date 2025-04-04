@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
   products?: ProductDTO[]
   idUser: any
   role?: any
-  countAllProduct: number = 0
+  countAllProduct?: number = 0
   countProductOfUser = 0
   checkUser = false;
   currentPage?: number = 0;
@@ -66,9 +66,7 @@ export class ProductListComponent implements OnInit {
         }
       }
       this.sizePage = this.productDTOPage?.page?.size;
-      // @ts-ignore
-      this.countAllProduct = rs.content.length
-      // console.log("products: " + JSON.stringify(this.products))
+      this.countAllProduct = rs?.content?.length
       this.isLoading = false;
     }, error => {
       console.log("Lỗi getAllProduct: ", JSON.stringify(error))
@@ -76,8 +74,6 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: ProductDTO) {
-    // console.log("product: " + JSON.stringify(product))
-    // @ts-ignore
     this.orderService.addToCart(this.idUser, product).subscribe(() => {
       this.getAllProductsInCartByUser()
       this.ngOnInit()

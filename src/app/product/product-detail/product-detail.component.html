@@ -198,7 +198,7 @@
       <div class="col-3" *ngFor="let pr of comments index as i">
         <h6>{{pr?.user?.username}}:</h6>
         <p> {{pr?.content}}</p>
-        <p>{{ pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </p>
+        <p>{{pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}} </p>
         <span *ngIf="idUser === pr?.user?.id" (click)="deleteComment(pr?.id)" class="material-icons">delete</span>
       </div>
     </div>

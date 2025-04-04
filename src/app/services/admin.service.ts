@@ -17,4 +17,8 @@ export class AdminService {
   getAllUser(idAdmin: any): Observable<UserDTO[]> {
     return this.http.get<UserDTO[]>(API_URL + '/get-all-user?idAdmin=' + `${idAdmin}`)
   }
+
+  userAction(idAdmin: any, idUser: any, type: string): Observable<any> {
+    return this.http.put<any>(API_URL + `/user-action?idAdmin=${idAdmin}&idUser=${idUser}}&type=${type}`, {})
+  }
 }

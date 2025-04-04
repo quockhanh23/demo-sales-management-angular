@@ -205,7 +205,7 @@ export class ProductDetailComponent implements OnInit {
         this.checkStar(this.rating);
       }
     }, error => {
-      console.log("Lỗi createComment: " + error)
+      console.log("Lỗi createComment: " + JSON.stringify(error))
     })
   }
 

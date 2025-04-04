@@ -17,14 +17,14 @@
     <tbody *ngFor="let user of userDTOS index as i">
     <tr>
       <td>&nbsp;{{i + 1}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.fullName}}</td>
-      <td>{{user.createdAt | date:"dd/MM/yyyy"}}</td>
-      <td>{{user.dateOfBirth | date:"dd/MM/yyyy"}}</td>
-      <td *ngIf="user.status == 'ACTIVE'" style="color: #0ba10b">{{user.status}}</td>
-      <td *ngIf="user.status == 'INACTIVE'" style="color: #bd0d2e">{{user.status}}</td>
-      <td *ngIf="user.status == 'ACTIVE'" class="cursorTag hoverYellowColor">Khóa tài khoản</td>
-      <td *ngIf="user.status == 'INACTIVE'" class="cursorTag hoverYellowColor">Mở khóa tài khoản</td>
+      <td>{{user?.username}}</td>
+      <td>{{user?.fullName}}</td>
+      <td>{{user?.createdAt | date:"dd/MM/yyyy"}}</td>
+      <td>{{user?.dateOfBirth | date:"dd/MM/yyyy"}}</td>
+      <td *ngIf="user?.status == 'ACTIVE'" style="color: #0ba10b">{{user?.status}}</td>
+      <td *ngIf="user?.status == 'INACTIVE'" style="color: #bd0d2e">{{user?.status}}</td>
+      <td *ngIf="user?.status == 'ACTIVE'" class="cursorTag hoverYellowColor">Khóa tài khoản</td>
+      <td *ngIf="user?.status == 'INACTIVE'" class="cursorTag hoverYellowColor">Mở khóa tài khoản</td>
     </tr>
     </tbody>
   </table>
