@@ -76,7 +76,6 @@ export class ProductDetailComponent implements OnInit {
     this.checkRoleAdmin();
     this.getAllProductsInCartByUser();
     this.selected = -1;
-    console.log("id user : " + this.idUser)
   }
 
   getSnackbar() {
@@ -144,9 +143,9 @@ export class ProductDetailComponent implements OnInit {
 
   detailProduct() {
     this.activatedRoute.paramMap.subscribe(param => {
-      const id = param.get('id')
-      this.idProduct = id;
-      this.productService.detailProduct(id).subscribe(rs => {
+      const idProduct = param.get('id')
+      this.idProduct = idProduct;
+      this.productService.detailProduct(idProduct).subscribe(rs => {
         this.product = rs;
         if (this.product?.image != null) {
           this.checkUploadImage = true
@@ -160,7 +159,7 @@ export class ProductDetailComponent implements OnInit {
           description: new FormControl(this.product.description),
         });
       })
-      this.getAllStarByProduct(id)
+      this.getAllStarByProduct(idProduct)
       this.getAllStarByProductAndUser()
       this.getAllCommentByProduct()
       this.isLoading = false;
@@ -228,7 +227,6 @@ export class ProductDetailComponent implements OnInit {
       if (this.rating === '1' || this.rating === '2'
         || this.rating === '3' || this.rating === '4' || this.rating === '5') this.check = true
     })
-    console.log("rating from getAllStarByProductAndUser: " + this.rating)
   }
 
   getAllCommentByProduct() {
@@ -244,7 +242,6 @@ export class ProductDetailComponent implements OnInit {
   getAllStarByProduct(id: any) {
     this.starService.getAllStarByProduct(id).subscribe(rs => {
       this.stars = rs;
-      console.log("vào đây: " + this.stars.length)
       for (let i = 0; i < this.stars.length; i++) {
         console.log(this.stars[i])
         if (this.stars[i].numberOfRate === '1') {

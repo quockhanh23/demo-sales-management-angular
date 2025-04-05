@@ -19,7 +19,6 @@ import {CategoryService} from "../../services/category.service";
 export class CategoryCreateComponent implements OnInit {
 
   categories?: Category[]
-  categoriesLocal?: Category[]
   sizeOfList = false;
   categoryForm: FormGroup = this.formBuilder.group({
     content: new FormControl('', [Validators.required, whitespaceValidator()]),

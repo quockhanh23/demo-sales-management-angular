@@ -35,9 +35,9 @@ export class OrderPaymentDetailComponent implements OnInit {
   ngOnInit(): void {
     if (this.idUser == null || this.idUser == '') return;
     this.activatedRoute.paramMap.subscribe(rs => {
-      const id = rs.get('id')
-      this.getDetailOrderPayment(id);
-      this.getAllHistoryOfOrderPayment(id);
+      const idOrderPayment = rs.get('id')
+      this.getDetailOrderPayment(idOrderPayment);
+      this.getAllHistoryOfOrderPayment(idOrderPayment);
     })
     this.getAddressInUse();
     this.getInformation(this.idUser);
