@@ -14,10 +14,10 @@ import {OrderPaymentService} from "../../services/order-payment.service";
 })
 export class CheckoutComponent implements OnInit {
 
-  idUser: any
+  idUser?: any
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   shoppingCartDTO?: ShoppingCartDTO
-  idOrderProduct: any
+  idOrderProduct?: any
   count = 0
   addressInUse?: Address
   messageError?: string
@@ -67,13 +67,14 @@ export class CheckoutComponent implements OnInit {
     const currentDate = new Date();
     const newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() + 3);
+    const noteValue = (document.getElementById("note") as HTMLSelectElement).value;
     let payment = {
       idUser: this.idUser,
       idShoppingCart: this.idOrderProduct,
       idAddress: this.addressInUse?.id,
-      note: "",
+      note: noteValue,
       totalOrderAmount: this.shoppingCartDTO?.totalPrice,
-      deliveryMethod: '',
+      deliveryMethod: 'COD',
       estimatedDelivery: newDate,
     }
     this.orderPaymentService.createPayment(payment).subscribe(() => {
@@ -93,10 +94,8 @@ export class CheckoutComponent implements OnInit {
 export function formatPrice(orderProductDetailDTOS: ShoppingCartDetailDTO[]) {
   if (orderProductDetailDTOS != null && orderProductDetailDTOS.length > 0) {
     for (let i = 0; i < orderProductDetailDTOS.length; i++) {
-      orderProductDetailDTOS[i].totalPrice =
-        Number(orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
-      orderProductDetailDTOS[i].price =
-        Number(orderProductDetailDTOS[i].price).toLocaleString('en-US');
+      orderProductDetailDTOS[i].totalPrice = Number(orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
+      orderProductDetailDTOS[i].price = Number(orderProductDetailDTOS[i].price).toLocaleString('en-US');
     }
   }
 }

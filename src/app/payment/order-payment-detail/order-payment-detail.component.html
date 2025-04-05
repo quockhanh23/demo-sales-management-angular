@@ -1,15 +1,17 @@
 <app-header></app-header>
 <div class="container" style="margin-bottom: 15px">
-    <span [routerLink]="['/detailUser']" style="font-size: 35px; cursor: pointer;"
+    <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row" style="margin-top: 10px; margin-bottom: 10px">
     <div class="col-3">
-      <button class="btn btn-light">Xác nhận đơn hàng</button>
+      <button *ngIf="role == 'ROLE_ADMIN'"
+              (click)="updateStatusPayment()" class="btn btn-light">Xác nhận đơn hàng
+      </button>
     </div>
   </div>
   <hr>
   <div class="row">
-    <div class="col-2" style="background-color: whitesmoke; margin-left: 25px; border-radius: 5px">
+    <div class="col-3" style="background-color: whitesmoke; margin-left: 25px; border-radius: 5px">
       <p><b>Mã đơn hàng:</b></p>
       <p><b>Tổng tiền đơn hàng: (VNĐ)</b></p>
       <p><b>Người đặt hàng:</b></p>
@@ -36,7 +38,7 @@
       <p>{{orderPayment?.estimatedDelivery | date:"dd/MM/yyyy"}}</p>
       <p>{{orderPayment?.note}}</p>
     </div>
-    <div class="col-3" style=" margin-left: 20px; background-color: whitesmoke; border-radius: 5px">
+    <div class="col-2" style=" margin-left: 20px; background-color: whitesmoke; border-radius: 5px">
       <div *ngFor="let paymentHistory of orderPaymentHistories index as i">
         <p>{{paymentHistory?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
         <p>{{paymentHistory?.status}}</p>
@@ -66,5 +68,4 @@
       </div>
     </div>
   </div>
-
 </div>

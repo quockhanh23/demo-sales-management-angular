@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderPayment} from "../../models/order-payment";
 import {OrderPaymentService} from "../../services/order-payment.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-admin-control-order',
@@ -15,6 +16,7 @@ export class AdminControlOrderComponent implements OnInit {
 
   constructor(private orderPaymentService: OrderPaymentService,) {
     this.idUser = localStorage.getItem("id")
+    environment.previousUrl = window.location.pathname;
   }
 
   ngOnInit(): void {

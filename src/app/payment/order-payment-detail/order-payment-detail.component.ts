@@ -9,6 +9,8 @@ import {OrderService} from "../../services/order.service";
 import {AddressService} from "../../services/address.service";
 import {Address} from "../../models/address";
 import {User} from "../../models/user";
+import {formatPrice} from "../../order/checkout/checkout.component";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-order-payment-detail',
@@ -22,7 +24,9 @@ export class OrderPaymentDetailComponent implements OnInit {
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   addressInUse?: Address
   user?: User
-  idUser: any
+  idUser?: any
+  role?: any
+  idOrderPayment?: any
 
   constructor(private orderPaymentService: OrderPaymentService,
               private userService: UserService,
@@ -30,17 +34,30 @@ export class OrderPaymentDetailComponent implements OnInit {
               private orderService: OrderService,
               private activatedRoute: ActivatedRoute,) {
     this.idUser = localStorage.getItem("id")
+    this.role = localStorage.getItem("role")
   }
 
   ngOnInit(): void {
     if (this.idUser == null || this.idUser == '') return;
     this.activatedRoute.paramMap.subscribe(rs => {
       const idOrderPayment = rs.get('id')
+      this.idOrderPayment = idOrderPayment
       this.getDetailOrderPayment(idOrderPayment);
       this.getAllHistoryOfOrderPayment(idOrderPayment);
     })
     this.getAddressInUse();
     this.getInformation(this.idUser);
+  }
+
+  updateStatusPayment() {
+    console.log("this.idOrderPayment: " + this.idOrderPayment)
+    if (this.idOrderPayment == null) return;
+    this.orderPaymentService.updateStatusPayment(this.idOrderPayment, "ORDER_CONFIRM").subscribe(() => {
+      this.getDetailOrderPayment(this.idOrderPayment);
+      this.getAllHistoryOfOrderPayment(this.idOrderPayment);
+    }, error => {
+      console.log("Lỗi updateStatusPayment: " + JSON.stringify(error))
+    })
   }
 
   getDetailOrderPayment(idOrderPayment: any) {
@@ -72,13 +89,17 @@ export class OrderPaymentDetailComponent implements OnInit {
     this.orderService.getDetailShoppingCartById(idShoppingCart).subscribe(rs => {
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
-        for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
-          this.orderProductDetailDTOS[i].totalPrice =
-            Number(this.orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
-          this.orderProductDetailDTOS[i].price =
-            Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
-        }
+        formatPrice(this.orderProductDetailDTOS)
       }
     })
   }
+
+  getPreviousUrl() {
+    if (environment.previousUrl == '') {
+      return "/"
+    } else {
+      return environment.previousUrl
+    }
+  }
+
 }

@@ -49,6 +49,10 @@
       <span>{{addressInUse?.district}}, </span>
       <span>{{addressInUse?.ward}}, </span>
       <p>{{addressInUse?.address}}</p>
+      <p><b>Ghi chú: </b></p>
+      <textarea style="border-radius: 5px" id="note" class="test1" rows="3"
+                placeholder="Viết ghi chú..." cols="69"></textarea>
+      <span style="font-size: 14px">Tối đa 500 kí tự.</span>
       <hr>
       <div *ngIf="messageError != null" class="alert alert-danger" role="alert">{{messageError}}</div>
       <div *ngIf="addressInUse == null" class="alert alert-danger" role="alert">

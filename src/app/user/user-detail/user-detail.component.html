@@ -7,7 +7,7 @@
       <h4 style="margin-top: 10px; margin-left: 5px">Menu thông tin</h4>
       <hr>
       <ul>
-        <li (click)="changeToOrder()" class="hoverYellowColor cursorTag">
+        <li *ngIf="role != 'ROLE_ADMIN'" (click)="changeToOrder()" class="hoverYellowColor cursorTag">
           <sub><span class="material-icons">event_note</span></sub> Đơn mua
         </li>
         <li (click)="changeToProfile()" class="hoverYellowColor cursorTag">

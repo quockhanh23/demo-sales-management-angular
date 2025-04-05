@@ -31,6 +31,7 @@ export class UserDetailComponent implements OnInit {
   selectedProvince?: string
   selectedDistrict?: string
   messageErrorChangePassword?: string
+  role?: any
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     oldPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -43,6 +44,7 @@ export class UserDetailComponent implements OnInit {
               private orderPaymentService: OrderPaymentService,
               private formBuilder: FormBuilder) {
     this.idUser = localStorage.getItem("id")
+    this.role = localStorage.getItem("role")
   }
 
   ngOnInit(): void {
