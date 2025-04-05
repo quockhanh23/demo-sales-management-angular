@@ -181,26 +181,41 @@
   <div style="height: 5px"></div>
   <div style="background-color: whitesmoke; border-radius: 5px">
     <div style="margin-left: 15px">
-      <h4>Tất cả bình luận: </h4>
       <form [formGroup]="commentForm" (ngSubmit)="createComment()">
-        <div class="row">
+        <div class="row" style="margin-top: 10px">
           <div class="col-5">
-            <textarea formControlName="content" class="test1" id="w3review" name="w3review" rows="4"
+            <textarea style="margin-top: 10px" formControlName="content" class="test1" id="w3review" name="w3review"
+                      rows="4"
                       placeholder="Viết bình luận của bạn..." cols="69"></textarea>
+            <p>Tối đa 500 kí tự.</p>
           </div>
           <div class="col">
-            <button [disabled]="!commentForm.valid"
+            <button style="margin-top: 10px" [disabled]="!commentForm.valid"
                     *ngIf="idUser != null" (click)="getAllStar()" class="btn btn-primary">Gửi bình luận
             </button>
           </div>
         </div>
+        <h5>Tất cả bình luận: </h5>
+        <div class="row" *ngFor="let pr of comments index as i"
+             style="border: grey 1px solid; margin-left: 1px; margin-right: 20px; border-radius: 5px;
+                 margin-bottom: 5px; background-color: white">
+          <div class="col-11">
+            <h6 *ngIf="idUser != pr?.user?.id">Bình luận của {{pr?.user?.username}}: </h6>
+            <h6 *ngIf="idUser == pr?.user?.id">Bình luận của bạn: </h6>
+            <p style="word-wrap: break-word; color: grey">{{pr?.content}}</p>
+            <p>{{pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}} </p>
+          </div>
+          <div class="col-1" align="right">
+            <sub>
+              <span style="margin-top: 18px"
+                    *ngIf="idUser == pr?.user?.id"
+                    (click)="deleteComment(pr?.id)"
+                    class="hoverYellowColor cursorTag material-icons">delete</span>
+            </sub>
+          </div>
+        </div>
+        <div class="row" style="height: 20px"></div>
       </form>
-      <div class="col-3" *ngFor="let pr of comments index as i">
-        <h6>{{pr?.user?.username}}:</h6>
-        <p> {{pr?.content}}</p>
-        <p>{{pr?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}} </p>
-        <span *ngIf="idUser === pr?.user?.id" (click)="deleteComment(pr?.id)" class="material-icons">delete</span>
-      </div>
     </div>
   </div>
 </div>
