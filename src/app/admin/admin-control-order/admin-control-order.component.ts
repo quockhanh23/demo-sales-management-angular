@@ -34,5 +34,4 @@ export class AdminControlOrderComponent implements OnInit {
       }
     })
   }
-
 }

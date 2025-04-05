@@ -22,14 +22,15 @@ export class ProductCreateComponent implements OnInit {
   checkUploadImage = false
   checkFile = false
   uploadSuccess = false
-  file!: File;
+  file?: File;
   fileUrl?: any
+  idUser?: any
 
   productForm: FormGroup = this.formBuilder.group({
     productName: new FormControl('', [Validators.required, whitespaceValidator()]),
     price: new FormControl('', [Validators.required, whitespaceValidator()]),
-    quantity: new FormControl('', [Validators.required,whitespaceValidator()]),
-    description: new FormControl('', [Validators.required,whitespaceValidator()]),
+    quantity: new FormControl('', [Validators.required, whitespaceValidator()]),
+    description: new FormControl('', [Validators.required, whitespaceValidator()]),
     idCategory: new FormControl(null, [Validators.required,])
   });
 
@@ -39,6 +40,7 @@ export class ProductCreateComponent implements OnInit {
               private categoryService: CategoryService,
               private router: Router,
               private formBuilder: FormBuilder) {
+    this.idUser = localStorage.getItem("id")
   }
 
   ngOnInit(): void {
@@ -62,9 +64,8 @@ export class ProductCreateComponent implements OnInit {
   }
 
   createProduct() {
-    this.uploadFile();
     let filename
-    if (this.fileDetail != null) {
+    if (this.fileDetail != undefined) {
       let index = this.fileDetail.toString().indexOf("src")
       filename = this.fileDetail.toString().substring(index)
       console.log("nameFile: " + filename)
@@ -78,15 +79,16 @@ export class ProductCreateComponent implements OnInit {
       image: filename,
       idCategory: this.productForm.value.idCategory,
     }
-    console.log("Test: " + JSON.stringify(this.fileDetail))
-    let idUser = localStorage.getItem("id")
-    // @ts-ignore
-    this.productService.createProduct(product, idUser).subscribe(() => {
+    this.productService.createProduct(product, this.idUser).subscribe(() => {
       this.created = true
+      this.file = undefined;
+      this.fileDetail = undefined;
       setTimeout(() => {
         this.router.navigate(["/"]).then()
       }, 200)
     }, error => {
+      this.created = true
+      this.file = undefined;
       console.log("lỗi createProduct:" + JSON.stringify(error))
     })
   }
@@ -101,21 +103,28 @@ export class ProductCreateComponent implements OnInit {
       reader.readAsDataURL(this.file);
       this.checkFile = false;
       this.checkUploadImage = true
+      this.uploadFile(this.file);
       this.uploadSuccess = true
     }
   }
 
-  uploadFile() {
-    if (this.file == null) {
+  uploadFile(file: File): boolean {
+    if (this.file == undefined) {
+      console.log("Vào đây")
       this.checkFile = true;
-      return
+      return false;
     }
-    this.uploadFileService.upload(this.file).subscribe(rs => {
+    this.uploadFileService.upload(file).subscribe(rs => {
       this.fileDetail = rs
-      console.log(rs)
+      console.log("this.fileDetail: " + this.fileDetail)
+      return true;
     }, error => {
+      this.file = undefined;
+      this.fileDetail = undefined;
       console.log("lỗi uploadFile:" + JSON.stringify(error))
+      return false;
     })
+    return false;
   }
 
   formatPrice() {

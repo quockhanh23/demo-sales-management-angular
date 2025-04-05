@@ -24,9 +24,10 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkLogin();
+    if (this.idUser == null || this.idUser == '') return;
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
-    this.checkLogin();
   }
 
   checkLogin(): any {
@@ -38,14 +39,12 @@ export class OrderListComponent implements OnInit {
   }
 
   removeFromCart(idOrderProductDetail: any) {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
       this.ngOnInit()
     })
   }
 
   getAllOrderByUser() {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.getDetailOrder(this.idUser).subscribe(rs => {
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
@@ -57,7 +56,6 @@ export class OrderListComponent implements OnInit {
   }
 
   getAllProductsInCartByUser() {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.count = rs
       console.log("this.count: " + this.count)
@@ -65,14 +63,12 @@ export class OrderListComponent implements OnInit {
   }
 
   increaseProduct(idProduct: any) {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
     })
   }
 
   decreaseProduct(idProduct: any) {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
     })
