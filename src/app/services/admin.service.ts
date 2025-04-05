@@ -5,7 +5,7 @@ import {UserDTO} from "../models/user-dto";
 import {environment} from "../../environments/environment";
 import {OrderPayment} from "../models/order-payment";
 
-const API_URL = environment.apiUrlHttps + "/api/admin"
+const API_URL = environment.apiUrlHttp + "/api/admin"
 
 @Injectable({
   providedIn: 'root'

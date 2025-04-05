@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Category} from "../models/category";
 
-const API_URL = environment.apiUrlHttps + "/api/categories"
+const API_URL = environment.apiUrlHttp + "/api/categories"
 
 @Injectable({
   providedIn: 'root'

@@ -5,7 +5,7 @@ import {Address} from "../models/address";
 import {LocationDTO} from "../models/location-dto";
 import {environment} from "../../environments/environment";
 
-const API_URL = environment.apiUrlHttps + "/api/address"
+const API_URL = environment.apiUrlHttp + "/api/address"
 const EXTERNAL_API_URL = "https://open.oapi.vn/location";
 
 @Injectable({

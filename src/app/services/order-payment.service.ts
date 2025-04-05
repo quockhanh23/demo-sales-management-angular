@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {OrderPayment} from "../models/order-payment";
 import {OrderPaymentHistory} from "../models/order-payment-history";
 
-const API_URL = environment.apiUrlHttps + "/api/payments"
+const API_URL = environment.apiUrlHttp + "/api/payments"
 
 @Injectable({
   providedIn: 'root'

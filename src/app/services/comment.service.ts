@@ -5,7 +5,7 @@ import {Comment} from "../models/comment";
 import {CommentDTO} from "../models/comment-dto";
 import {environment} from "../../environments/environment";
 
-const API_URL = environment.apiUrlHttps + "/api/comments"
+const API_URL = environment.apiUrlHttp + "/api/comments"
 
 @Injectable({
   providedIn: 'root'

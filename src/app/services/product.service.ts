@@ -6,7 +6,7 @@ import {Product} from "../models/product";
 import {PageImpl} from "../models/page-impl";
 import {environment} from "../../environments/environment";
 
-const API_URL = environment.apiUrlHttps + "/api/products"
+const API_URL = environment.apiUrlHttp + "/api/products"
 
 @Injectable({
   providedIn: 'root'

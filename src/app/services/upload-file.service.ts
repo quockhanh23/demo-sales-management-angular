@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {FileDetails} from "../models/file-details";
 import {environment} from "../../environments/environment";
 
-const API_URL = environment.apiUrlHttps + "/api/uploads"
+const API_URL = environment.apiUrlHttp + "/api/uploads"
 
 @Injectable({
   providedIn: 'root'
