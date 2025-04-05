@@ -9,7 +9,6 @@ import {ProductCreateComponent} from "./product/product-create/product-create.co
 import {OrderListComponent} from "./order/order-list/order-list.component";
 import {UserForgotPasswordComponent} from "./user/user-forgot-password/user-forgot-password.component";
 import {CheckoutComponent} from "./order/checkout/checkout.component";
-import {OrderDetailComponent} from "./order/order-detail/order-detail.component";
 import {CategoryCreateComponent} from "./category/category-create/category-create.component";
 import {OrderPaymentDetailComponent} from "./payment/order-payment-detail/order-payment-detail.component";
 import {AdminControlComponent} from "./admin/admin-control/admin-control.component";
@@ -42,9 +41,6 @@ const routes: Routes = [
   },
   {
     path: 'checkout/:id', component: CheckoutComponent,
-  },
-  {
-    path: 'orderDetail/:id', component: OrderDetailComponent,
   },
   {
     path: 'createCategory', component: CategoryCreateComponent,

@@ -16,12 +16,11 @@ import {OrderListComponent} from './order/order-list/order-list.component';
 import {UserForgotPasswordComponent} from './user/user-forgot-password/user-forgot-password.component';
 import {AdminControlComponent} from './admin/admin-control/admin-control.component';
 import {CheckoutComponent} from './order/checkout/checkout.component';
-import {OrderDetailComponent} from './order/order-detail/order-detail.component';
 import {CategoryCreateComponent} from './category/category-create/category-create.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {OrderPaymentDetailComponent} from './payment/order-payment-detail/order-payment-detail.component';
-import { AdminControlOrderComponent } from './admin/admin-control-order/admin-control-order.component';
+import {AdminControlOrderComponent} from './admin/admin-control-order/admin-control-order.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { AdminControlOrderComponent } from './admin/admin-control-order/admin-co
     UserForgotPasswordComponent,
     AdminControlComponent,
     CheckoutComponent,
-    OrderDetailComponent,
     CategoryCreateComponent,
     OrderPaymentDetailComponent,
     AdminControlOrderComponent,
