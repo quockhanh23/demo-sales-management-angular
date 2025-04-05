@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminControlOrderComponent } from './admin-control-order.component';
+import {AdminControlOrderComponent} from './admin-control-order.component';
 
 describe('AdminControlOrderComponent', () => {
   let component: AdminControlOrderComponent;

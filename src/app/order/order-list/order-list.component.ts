@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {ShoppingCartDetailDTO} from "../../models/ShoppingCartDetailDTO";
 import {environment} from "../../../environments/environment";
+import {formatPrice} from "../checkout/checkout.component";
 
 @Component({
   selector: 'app-order-list',
@@ -49,12 +50,7 @@ export class OrderListComponent implements OnInit {
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
         this.idOrderProduct = this.orderProductDetailDTOS[0].idOrderProduct
-        for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
-          this.orderProductDetailDTOS[i].totalPrice =
-            Number(this.orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
-          this.orderProductDetailDTOS[i].price =
-            Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
-        }
+        formatPrice(this.orderProductDetailDTOS);
       }
       this.isLoading = false;
     })

@@ -30,13 +30,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.idUser == null || this.idUser == '') return;
     this.getAllOrderByUser();
     this.getAllProductsInCartByUser();
     this.getAddressInUse();
   }
 
   getAddressInUse() {
-    if (this.idUser == null || this.idUser == '') return;
     this.addressService.getAddressInUse(this.idUser).subscribe(rs => {
       this.addressInUse = rs
     })
@@ -48,19 +48,13 @@ export class CheckoutComponent implements OnInit {
       this.shoppingCartDTO.totalPrice = Number(this.shoppingCartDTO.totalPrice).toLocaleString('en-US');
       this.orderProductDetailDTOS = rs.shoppingCartDetailDTOList
       if (this.orderProductDetailDTOS != null && this.orderProductDetailDTOS.length > 0) {
-        this.idOrderProduct = this.orderProductDetailDTOS[0].idOrderProduct
-        for (let i = 0; i < this.orderProductDetailDTOS.length; i++) {
-          this.orderProductDetailDTOS[i].totalPrice =
-            Number(this.orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
-          this.orderProductDetailDTOS[i].price =
-            Number(this.orderProductDetailDTOS[i].price).toLocaleString('en-US');
-        }
+        this.idOrderProduct = this.orderProductDetailDTOS[0]?.idOrderProduct
+        formatPrice(this.orderProductDetailDTOS);
       }
     })
   }
 
   getAllProductsInCartByUser() {
-    if (this.idUser == null || this.idUser == '') return;
     this.orderService.getAllProductsInCartByUser(this.idUser).subscribe(rs => {
       this.count = rs
     }, error => {
@@ -93,5 +87,16 @@ export class CheckoutComponent implements OnInit {
     this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
       this.ngOnInit()
     })
+  }
+}
+
+export function formatPrice(orderProductDetailDTOS: ShoppingCartDetailDTO[]) {
+  if (orderProductDetailDTOS != null && orderProductDetailDTOS.length > 0) {
+    for (let i = 0; i < orderProductDetailDTOS.length; i++) {
+      orderProductDetailDTOS[i].totalPrice =
+        Number(orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
+      orderProductDetailDTOS[i].price =
+        Number(orderProductDetailDTOS[i].price).toLocaleString('en-US');
+    }
   }
 }

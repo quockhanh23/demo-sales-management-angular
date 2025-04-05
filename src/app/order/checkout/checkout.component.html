@@ -10,7 +10,8 @@
       <div *ngFor="let pr of orderProductDetailDTOS index as i">
         <div class="row" style=" margin-top: 5px; border-radius: 5px; height: 120px; background-color: whitesmoke">
           <div class="col-3">
-            <img style="width: 80%;height: 115px; margin-top: 3px;" [src]="'data:image/jpeg;base64,' + pr?.image">
+            <img alt="Lỗi ảnh"
+                 style="width: 80%;height: 115px; margin-top: 3px;" [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
           <div class="col-4">
             <h4 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
@@ -50,7 +51,11 @@
       <p>{{addressInUse?.address}}</p>
       <hr>
       <div *ngIf="messageError != null" class="alert alert-danger" role="alert">{{messageError}}</div>
-      <label *ngIf="count != 0" (click)="updateStatus()"
+      <div *ngIf="addressInUse == null" class="alert alert-danger" role="alert">
+        Bạn phải thêm địa chỉ giao hàng,
+        <u class="cursorTag hoverYellowColor" [routerLink]="['/detailUser']">Nhấn vào đây để đến trang cá nhân</u>
+      </div>
+      <label *ngIf="count != 0  && addressInUse != null" (click)="updateStatus()"
              for="control-modal" class="test-modal">Đặt hàng</label>
       <label *ngIf="count == 0" (click)="updateStatus()" disabled
              class="test-modal" style="background-color: gray !important;">Đặt hàng</label>

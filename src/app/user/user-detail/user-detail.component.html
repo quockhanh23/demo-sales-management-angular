@@ -131,7 +131,7 @@
               <div class="row">
                 <div class="col-4">
                   <div *ngIf="a.inUse == false">
-                    <p (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></p>
+                    <span (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></span>
                   </div>
                   <div *ngIf="a.inUse == true" style="color: #0ba10b; border-radius: 5px; border: #0ba10b 1px solid">
                     <sub><span style="font-size: 16px" class="material-icons">task_alt</span></sub>
