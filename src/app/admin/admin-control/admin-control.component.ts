@@ -11,6 +11,7 @@ export class AdminControlComponent implements OnInit {
 
   userDTOS?: UserDTO[]
   idUser: any
+  heightDiv = 'height: 400px'
 
   constructor(private adminService: AdminService) {
     this.idUser = localStorage.getItem("id")
@@ -24,6 +25,10 @@ export class AdminControlComponent implements OnInit {
   getAllUser() {
     this.adminService.getAllUser(this.idUser).subscribe(result => {
       this.userDTOS = result
+      if (result?.length > 5) {
+        let px = 15 * result?.length
+        this.heightDiv = 'height' + px + 'px'
+      }
     })
   }
 }

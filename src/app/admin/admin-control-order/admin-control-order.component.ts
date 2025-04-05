@@ -11,6 +11,7 @@ export class AdminControlOrderComponent implements OnInit {
 
   orderPayments?: OrderPayment[]
   idUser: any
+  heightDiv = 'height: 400px'
 
   constructor(private orderPaymentService: OrderPaymentService,) {
     this.idUser = localStorage.getItem("id")
@@ -23,8 +24,12 @@ export class AdminControlOrderComponent implements OnInit {
 
   getAllOrderPayment(status: string) {
     this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
-    (this.idUser, status).subscribe(rs => {
-      this.orderPayments = rs;
+    (this.idUser, status).subscribe(result => {
+      this.orderPayments = result;
+      if (result?.length > 5) {
+        let px = 15 * result?.length
+        this.heightDiv = 'height' + px + 'px'
+      }
     })
   }
 

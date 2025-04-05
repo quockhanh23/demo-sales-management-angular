@@ -2,29 +2,31 @@
 <div class="container" style="margin-bottom: 15px">
     <span [routerLink]="['/']" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
-
-  <table class="table" style="border: burlywood 1px solid; margin-top: 10px">
-    <thead>
-    <tr>
-      <th scope="col">Số đơn hàng</th>
-      <th scope="col">Ngày tạo đơn</th>
-      <th scope="col">Tổng tiền</th>
-      <th scope="col">Thời gian giao hàng dự kiến</th>
-      <th scope="col">Trạng thái</th>
-      <th scope="col">Hoạt động</th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let pay of orderPayments as i">
-    <tr>
-      <td>{{pay?.idShoppingCart}}</td>
-      <td>{{pay?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </td>
-      <td>{{pay?.totalOrderAmount}}</td>
-      <td>{{pay?.estimatedDelivery | date:"dd/MM/yyyy" }} </td>
-      <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_SUCCESSFUL'">Đặt hàng thành công</td>
-      <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_CONFIRM'">Đang giao hàng</td>
-      <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'DELIVERY_SUCCESSFUL'">Đã giao hàng</td>
-      <td class="cursorTag hoverYellowColor" [routerLink]="['/orderPaymentDetail', pay?.id]">Xem chi tiết</td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <table class="table" style="border: burlywood 1px solid; margin-top: 10px">
+      <thead>
+      <tr>
+        <th scope="col">Mã đơn hàng:</th>
+        <th scope="col">Ngày tạo đơn:</th>
+        <th scope="col">Tổng tiền đơn hàng: (VNĐ)</th>
+        <th scope="col">Thời gian giao hàng dự kiến:</th>
+        <th scope="col">Trạng thái:</th>
+        <th scope="col">Hoạt động:</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let pay of orderPayments as i">
+      <tr>
+        <td>{{pay?.idShoppingCart}}</td>
+        <td>{{pay?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </td>
+        <td>{{pay?.totalOrderAmount}}</td>
+        <td>{{pay?.estimatedDelivery | date:"dd/MM/yyyy" }} </td>
+        <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_SUCCESSFUL'">Đặt hàng thành công</td>
+        <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_CONFIRM'">Đang giao hàng</td>
+        <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'DELIVERY_SUCCESSFUL'">Đã giao hàng</td>
+        <td class="cursorTag hoverYellowColor" [routerLink]="['/orderPaymentDetail', pay?.id]">Xem chi tiết</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row" style="{{heightDiv}}"></div>
 </div>

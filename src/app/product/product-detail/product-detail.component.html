@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div style="background-color: #cccccc" align="center">
-  <h3 style=" margin: 0px">Chi tiết sản phẩm</h3>
+  <h4 style=" margin: 0px">Chi tiết sản phẩm</h4>
 </div>
 <div class="container" style="margin-bottom: 15px; margin-top: 10px">
   <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
@@ -71,7 +71,7 @@
             <hr>
           </div>
         </div>
-        <h3>{{product?.productName}}</h3>
+        <h4>{{product?.productName}}</h4>
         <p class="priceColor"><b>Giá tiền: </b>{{product?.price}} VND</p>
         <p style="font-size: 17px"><b>Số lượng: </b>{{product?.quantity}} sản phẩm</p>
         <p style="font-size: 17px"><b>Mô tả: </b>{{product?.description}}</p>
