@@ -49,10 +49,22 @@ export class OrderPaymentDetailComponent implements OnInit {
     this.getInformation(this.idUser);
   }
 
-  updateStatusPayment() {
+  checkDelivery(): boolean {
+    if (this.role != 'ROLE_ADMIN' && this.orderPayment?.orderPaymentStatus == 'ORDER_CONFIRM') {
+      const currentDate = new Date();
+      if (this.orderPayment?.estimatedDelivery != null) {
+        const estimatedDeliveryDate = new Date(this.orderPayment?.estimatedDelivery);
+        let check = estimatedDeliveryDate < currentDate;
+        return check
+      }
+    }
+    return false;
+  }
+
+  updateStatusPayment(status: any) {
     console.log("this.idOrderPayment: " + this.idOrderPayment)
     if (this.idOrderPayment == null) return;
-    this.orderPaymentService.updateStatusPayment(this.idOrderPayment, "ORDER_CONFIRM").subscribe(() => {
+    this.orderPaymentService.updateStatusPayment(this.idOrderPayment, status).subscribe(() => {
       this.getDetailOrderPayment(this.idOrderPayment);
       this.getAllHistoryOfOrderPayment(this.idOrderPayment);
     }, error => {

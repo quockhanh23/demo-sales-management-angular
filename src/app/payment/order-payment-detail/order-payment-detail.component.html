@@ -1,11 +1,14 @@
 <app-header></app-header>
-<div class="container" style="margin-bottom: 15px">
+<div class="container" style="margin-bottom: 15px; margin-top: 10px">
     <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
-  <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+  <div class="row">
     <div class="col-3">
       <button *ngIf="role == 'ROLE_ADMIN'"
-              (click)="updateStatusPayment()" class="btn btn-light">Xác nhận đơn hàng
+              (click)="updateStatusPayment('ORDER_CONFIRM')" class="btn btn-light">Xác nhận đơn hàng
+      </button>
+      <button *ngIf="checkDelivery()"
+              (click)="updateStatusPayment('DELIVERY_SUCCESSFUL')" class="btn btn-light">Đã nhận được hàng
       </button>
     </div>
   </div>
@@ -25,7 +28,7 @@
     </div>
     <div class="col-6" style="background-color: whitesmoke; margin-left: 20px; border-radius: 5px">
       <p>{{orderPayment?.idShoppingCart}}</p>
-      <p>{{orderPayment?.totalOrderAmount}}</p>
+      <p><b>{{orderPayment?.totalOrderAmount}}</b></p>
       <p>{{user?.username}}</p>
       <p>{{user?.fullName}}</p>
       <p>
@@ -35,7 +38,17 @@
         <span>{{addressInUse?.address}}</span>
       </p>
       <p>{{orderPayment?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
-      <p>{{orderPayment?.orderPaymentStatus}}</p>
+      <p style="color: #0ba10b" *ngIf="'ORDER_SUCCESSFUL' == orderPayment?.orderPaymentStatus">
+        <b>Đặt hàng thành công</b></p>
+      <p style="color: #0ba10b" *ngIf="'ORDER_CONFIRM' == orderPayment?.orderPaymentStatus">
+        <b>Đang giao hàng</b></p>
+      <p style="color: #bd0d2e" *ngIf="'ORDER_CANCELLED' == orderPayment?.orderPaymentStatus">
+        <b>Đơn hàng hủy bỏ</b></p>
+      <p style="color: #bd0d2e" *ngIf="'ORDER_RETURN' == orderPayment?.orderPaymentStatus">
+        <b>Đơn hàng trả về</b></p>
+      <p style="color: #0ba10b" *ngIf="'DELIVERY_SUCCESSFUL' == orderPayment?.orderPaymentStatus">
+        <b>Đã giao hàng</b>
+      </p>
       <p>{{orderPayment?.deliveryMethod}}</p>
       <p>{{orderPayment?.estimatedDelivery | date:"dd/MM/yyyy"}}</p>
       <p>{{orderPayment?.note}}</p>
@@ -43,7 +56,17 @@
     <div class="col-2" style=" margin-left: 20px; background-color: whitesmoke; border-radius: 5px">
       <div *ngFor="let paymentHistory of orderPaymentHistories index as i">
         <p>{{paymentHistory?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</p>
-        <p>{{paymentHistory?.status}}</p>
+        <p style="color: #0ba10b" *ngIf="'ORDER_SUCCESSFUL' == paymentHistory?.status">
+          <b>Đặt hàng thành công</b></p>
+        <p style="color: #0ba10b" *ngIf="'ORDER_CONFIRM' == paymentHistory?.status">
+          <b>Đang giao hàng</b></p>
+        <p style="color: #bd0d2e" *ngIf="'ORDER_CANCELLED' == paymentHistory?.status">
+          <b>Đơn hàng hủy bỏ</b></p>
+        <p style="color: #bd0d2e" *ngIf="'ORDER_RETURN' == paymentHistory?.status">
+          <b>Đơn hàng trả về</b></p>
+        <p style="color: #0ba10b" *ngIf="'DELIVERY_SUCCESSFUL' == paymentHistory?.status">
+          <b>Đã giao hàng</b>
+        </p>
       </div>
     </div>
     <div class="row" style="margin-top: 5px">
