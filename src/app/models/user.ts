@@ -9,4 +9,5 @@ export interface User {
   status: string
   role: string
   buyer: boolean
+  fullName: string
 }

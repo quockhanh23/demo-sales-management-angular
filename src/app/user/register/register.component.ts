@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
     phone: new FormControl('', [Validators.required, whitespaceValidator()]),
     pin: new FormControl('', [Validators.required, whitespaceValidator()]),
+    fullName: new FormControl('', [Validators.required, whitespaceValidator()]),
   });
 
   constructor(private userService: UserService,
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
     userRequest.confirmPassword = this.userForm.value.confirmPassword
     userRequest.phone = this.userForm.value.phone
     userRequest.pin = this.userForm.value.pin
+    userRequest.fullName = this.userForm.value.fullName
 
     this.userService.register(userRequest).subscribe(() => {
       alert("Đăng ký thành công chuyển đến trang đăng nhâp")

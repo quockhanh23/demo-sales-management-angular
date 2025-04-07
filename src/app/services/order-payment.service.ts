@@ -27,6 +27,10 @@ export class OrderPaymentService {
     return this.http.get<OrderPayment[]>(API_URL + `/get-all-order-payment?idUser=${idUser}&orderPaymentStatus=${orderPaymentStatus}`)
   }
 
+  getAllOrderPaymentByOrderPaymentStatus(orderPaymentStatus: any): Observable<OrderPayment[]> {
+    return this.http.get<OrderPayment[]>(API_URL + `/get-all-payment?orderPaymentStatus=${orderPaymentStatus}`)
+  }
+
   getDetailOrderPayment(idUser: any, idOrderPayment: any): Observable<OrderPayment> {
     return this.http.get<OrderPayment>(API_URL + `/get-detail-order-payment?idUser=${idUser}&idOrderPayment=${idOrderPayment}`)
   }

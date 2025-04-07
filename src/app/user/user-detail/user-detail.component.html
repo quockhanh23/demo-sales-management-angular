@@ -26,9 +26,21 @@
         <div style="margin-bottom: 10px" align="left"><h5 style="margin-top: 15px">Hồ Sơ Của Tôi</h5></div>
         <hr>
         <div class="col-6">
-          <div align="left">
-            <p>Họ tên : {{user?.username}}</p>
-            <p>Số điện thoại : {{user?.phone}}</p>
+          <div class="row">
+            <div class="col-6">
+              <div align="left">
+                <p>Tên đăng nhập: </p>
+                <p>Họ tên: </p>
+                <p>Số điện thoại: </p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div align="left">
+                <p>{{user?.username}}</p>
+                <p>{{user?.fullName}}</p>
+                <p>{{user?.phone}}</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-6">
@@ -131,7 +143,8 @@
               <div class="row">
                 <div class="col-4">
                   <div *ngIf="a.inUse == false">
-                    <span (click)="selectAddress(a?.id)" class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></span>
+                    <span (click)="selectAddress(a?.id)"
+                          class="cursorTag hoverYellowColor"><u>Thiết lập mặc định</u></span>
                   </div>
                   <div *ngIf="a.inUse == true" style="color: #0ba10b; border-radius: 5px; border: #0ba10b 1px solid">
                     <sub><span style="font-size: 16px" class="material-icons">task_alt</span></sub>

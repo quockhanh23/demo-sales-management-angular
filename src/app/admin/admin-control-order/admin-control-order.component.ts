@@ -21,12 +21,12 @@ export class AdminControlOrderComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.idUser == null || this.idUser == "") return
-    this.getAllOrderPayment('');
+    this.getAllOrderPayment('ORDER_SUCCESSFUL');
   }
 
   getAllOrderPayment(status: string) {
-    this.orderPaymentService.getAllOrderPaymentByIdUserAndOrderPaymentStatus
-    (this.idUser, status).subscribe(result => {
+    this.orderPaymentService.getAllOrderPaymentByOrderPaymentStatus
+    (status).subscribe(result => {
       this.orderPayments = result;
       if (result?.length > 5) {
         let px = 15 * result?.length
