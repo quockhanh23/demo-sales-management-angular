@@ -51,12 +51,7 @@ export class OrderPaymentDetailComponent implements OnInit {
 
   checkDelivery(): boolean {
     if (this.role != 'ROLE_ADMIN' && this.orderPayment?.orderPaymentStatus == 'ORDER_CONFIRM') {
-      const currentDate = new Date();
-      if (this.orderPayment?.estimatedDelivery != null) {
-        const estimatedDeliveryDate = new Date(this.orderPayment?.estimatedDelivery);
-        let check = estimatedDeliveryDate < currentDate;
-        return check
-      }
+      return true;
     }
     return false;
   }
