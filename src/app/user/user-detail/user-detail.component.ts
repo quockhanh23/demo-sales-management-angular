@@ -8,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {OrderPayment} from "../../models/order-payment";
 import {OrderPaymentService} from "../../services/order-payment.service";
 import {whitespaceValidator} from "../../category/category-create/category-create.component";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-user-detail',
@@ -43,6 +44,7 @@ export class UserDetailComponent implements OnInit {
               private addressService: AddressService,
               private orderPaymentService: OrderPaymentService,
               private formBuilder: FormBuilder) {
+    environment.previousUrl = window.location.pathname;
     this.idUser = localStorage.getItem("id")
     this.role = localStorage.getItem("role")
   }
@@ -95,20 +97,19 @@ export class UserDetailComponent implements OnInit {
   }
 
   deleteAddress(idAddress: any) {
+    if (this.idUser == null || this.idUser == "") return
     this.addressService.deleteAddress(this.idUser, idAddress).subscribe(() => {
       this.getAllAddressByUser(this.idUser)
     })
   }
 
   getInformation(idUser: any) {
-    if (idUser == null) return;
     this.userService.getInformation(idUser).subscribe(rs => {
       this.user = rs
     })
   }
 
   getAllAddressByUser(idUser: any) {
-    if (idUser == null) return;
     this.addressService.getAllAddressByUser(idUser).subscribe(rs => {
       this.address = rs
     })

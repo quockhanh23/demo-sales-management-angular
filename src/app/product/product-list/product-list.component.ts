@@ -27,6 +27,7 @@ export class ProductListComponent implements OnInit {
   nextPageNumber?: number = 3;
   sizePage = 0;
   isLoading: boolean = true;
+  openModal = false;
 
   searchForm: FormGroup = this.formBuilder.group({
     productName: new FormControl(''),

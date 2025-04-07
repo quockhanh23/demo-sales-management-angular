@@ -54,7 +54,13 @@
           <p style="height: 15px" class="priceColor">Giá tiền: {{pr?.price}} VNĐ</p>
           <p style="height: 15px">Số lượng: {{pr?.quantity}} sản phẩm</p>
           <p class="cursorTag hoverYellowColor" [routerLink]="['/detailProduct', pr?.id]"><u>Xem chi tiết</u></p>
-          <button class="btn btn-primary"
+            <button class="btn btn-primary" *ngIf="idUser == null" [routerLink]="['/login']"
+                    style="background-color: #295d81; margin: 1px">
+              <sub>
+                <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>
+              </sub>&nbsp;Thêm vào giỏ hàng
+            </button>
+          <button class="btn btn-primary" *ngIf="idUser != null"
                   style="background-color: #295d81; margin: 1px" (click)="addToCart(pr); getSnackbar()">
             <sub>
               <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>

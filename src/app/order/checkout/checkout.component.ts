@@ -91,11 +91,11 @@ export class CheckoutComponent implements OnInit {
   }
 }
 
-export function formatPrice(orderProductDetailDTOS: ShoppingCartDetailDTO[]) {
-  if (orderProductDetailDTOS != null && orderProductDetailDTOS.length > 0) {
-    for (let i = 0; i < orderProductDetailDTOS.length; i++) {
-      orderProductDetailDTOS[i].totalPrice = Number(orderProductDetailDTOS[i].totalPrice).toLocaleString('en-US');
-      orderProductDetailDTOS[i].price = Number(orderProductDetailDTOS[i].price).toLocaleString('en-US');
+export function formatPrice(cartDetail: ShoppingCartDetailDTO[]) {
+  if (cartDetail != null && cartDetail.length > 0) {
+    for (let i = 0; i < cartDetail.length; i++) {
+      cartDetail[i].totalPrice = Number(cartDetail[i].totalPrice).toLocaleString('en-US');
+      cartDetail[i].price = Number(cartDetail[i].price).toLocaleString('en-US');
     }
   }
 }
