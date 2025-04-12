@@ -64,9 +64,6 @@ export class CheckoutComponent implements OnInit {
 
   updateStatus() {
     this.orderService.changeStatus(this.idOrderProduct, this.idUser, "BOUGHT").subscribe()
-    const currentDate = new Date();
-    const newDate = new Date(currentDate);
-    newDate.setDate(currentDate.getDate() + 3);
     const noteValue = (document.getElementById("note") as HTMLSelectElement).value;
     let payment = {
       idUser: this.idUser,
@@ -75,7 +72,6 @@ export class CheckoutComponent implements OnInit {
       note: noteValue,
       totalOrderAmount: this.shoppingCartDTO?.totalPrice,
       deliveryMethod: 'COD',
-      estimatedDelivery: newDate,
     }
     this.orderPaymentService.createPayment(payment).subscribe(() => {
     }, error => {
