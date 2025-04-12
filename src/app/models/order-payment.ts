@@ -10,4 +10,5 @@ export interface OrderPayment {
   createdAt?: string;
   updatedAt?: string;
   orderPaymentStatus?: string
+  estimatedOverdue?: boolean
 }

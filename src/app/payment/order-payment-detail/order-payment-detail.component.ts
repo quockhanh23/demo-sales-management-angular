@@ -50,10 +50,9 @@ export class OrderPaymentDetailComponent implements OnInit {
   }
 
   checkDelivery(): boolean {
-    if (this.role != 'ROLE_ADMIN' && this.orderPayment?.orderPaymentStatus == 'ORDER_CONFIRM') {
-      return true;
-    }
-    return false;
+    return this.role != 'ROLE_ADMIN'
+      && this.orderPayment?.orderPaymentStatus == 'ORDER_CONFIRM'
+      && this.orderPayment?.estimatedOverdue == true;
   }
 
   updateStatusPayment(status: any) {
