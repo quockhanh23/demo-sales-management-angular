@@ -11,13 +11,17 @@
         <div class="col-11"></div>
         <div class="col-1">
           <div style="padding-right: 5px" *ngIf="!isAdmin">
-              <span [routerLink]="['/orderList']" style="font-size: 40px; cursor: pointer; color: #f44336"
+              <span [routerLink]="['/orderList']" style="font-size: 35px; cursor: pointer; color: #f44336"
                     class="material-icons hoverYellowColor">shopping_cart</span>
             <sub>{{countProductOfUser}}</sub>
           </div>
-          <div style="padding-right: 5px" *ngIf="isAdmin">
-            <span (click)="openUpdateForm()" style="font-size: 40px; color: #f44336; margin-top: 5px"
+          <div style="padding-right: 5px" *ngIf="isAdmin && !checkUpdateProduct">
+            <span (click)="openUpdateForm()" style="font-size: 35px; color: #f44336; margin-top: 5px"
                   class="material-icons cursorTag">edit</span>
+          </div>
+          <div style="padding-right: 5px" *ngIf="isAdmin && checkUpdateProduct">
+           <span (click)="closeUpdateForm()" style="font-size: 35px; color: #f44336; margin-top: 5px"
+                 class="hoverYellowColor cursorTag material-icons">close</span>
           </div>
         </div>
       </div>
@@ -118,12 +122,6 @@
           <div class="row">
             <div class="col-11">
               <h5>Chỉnh sửa sản phẩm</h5>
-            </div>
-            <div class="col-1">
-              <sub>
-                <span (click)="closeUpdateForm()" style="float: right; margin-top: 1px"
-                      class="hoverYellowColor cursorTag material-icons">close</span>
-              </sub>
             </div>
           </div>
           <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
