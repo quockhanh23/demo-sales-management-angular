@@ -154,7 +154,7 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
-                <label for="price"><b>Giá: </b></label><br>
+                <label for="price"><b>Giá (VNĐ): </b></label><br>
                 <input id="price" type="number"
                        formControlName="price"
                        class="form-control"
@@ -163,7 +163,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <label for="quantity"><b>Số lượng: </b></label><br>
+                <label for="quantity"><b>Số lượng (sản phẩm): </b></label><br>
                 <input id="quantity" type="number" formControlName="quantity" class="form-control"
                        placeholder="Số lượng">
               </div>
@@ -175,15 +175,6 @@
               </div>
             </div>
           </form>
-          <div class="col-10 mb-3">
-            <label class="px-3">Select File: </label>
-            <input type="file" (change)="selectFile($event)"/>
-          </div>
-          <div class="col-2">
-            <button class="btn btn-success btn-sm" (click)="uploadFile()">
-              Upload
-            </button>
-          </div>
         </div>
       </div>
     </div>
