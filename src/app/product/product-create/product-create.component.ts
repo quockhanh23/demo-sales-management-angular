@@ -25,7 +25,7 @@ export class ProductCreateComponent implements OnInit {
   file?: File;
   fileUrl?: any
   idUser?: any
-  createProductError?: string
+  messageCreateError?: string
 
   productForm: FormGroup = this.formBuilder.group({
     productName: new FormControl('', [Validators.required, whitespaceValidator()]),
@@ -65,6 +65,7 @@ export class ProductCreateComponent implements OnInit {
   }
 
   createProduct() {
+    this.messageCreateError = undefined
     let filename
     if (this.fileDetail != undefined) {
       let index = this.fileDetail.toString().indexOf("src")
@@ -90,7 +91,7 @@ export class ProductCreateComponent implements OnInit {
     }, error => {
       this.created = true
       this.file = undefined;
-      this.createProductError = error.error.message
+      this.messageCreateError = error.error.message
       console.log("lỗi createProduct:" + JSON.stringify(error))
     })
   }

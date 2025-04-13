@@ -30,6 +30,10 @@ export class UserService {
     return this.http.put<any>(API_URL + `/change-password?idUser=${idUser}`, user)
   }
 
+  updateInformation(user: any, idUser: any): Observable<any> {
+    return this.http.put<any>(API_URL + `/update-information?idUser=${idUser}`, user)
+  }
+
   findByUsername(username: any): Observable<User> {
     return this.http.get<User>(API_URL + '/findByUserName?username=' + `${username}`)
   }

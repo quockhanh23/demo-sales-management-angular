@@ -32,12 +32,20 @@ export class UserDetailComponent implements OnInit {
   selectedProvince?: string
   selectedDistrict?: string
   messageErrorChangePassword?: string
+  messageErrorUpdateUser?: string
   role?: any
+  updateUser = false;
+  successMessage = ""
 
   changePasswordForm: FormGroup = this.formBuilder.group({
     oldPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
     newPassword: new FormControl('', [Validators.required, whitespaceValidator()]),
     newPasswordConfirm: new FormControl('', [Validators.required, whitespaceValidator()]),
+  });
+
+  userUpdateForm: FormGroup = this.formBuilder.group({
+    fullName: new FormControl('',),
+    phone: new FormControl('',),
   });
 
   constructor(private userService: UserService,
@@ -65,6 +73,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   toChangePassword() {
+    this.messageErrorChangePassword = undefined
     if (this.idUser == null || this.idUser == "") return
     let changePasswordObject = {
       oldPassword: this.changePasswordForm.value.oldPassword,
@@ -72,6 +81,7 @@ export class UserDetailComponent implements OnInit {
       confirmPassword: this.changePasswordForm.value.newPasswordConfirm,
     }
     this.userService.changePassword(changePasswordObject, this.idUser).subscribe(() => {
+      this.successMessage = "Đổi mật khẩu thành công !"
       this.getSnackbar();
       this.changeToProfile();
     }, error => {
@@ -80,8 +90,28 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
+  toUpdateUser() {
+    this.messageErrorUpdateUser = undefined
+    if (this.userUpdateForm.value.fullName == '' && this.userUpdateForm.value.phone == '') return;
+    if (this.idUser == null || this.idUser == "") return
+    let updateUser = {
+      fullName: this.userUpdateForm.value.fullName,
+      phone: this.userUpdateForm.value.phone,
+    }
+    this.userService.updateInformation(updateUser, this.idUser).subscribe(() => {
+      this.successMessage = "Cập nhật thông tin thành công !"
+      this.getSnackbar();
+      this.changeToProfile();
+      this.updateUser = false;
+      this.getInformation(this.idUser)
+    }, error => {
+      this.messageErrorUpdateUser = error.error.message
+      console.log("Lỗi toUpdateUser: ", JSON.stringify(error))
+    })
+  }
+
   getSnackbar() {
-    let x = document.getElementById("snackbar");
+    let x = document.getElementById('snackbar');
     // @ts-ignore
     x.className = "show";
     setTimeout(function () {
@@ -218,6 +248,14 @@ export class UserDetailComponent implements OnInit {
 
   closeNewAddress() {
     this.newAddress = false;
+  }
+
+  openUpdateUser() {
+    this.updateUser = true;
+  }
+
+  closeUpdateUser() {
+    this.updateUser = false;
   }
 }
 

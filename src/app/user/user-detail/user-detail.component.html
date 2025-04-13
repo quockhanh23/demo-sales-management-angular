@@ -23,28 +23,66 @@
     </div>
     <div class="col-9" style="text-align: center; background-color: whitesmoke; margin-left: 40px; border-radius: 5px">
       <div class="row" *ngIf="checkProfile">
-        <div style="margin-bottom: 10px" align="left"><h5 style="margin-top: 15px">Hồ Sơ Của Tôi</h5></div>
-        <hr>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-6">
-              <div align="left">
-                <p>Tên đăng nhập: </p>
-                <p>Họ tên: </p>
-                <p>Số điện thoại: </p>
-              </div>
-            </div>
-            <div class="col-6">
-              <div align="left">
-                <p>{{user?.username}}</p>
-                <p>{{user?.fullName}}</p>
-                <p>{{user?.phone}}</p>
-              </div>
+        <div class="row">
+          <div class="col-2">
+            <h5 style="margin-top: 15px">Hồ Sơ Của Tôi</h5>
+          </div>
+          <div class="col-1">
+            <div style="margin-bottom: 10px" align="left">
+              <span *ngIf="!updateUser" style="font-size: 22px; margin-top: 16px" (click)="openUpdateUser()"
+                    class="hoverYellowColor material-icons cursorTag">edit</span>
+              <span *ngIf="updateUser" style="font-size: 23px; margin-top: 16px" (click)="closeUpdateUser()"
+                    class="hoverYellowColor cursorTag material-icons">close</span>
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <img src="../../../assets/image/ruoi.jpg" alt="Lỗi ảnh" style="width:50%">
+        <hr>
+        <div class="row" *ngIf="!updateUser">
+          <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <div align="left">
+                  <p>Tên đăng nhập: </p>
+                  <p>Họ tên: </p>
+                  <p>Số điện thoại: </p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div align="left">
+                  <p>{{user?.username}}</p>
+                  <p>{{user?.fullName}}</p>
+                  <p>{{user?.phone}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <img src="../../../assets/image/ruoi.jpg" alt="Lỗi ảnh" style="width:50%">
+          </div>
+        </div>
+        <div class="row" *ngIf="updateUser">
+          <div class="alert alert-danger" role="alert" *ngIf="messageErrorUpdateUser != null">
+            {{messageErrorUpdateUser}}
+          </div>
+          <form [formGroup]="userUpdateForm" (ngSubmit)="toUpdateUser()">
+            <div class="row">
+              <div class="col-2" align="left">
+                <p>Tên đầy đủ: </p>
+                <p>Số điện thoại: </p>
+              </div>
+              <div class="col-4">
+                <input type="text" formControlName="fullName" class="form-control"
+                       placeholder="Tên đầy đủ">
+                <input style="margin-top: 5px" formControlName="phone" class="form-control"
+                       placeholder="Số điện thoại">
+              </div>
+              <div class="col-2">
+                <button [disabled]="!userUpdateForm.valid"
+                        class="btn btn-primary mt-4" type="submit">Gửi yêu cầu
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="row" *ngIf="checkOrder">
@@ -222,4 +260,4 @@
   </div>
 </div>
 
-<div id="snackbar">Đổi mật khẩu thành công !</div>
+<div id="snackbar">{{successMessage}}</div>
