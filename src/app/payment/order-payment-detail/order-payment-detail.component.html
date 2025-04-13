@@ -1,10 +1,13 @@
 <app-header></app-header>
+<div style="background-color: #cccccc" align="center">
+  <h4 style=" margin: 0px">Chi tiết đơn hàng</h4>
+</div>
 <div class="container" style="margin-bottom: 15px; margin-top: 10px">
     <span [routerLink]="[getPreviousUrl()]" style="font-size: 35px; cursor: pointer;"
           class="material-icons hoverYellowColor">arrow_back</span>
   <div class="row">
     <div class="col-3">
-      <button *ngIf="role == 'ROLE_ADMIN'"
+      <button *ngIf="role == 'ROLE_ADMIN' && orderPayment?.orderPaymentStatus == 'ORDER_SUCCESSFUL'"
               (click)="updateStatusPayment('ORDER_CONFIRM')" class="btn btn-light">Xác nhận đơn hàng
       </button>
       <button *ngIf="checkDelivery()"

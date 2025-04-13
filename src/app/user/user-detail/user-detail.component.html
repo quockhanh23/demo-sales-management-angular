@@ -68,15 +68,17 @@
             <div class="row">
               <div class="col-2" align="left">
                 <p>Tên đầy đủ: </p>
-                <p>Số điện thoại: </p>
+                <p style="margin-top: 45px">Số điện thoại: </p>
               </div>
               <div class="col-4">
                 <input type="text" formControlName="fullName" class="form-control"
                        placeholder="Tên đầy đủ">
+                <span style="font-size: 15px; margin-left: 10px">Tối đa 100 kí tự.</span>
                 <input style="margin-top: 5px" formControlName="phone" class="form-control"
                        placeholder="Số điện thoại">
+                <span style="font-size: 15px; margin-left: 10px">Tối đa 10 kí tự.</span>
               </div>
-              <div class="col-2">
+              <div class="col-2" style="margin-top: 5px">
                 <button [disabled]="!userUpdateForm.valid"
                         class="btn btn-primary mt-4" type="submit">Gửi yêu cầu
                 </button>
@@ -221,6 +223,9 @@
             </button>
           </div>
           <div *ngIf="newAddress" align="left">
+            <div style="margin-top: 5px" class="alert alert-danger" role="alert" *ngIf="messageErrorAddress != null">
+              {{messageErrorAddress}}
+            </div>
             <h6 style="margin-top: 10px">Tỉnh/Thành Phố *</h6>
             <select style="width: 200px" id="1" [(ngModel)]="selectedProvince"
                     (ngModelChange)="getAllDistrictByIdProvince();">

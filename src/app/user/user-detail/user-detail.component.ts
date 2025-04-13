@@ -33,6 +33,7 @@ export class UserDetailComponent implements OnInit {
   selectedDistrict?: string
   messageErrorChangePassword?: string
   messageErrorUpdateUser?: string
+  messageErrorAddress?: string
   role?: any
   updateUser = false;
   successMessage = ""
@@ -168,6 +169,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   createAddress() {
+    this.messageErrorAddress = undefined;
     const provinceId = (document.getElementById("1") as HTMLSelectElement).value;
     const districtId = (document.getElementById("2") as HTMLSelectElement).value;
     const wardsId = (document.getElementById("3") as HTMLSelectElement).value;
@@ -211,6 +213,8 @@ export class UserDetailComponent implements OnInit {
 
     this.addressService.createAddress(this.idUser, addressRequest).subscribe(() => {
       this.ngOnInit()
+    }, error => {
+      this.messageErrorAddress = error.error.message
     })
   }
 
