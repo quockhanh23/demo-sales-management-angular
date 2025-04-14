@@ -99,12 +99,12 @@ export class UserDetailComponent implements OnInit {
       fullName: this.userUpdateForm.value.fullName,
       phone: this.userUpdateForm.value.phone,
     }
-    this.userService.updateInformation(updateUser, this.idUser).subscribe(() => {
+    this.userService.updateInformation(updateUser, this.idUser).subscribe(rs => {
       this.successMessage = "Cập nhật thông tin thành công !"
       this.getSnackbar();
       this.changeToProfile();
       this.updateUser = false;
-      this.getInformation(this.idUser)
+      this.user = rs
     }, error => {
       this.messageErrorUpdateUser = error.error.message
       console.log("Lỗi toUpdateUser: ", JSON.stringify(error))
@@ -212,7 +212,7 @@ export class UserDetailComponent implements OnInit {
     };
 
     this.addressService.createAddress(this.idUser, addressRequest).subscribe(() => {
-      this.ngOnInit()
+      this.getAllAddressByUser(this.idUser)
     }, error => {
       this.messageErrorAddress = error.error.message
     })
