@@ -10,7 +10,6 @@ export interface UserDTO {
   phone?: string
   status?: string
   role?: string
-  isBuyer?: string
   avatar?: string
   createdAt?: string
   updatedAt?: string

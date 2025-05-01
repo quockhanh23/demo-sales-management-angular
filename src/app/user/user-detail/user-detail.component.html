@@ -114,15 +114,15 @@
             </tr>
             </thead>
             <tbody *ngFor="let pay of orderPayments as i">
-            <tr [routerLink]="['/orderPaymentDetail', pay?.id]">
+            <tr>
               <td>{{pay?.idShoppingCart}}</td>
-              <td>{{pay?.createdAt | date:"dd/MM/yyyy HH:mm:ss" }} </td>
+              <td>{{pay?.createdAt | date:"dd/MM/yyyy HH:mm:ss"}}</td>
               <td>{{pay?.totalOrderAmount}}</td>
-              <td>{{pay?.estimatedDelivery | date:"dd/MM/yyyy" }} </td>
+              <td>{{pay?.estimatedDelivery | date:"dd/MM/yyyy"}}</td>
               <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_SUCCESSFUL'">Đặt hàng thành công</td>
               <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'ORDER_CONFIRM'">Đang giao hàng</td>
               <td style="color: #0ba10b" *ngIf="pay?.orderPaymentStatus == 'DELIVERY_SUCCESSFUL'">Đã giao hàng</td>
-              <td class="cursorTag hoverYellowColor">Xem chi tiết</td>
+              <td [routerLink]="['/orderPaymentDetail', pay?.id]" class="cursorTag hoverYellowColor">Xem chi tiết</td>
             </tr>
             </tbody>
           </table>

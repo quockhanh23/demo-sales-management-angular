@@ -23,8 +23,8 @@ export class OrderPaymentDetailComponent implements OnInit {
   orderPaymentHistories?: OrderPaymentHistory[]
   orderProductDetailDTOS?: ShoppingCartDetailDTO[]
   addressInUse?: Address
-  user?: User
-  idUser?: any
+  userOrder?: User
+  idUserLogin?: any
   role?: any
   idOrderPayment?: any
 
@@ -33,20 +33,18 @@ export class OrderPaymentDetailComponent implements OnInit {
               private addressService: AddressService,
               private orderService: OrderService,
               private activatedRoute: ActivatedRoute,) {
-    this.idUser = localStorage.getItem("id")
+    this.idUserLogin = localStorage.getItem("id")
     this.role = localStorage.getItem("role")
   }
 
   ngOnInit(): void {
-    if (this.idUser == null || this.idUser == '') return;
+    if (this.idUserLogin == null || this.idUserLogin == '') return;
     this.activatedRoute.paramMap.subscribe(rs => {
       const idOrderPayment = rs.get('id')
       this.idOrderPayment = idOrderPayment
       this.getDetailOrderPayment(idOrderPayment);
       this.getAllHistoryOfOrderPayment(idOrderPayment);
     })
-    this.getAddressInUse();
-    this.getInformation(this.idUser);
   }
 
   checkDelivery(): boolean {
@@ -67,27 +65,21 @@ export class OrderPaymentDetailComponent implements OnInit {
   }
 
   getDetailOrderPayment(idOrderPayment: any) {
-    this.orderPaymentService.getDetailOrderPayment(this.idUser, idOrderPayment).subscribe(rs => {
+    this.orderPaymentService.getDetailOrderPayment(this.idUserLogin, idOrderPayment).subscribe(rs => {
       this.orderPayment = rs;
+      this.userService.getInformation(this.orderPayment.idUser).subscribe(rs => {
+        this.userOrder = rs
+      })
+      this.addressService.getAddressInUse(this.orderPayment.idUser).subscribe(rs => {
+        this.addressInUse = rs
+      })
       this.getDetailShoppingCartById(this.orderPayment?.idShoppingCart);
     })
   }
 
   getAllHistoryOfOrderPayment(idOrderPayment: any) {
-    this.orderPaymentService.getAllHistoryOfOrderPayment(this.idUser, idOrderPayment).subscribe(rs => {
+    this.orderPaymentService.getAllHistoryOfOrderPayment(this.idUserLogin, idOrderPayment).subscribe(rs => {
       this.orderPaymentHistories = rs;
-    })
-  }
-
-  getAddressInUse() {
-    this.addressService.getAddressInUse(this.idUser).subscribe(rs => {
-      this.addressInUse = rs
-    })
-  }
-
-  getInformation(idUser: any) {
-    this.userService.getInformation(idUser).subscribe(rs => {
-      this.user = rs
     })
   }
 
@@ -107,5 +99,4 @@ export class OrderPaymentDetailComponent implements OnInit {
       return environment.previousUrl
     }
   }
-
 }

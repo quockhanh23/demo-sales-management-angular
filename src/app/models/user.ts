@@ -8,6 +8,5 @@ export interface User {
   pin: string
   status: string
   role: string
-  buyer: boolean
   fullName: string
 }
