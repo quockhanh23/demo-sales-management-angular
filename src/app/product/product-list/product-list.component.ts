@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit {
   nextPageNumber?: number = 3;
   sizePage = 0;
   isLoading: boolean = true;
-  openModal = false;
 
   searchForm: FormGroup = this.formBuilder.group({
     productName: new FormControl(''),
@@ -55,10 +54,26 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProduct(page: any, size: any) {
+    let checkError = false;
+    let stock = "1";
+    try {
+      stock = (document.getElementById("stock") as HTMLSelectElement).value
+    } catch (error) {
+      checkError = true;
+    }
+    if (checkError) {
+      stock = "1"
+    } else {
+      if ("Còn hàng" == stock) {
+        stock = "1"
+      } else {
+        stock = "0"
+      }
+    }
     let product = {
       productName: this.searchForm.value.productName,
     }
-    this.productService.getAllProduct(product.productName, page, size).subscribe(rs => {
+    this.productService.getAllProduct(product.productName, stock, page, size).subscribe(rs => {
       this.productDTOPage = rs
       this.products = rs.content;
       if (this.products != null && this.products.length > 0) {

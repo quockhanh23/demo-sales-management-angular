@@ -82,7 +82,8 @@ export class CheckoutComponent implements OnInit {
 
   removeFromCart(idOrderProductDetail: any) {
     this.orderService.removeFromCart(this.idUser, idOrderProductDetail).subscribe(() => {
-      this.ngOnInit()
+      this.getAllOrderByUser();
+      this.getAllProductsInCartByUser();
     })
   }
 }

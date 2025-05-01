@@ -10,12 +10,25 @@
           <form [formGroup]="searchForm" (ngSubmit)="getAllProduct(currentPage,8 )">
             <input formControlName="productName" class="form-control" type="search"
                    placeholder="Tìm kiếm theo tên sản phẩm" aria-label="Search">
-            <div class="cursorTag, hoverYellowColor elastic-button"
-                 style="; width: 30px; border-radius: 5px; margin-top: 5px"
-                 align="center">
-              <button style="border-radius: 5px; background-color: #295d81">
-                <sub><span style="color: white" class="cursorTag material-icons" type="submit">search</span></sub>
-              </button>
+            <div class="row">
+              <div class="col-2">
+                <div class="cursorTag, hoverYellowColor elastic-button"
+                     style="; width: 30px; border-radius: 5px; margin-top: 5px"
+                     align="center">
+                  <button style="border-radius: 5px; background-color: #295d81">
+                    <sub><span style="color: white" class="cursorTag material-icons" type="submit">search</span></sub>
+                  </button>
+                </div>
+              </div>
+              <div class="col-1">
+                <div class="cursorTag, hoverYellowColor elastic-button">
+                  <select id="stock"
+                          style="margin-top: 5px; border-radius: 5px; width: 100px; height: 35px">
+                    <option selected>Còn hàng</option>
+                    <option>Hết hàng</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -54,13 +67,19 @@
           <p style="height: 15px" class="priceColor">Giá tiền: {{pr?.price}} VNĐ</p>
           <p style="height: 15px">Số lượng: {{pr?.quantity}} sản phẩm</p>
           <p class="cursorTag hoverYellowColor" [routerLink]="['/detailProduct', pr?.id]"><u>Xem chi tiết</u></p>
-            <button class="btn btn-primary" *ngIf="idUser == null" [routerLink]="['/login']"
-                    style="background-color: #295d81; margin: 1px">
-              <sub>
-                <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>
-              </sub>&nbsp;Thêm vào giỏ hàng
-            </button>
-          <button class="btn btn-primary" *ngIf="idUser != null"
+          <button class="btn btn-primary" *ngIf="idUser == null" [routerLink]="['/login']"
+                  style="background-color: #295d81; margin: 1px">
+            <sub>
+              <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>
+            </sub>&nbsp;Thêm vào giỏ hàng
+          </button>
+          <button class="btn btn-primary" *ngIf="idUser != null && pr?.outOfStock == false"
+                  style="background-color: #295d81; margin: 1px" (click)="addToCart(pr); getSnackbar()">
+            <sub>
+              <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>
+            </sub>&nbsp;Thêm vào giỏ hàng
+          </button>
+          <button disabled class="btn btn-primary" *ngIf="idUser != null  && pr?.outOfStock == true"
                   style="background-color: #295d81; margin: 1px" (click)="addToCart(pr); getSnackbar()">
             <sub>
               <span style="font-size: 19px" class="material-icons">add_shopping_cart</span>

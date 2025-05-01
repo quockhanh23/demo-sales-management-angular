@@ -7,4 +7,5 @@ export interface Product {
   isDelete?: boolean;
   image?: string;
   description?: string;
+  outOfStock?: boolean;
 }

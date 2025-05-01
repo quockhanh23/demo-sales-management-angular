@@ -5,4 +5,5 @@ export interface ProductDTO {
   quantity?: number;
   image?: string;
   description?: string;
+  outOfStock?: boolean
 }

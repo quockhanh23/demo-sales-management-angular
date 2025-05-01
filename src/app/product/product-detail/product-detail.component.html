@@ -68,7 +68,7 @@
           <div class="col">
             <div class="row">
               <div class="col">
-                <div (click)="addToCart(); getSnackbar()">
+                <div *ngIf="product?.outOfStock == false" (click)="addToCart(); getSnackbar()">
                   <sub>
                   <span
                     style="font-size: 40px; color: #295d81; margin-top: 5px"
