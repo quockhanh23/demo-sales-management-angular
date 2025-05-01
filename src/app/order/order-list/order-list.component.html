@@ -27,12 +27,17 @@
     <div class="row" style="margin-bottom: 15px">
       <div *ngFor="let pr of orderProductDetailDTOS index as i">
         <div class="row" style="margin-top: 5px; border-radius: 5px; height: 120px; background-color: whitesmoke">
-          <div class="col-3">
-            <img style="width: 50%;height: 115px; margin-top: 3px;"
+          <div class="col-2">
+            <img style="width: 90%;height: 115px; margin-top: 3px;"
                  [src]="'data:image/jpeg;base64,' + pr?.image">
           </div>
-          <div class="col-4">
-            <h4 class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h4>
+          <div class="col-5">
+            <h5 style="padding-top: 5px" class="cursorTag" [routerLink]="['/detailProduct', pr?.idProduct]">{{pr?.productName}}</h5>
+            <span>Số lượng sản phẩm đang có: {{pr?.quantity}}</span>
+            <div class="alert alert-danger" role="alert" style="padding-bottom: 5px; padding-top: 5px; margin-top: 5px"
+                 *ngIf="this.errorObject?.idProduct == pr?.idProduct && this.errorObject != null">
+              {{this.errorObject.messageError}}
+            </div>
           </div>
           <div class="col-2">
             <span class="priceColor"><b>Tổng tiền: </b></span>

@@ -3,6 +3,7 @@ import {OrderService} from "../../services/order.service";
 import {ShoppingCartDetailDTO} from "../../models/ShoppingCartDetailDTO";
 import {environment} from "../../../environments/environment";
 import {formatPrice} from "../checkout/checkout.component";
+import {ErrorObject} from "../../models/error-object";
 
 @Component({
   selector: 'app-order-list',
@@ -17,6 +18,7 @@ export class OrderListComponent implements OnInit {
   count = 0
   isLoading: boolean = true;
   openModal = false;
+  errorObject?: ErrorObject
 
   constructor(private orderService: OrderService) {
     this.idUser = localStorage.getItem("id")
@@ -65,12 +67,18 @@ export class OrderListComponent implements OnInit {
   increaseProduct(idProduct: any) {
     this.orderService.increaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
+    }, er => {
+      this.errorObject = {
+        idProduct: idProduct,
+        messageError: er.error.message,
+      };
     })
   }
 
   decreaseProduct(idProduct: any) {
     this.orderService.decreaseProduct(this.idUser, idProduct).subscribe(() => {
       this.ngOnInit()
+      this.errorObject = undefined
     })
   }
 }
